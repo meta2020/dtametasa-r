@@ -1,0 +1,183 @@
+---
+title: 'SAUC Median Lines Comparisions'
+subtitle: "$(\\tau_1^2, \\tau_2^2) = (0.5, 0.5)$"
+author: "Yi"
+date: "`r format(Sys.Date())`"
+output:
+  html_document: null
+  pdf_document: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include = FALSE}
+library(knitr)
+opts_chunk$set(echo = FALSE, warning = FALSE, error = TRUE, message=FALSE, comment="", 
+               fig.pos='H', 
+               fig.height=8, fig.width=12)
+options(knitr.kable.NA = ".")
+library(kableExtra)
+
+auc.med <- function(row.n){
+  
+  auc <- NULL
+  for(list.n in 1:3){
+    
+    load(paste0(dt, "/sim_l", list.n, "_r",row.n, ".RData"))
+    dim(DATA) <- c(11,6,1000)
+    auc  <- rbind(auc, apply(DATA[10,,], 1, function(x) median(x, na.rm = TRUE)))
+            
+  }
+  
+  true <- set[[1]][row.n, 11]
+  e.auc <- cbind(true,auc)
+  
+  # y1 <- true-0.05
+  # y2 <- true+0.15
+  
+  y1 <- min(e.auc)-0.05
+  y2 <- max(e.auc)+0.05
+  # 
+  matplot(e.auc, type = "b", #pch = rep(20,5),
+          cex = 1, lty = 1, 
+          ylab = "Median SAUC", 
+          xlab = "N (Number of the selected studies)",
+          ylim =c(y1, y2),
+          col = c(1:6), xaxt="n")
+  axis(1, at = 1:3, labels = c("10", "35", "140"))
+  title(main = sprintf("%s", row.n))
+}
+
+
+
+```
+
+# scenarios t0.7
+
+```{r}
+load("../../scenarios/scenarios-t0.7/set-t0.7-c11.RData")
+
+
+x <- set[[1]]
+rownames(x) <- 1:6
+colnames(x) <- c("S", "$\\mu_1$", "$\\mu_2$", "$\\tau_1^2$", "$\\tau_2^2$", "$\\tau_{12}$", "$c_1^2$", "$c_2^2$",
+                 "$\\beta$", "$\\alpha$", "SAUC", "$\\rho$",  "Se", "Sp")
+
+kbl(x, 
+    format = "html",
+    row.names = T,
+    longtable = F, 
+    booktabs = T, 
+    digits =3,
+    align = "r",
+    linesep = c(rep('', 2), '\\addlinespace'),
+    escape = FALSE,
+    caption = "Scenarios when $c_1^2 = c_2^2 = 0.5$")%>% 
+  kable_styling(full_width = TRUE)
+
+
+load("../../scenarios/scenarios-t0.7/set-t0.7-c10.RData")
+
+
+x <- set[[1]]
+rownames(x) <- 1:6
+colnames(x) <- c("S", "$\\mu_1$", "$\\mu_2$", "$\\tau_1^2$", "$\\tau_2^2$", "$\\tau_{12}$", "$c_1^2$", "$c_2^2$",
+                 "$\\beta$", "$\\alpha$", "SAUC", "$\\rho$",  "Se", "Sp")
+
+kbl(x, 
+    format = "html",
+    row.names = T,
+    longtable = F, 
+    booktabs = T, 
+    digits =3,
+    align = "r",
+    linesep = c(rep('', 2), '\\addlinespace'),
+    escape = FALSE,
+    caption = "Scenarios when $c_1^2 = 1, c_2^2 = 0$")%>% 
+  kable_styling(full_width = TRUE)
+
+
+load("../../scenarios/scenarios-t0.7/set-t0.7-c01.RData")
+
+
+x <- set[[1]]
+rownames(x) <- 1:6
+colnames(x) <- c("S", "$\\mu_1$", "$\\mu_2$", "$\\tau_1^2$", "$\\tau_2^2$", "$\\tau_{12}$", "$c_1^2$", "$c_2^2$",
+                 "$\\beta$", "$\\alpha$", "SAUC", "$\\rho$",  "Se", "Sp")
+
+kbl(x, 
+    format = "html",
+    row.names = T,
+    longtable = F, 
+    booktabs = T, 
+    digits =3,
+    align = "r",
+    linesep = c(rep('', 2), '\\addlinespace'),
+    escape = FALSE,
+    caption = "Scenarios when $c_1^2 = 0, c_2^2 = 1$")%>% 
+  kable_styling(full_width = TRUE)
+```
+
+1. "True SAUC"
+
+2. "Proposed (estimate c)" 
+
+3. "Proposed (correct specified c)"
+
+4. "Proposed (misspecified c)" 
+
+5. "Heckman-type"
+
+6. "Reitsma.O"
+
+7. "Reitsma.P"
+
+
+# c11
+
+```{r}
+dt <- "c11/"
+par(mfcol = c(2, 3))
+
+for(row.n in 1:6){
+  
+  auc.med(row.n)
+  
+}
+  
+par(mfrow = c(1, 1))
+
+```
+
+
+# c10
+
+```{r}
+dt <- "c10/"
+par(mfcol = c(2, 3))
+
+for(row.n in 1:6){
+  
+  auc.med(row.n)
+  
+}
+  
+par(mfrow = c(1, 1))
+
+```
+
+# c01
+
+```{r}
+dt <- "c01/"
+par(mfcol = c(2, 3))
+
+for(row.n in 1:6){
+  
+  auc.med(row.n)
+  
+}
+  
+par(mfrow = c(1, 1))
+
+```

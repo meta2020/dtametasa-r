@@ -1,0 +1,293 @@
+---
+title: 'Example: IVD'
+author: "Yi"
+date: "`r format(Sys.Date())`"
+output:
+  pdf_document:
+editor_options:
+  chunk_output_type: console
+classoption: landscape
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, error = TRUE, message=FALSE, comment="", fig.width = 10, fig.height = 10)
+options(knitr.kable.NA = "")
+
+rm(list = ls())
+library(knitr)
+library(kableExtra)
+library(latex2exp)
+library(mvmeta)
+library(meta)
+
+files.sources = list.files("functions/")
+sapply(paste0("functions/", files.sources), source)
+
+data.all <- read.csv("data-IVD.csv")
+
+## WHETHER TO SAVE PLOTS AND TABLES
+
+save.results <- FALSE
+
+```
+
+
+
+# Result
+
+```{r, fig.height=12, fig.width=12}
+## SET SELECTION PROBABILITY p 
+
+sauc.type <- "sroc"
+
+# (p.seq <- seq(1, 0.1, -0.1))
+data <- data.all
+
+# sort(data$cutoff)
+# se <- data$TP/(data$TP+data$FN)
+# sp <- data$TN/(data$TN+data$FP)
+# 
+# plot(1-sp, se, type = "p", ylim = c(0,1), xlim = c(0,1), 
+#      xlab = "FPR", ylab = "TPR", pch = 4)
+# text(1-sp, se, labels=data$cutoff, cex=1, pos = 4)
+
+## nuber of studies
+nrow(data)
+
+p.seq <- c(1, 0.8, 0.6, 0.4)
+
+## ESITMATION WHEN WE TREAT c1, c2 AS PARAMETERS
+
+est2 <- sapply(p.seq, function(p) {
+  
+  ## ESTIMATES OF THE PARAMETERS
+  
+  opt2 <- dtametasa.rc(data, p, beta.interval = c(0,2), sauc.type = "hsroc")
+
+  c(opt2$par, opt2$sauc.ci, opt2$convergence)
+  
+})
+
+
+
+## ESITMATION WHEN WE SET c1 = c2
+
+est11 <- sapply(p.seq, function(p) {
+  
+  opt1 <- dtametasa.fc(data, p,  c1.sq =0.5, beta.interval = c(0,2), sauc.type = "hsroc")
+  
+  c(opt1$par, opt1$sauc.ci, opt1$convergence)
+  
+  })
+
+
+## ESITMATION WHEN WE SET c1 = 1, c2 = 0
+
+est10 <- sapply(p.seq, function(p) {
+  
+  opt1 <- dtametasa.fc(data, p, c1.sq =1, beta.interval = c(0,2), sauc.type = "hsroc")
+  
+  c(opt1$par, opt1$sauc.ci, opt1$convergence)
+  
+})
+
+
+## ESITMATION WHEN WE SET c1 = 0, c2 = 1
+
+est01 <- sapply(p.seq, function(p) {
+  
+  opt1 <- dtametasa.fc(data, p, c1.sq = 0, beta.interval = c(0,2), sauc.type = "hsroc")
+  
+  c(opt1$par, opt1$sauc.ci, opt1$convergence)  
+  
+})
+
+
+## ALL RESULTS
+
+colnames(est2)<- paste0("p = ", p.seq)
+
+colnames(est11)<- paste0("p = ", p.seq)
+
+colnames(est10)<- paste0("p = ", p.seq)
+
+colnames(est01)<- paste0("p = ", p.seq)
+
+```
+
+## PLOT: SROC curve by the proposed method
+
+```{r, fig.width=10, fig.height=10}
+# PLEASE CHOOSE ONE SAVED DATA *******
+
+
+se <- data$TP/(data$TP+data$FN)
+sp <- data$TN/(data$TN+data$FP)
+
+
+par(mfrow = c(2, 2))
+
+# col <- gray.colors(10, gamma = 1, start = 0, end = 0.8)
+col <- 1:4
+
+plot(1-sp, se, type = "p", ylim = c(0,1), xlim = c(0,1), 
+     xlab = "FPR", ylab = "TPR")
+# text(1-sp, se, labels=data$cutoff, cex=0.9, font=2)
+sROC(est2[c(1:5),  ], add = TRUE, ncols = col, sroc.type = sauc.type)
+legend("bottomright", 
+       bty='n',
+       # legend = c(sprintf("p = %.1f, SAUC = %.3f",  p.seq[1], est2[10,1]),
+       #            #TeX(sprintf("$(\\hat{c}_1, \\, \\hat{c}_2) = (-, -)$", est2[6,1], est2[7,1])),
+       #            sprintf("p = %.1f, SAUC = %.3f",  p.seq[2], est2[10,2]),
+       #            TeX(sprintf("$(\\hat{c}_1, \\, \\hat{c}_2) = (%.3f, %.3f)$", est2[6,2], est2[7,2])),
+       #            sprintf("p = %.1f, SAUC = %.3f",  p.seq[3], est2[10,3]),
+       #            TeX(sprintf("$(\\hat{c}_1, \\, \\hat{c}_2) = (%.3f, %.3f)$", est2[6,3], est2[7,3])),
+       #            sprintf("p = %.1f, SAUC = %.3f",  p.seq[4], est2[10,4]),
+       #            TeX(sprintf("$(\\hat{c}_1, \\, \\hat{c}_2) = (%.3f, %.3f)$", est2[6,4], est2[7,4]))
+       #            ), 
+       legend = c(sprintf("p = %.1f, SAUC = %.3f", p.seq, est2[8, ])), 
+       col = col, pch = 18, pt.cex = 2, cex = 1.2, 
+       lty = rep(1,3))
+title("(A)", adj = 0, font.main = 1, cex.main = 1.5)
+title(TeX("$(\\hat{c}_1, \\, \\hat{c}_2)$"), cex.main = 1.5)
+
+      
+plot(1-sp, se, type = "p", ylim = c(0,1), xlim = c(0,1), 
+     xlab = "FPR", ylab = "TPR")
+sROC(est11[c(1:5),  ], add = TRUE, ncols = col, sroc.type = sauc.type)
+legend("bottomright", 
+       bty='n',
+       legend = c(sprintf("p = %.1f, SAUC = %.3f", p.seq, est11[7, ])), 
+       col = col, pch = 18, pt.cex = 2, cex = 1.2, 
+       lty = rep(1,3))
+title("(B)", adj = 0, font.main = 1, cex.main = 1.5)
+title(TeX("$(c_1, \\,c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$"), cex.main = 1.5)
+
+
+plot(1-sp, se, type = "p", ylim = c(0,1), xlim = c(0,1), 
+     xlab = "FPR", ylab = "TPR")
+sROC(est10[c(1:5),  ], add = TRUE, ncols = col, sroc.type = sauc.type)
+legend("bottomright", 
+       bty='n',
+       legend = c(sprintf("p = %.1f, SAUC = %.3f", p.seq, est10[7, ])), 
+       col = col, pch = 18, pt.cex = 2, cex = 1.2, 
+       lty = rep(1,3))
+title("(C)", adj = 0, font.main = 1, cex.main = 1.5)
+title(TeX("$(c_1,\\, c_2) = (1,\\, 0)$"), cex.main = 1.5)
+
+plot(1-sp, se, type = "p", ylim = c(0,1), xlim = c(0,1), 
+     xlab = "FPR", ylab = "TPR")
+sROC(est01[c(1:5),  ], add = TRUE, ncols = col, sroc.type = sauc.type)
+legend("bottomright", 
+       bty='n',
+       legend = c(sprintf("p = %.1f, SAUC = %.3f", p.seq, est01[7, ])), 
+       col = col, pch = 18, pt.cex = 2, cex = 1.2, 
+       lty = rep(1,3))
+title("(D)", adj = 0, font.main = 1, cex.main = 1.5)
+title(TeX("$(c_1,\\, c_2) = (0,\\, 1)$"), cex.main = 1.5)
+
+par(mfrow = c(1,1))
+
+if(save.results) dev.off()
+```
+
+
+# PLOT: SAUC plot 
+
+```{r, fig.height=10, fig.width=10}
+
+p.seq <- seq(1, 0.1, -0.1)
+
+## ESITMATION WHEN WE TREAT c1, c2 AS PARAMETERS
+
+est2 <- sapply(p.seq, function(p) {
+  
+  ## ESTIMATES OF THE PARAMETERS
+  opt2 <- dtametasa.rc(data, p, beta.interval = c(0,2), sauc.type = sauc.type)
+
+  c(opt2$sauc.ci)
+  
+})
+
+
+
+## ESITMATION WHEN WE SET c1 = c2
+
+est11 <- sapply(p.seq, function(p) {
+  
+  opt1 <- dtametasa.fc(data, p,  c1.sq =0.5, beta.interval = c(0,2), sauc.type = sauc.type)
+  
+  c(opt1$sauc.ci)
+  
+  })
+
+est10 <- sapply(p.seq, function(p) {
+  
+  opt1 <- dtametasa.fc(data, p,  c1.sq = 1, beta.interval = c(0,2), sauc.type = sauc.type)
+  
+  c(opt1$sauc.ci)
+  
+  })
+
+est01 <- sapply(p.seq, function(p) {
+  
+  opt1 <- dtametasa.fc(data, p,  c1.sq = 0, beta.interval = c(0,2), sauc.type = sauc.type)
+  
+  c(opt1$sauc.ci)
+  
+  })
+
+
+## ALL RESULTS
+
+colnames(est2)<- paste0("p = ", p.seq)
+
+colnames(est11)<- paste0("p = ", p.seq)
+
+colnames(est10)<- paste0("p = ", p.seq)
+
+colnames(est01)<- paste0("p = ", p.seq)
+
+## Plot
+if(save.results)  {setEPS(width = 9, height = 9); postscript("ivd-sauc.eps")}
+
+par(mfrow = c(2,2))
+
+
+matplot(t(est2),ylim=c(0,1), type = "b",lty = c(1,2,2), pch=20, col = c(1, 2,2),
+         ylab = "SAUC", xlab = "p", xaxt = "n")
+title(TeX("$(\\hat{c}_1, \\, \\hat{c}_2)$"), cex.main = 1.5)
+axis(1, at = 1:10, labels = p.seq)
+abline(h=0.5, col="grey54", lty=2)
+title("(A)", adj = 0, font.main = 1, cex.main = 1.5)
+
+
+matplot(t(est11),ylim=c(0,1), type = "b",lty = c(1,2,2), pch=20, col = c(1, 2,2),
+         ylab = "SAUC", xlab = "p", xaxt = "n")
+title(TeX("$(c_1, \\,c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$"), cex.main = 1.5)
+axis(1, at = 1:10, labels = p.seq)
+abline(h=0.5, col="grey54", lty=2)
+title("(B)", adj = 0, font.main = 1, cex.main = 1.5)
+
+
+matplot(t(est10),ylim=c(0,1), type = "b",lty = c(1,2,2), pch=20, col = c(1, 2,2),
+         ylab = "SAUC", xlab = "p", xaxt = "n")
+title(TeX("$(c_1, \\,c_2) = (1, \\,0)$"), cex.main = 1.5)
+axis(1, at = 1:10, labels = p.seq)
+abline(h=0.5, col="grey54", lty=2)
+title("(C)", adj = 0, font.main = 1, cex.main = 1.5)
+
+
+matplot(t(est01),ylim=c(0,1), type = "b",lty = c(1,2,2), pch=20, col = c(1, 2,2),
+         ylab = "SAUC", xlab = "p", xaxt = "n")
+title(TeX("$(c_1, \\,c_2) = (0, \\,1)$"), cex.main = 1.5)
+axis(1, at = 1:10, labels = p.seq)
+# title("(b)", adj = 0, font.main = 1)
+abline(h=0.5, col="grey54", lty=2)
+title("(D)", adj = 0, font.main = 1, cex.main = 1.5)
+
+
+par(mfrow = c(1,1))
+
+if(save.results)  dev.off()
+```

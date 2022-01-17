@@ -1,0 +1,225 @@
+---
+title: "Simulation of SROC with Summary Operating Points"
+author: "Yi"
+date: "`r format(Sys.Date())`"
+output:
+  pdf_document:
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.width = 10, fig.height = 10)
+
+rm(list = ls())
+
+
+
+files.sources <- list.files("functions/")
+sapply(paste0("functions/", files.sources), source)
+library(latex2exp)
+
+
+imput.plot <- function(s.rdt,
+                       list.n, row.n, a,
+                       title, 
+                       seed){
+  
+  # s.rdt <- "scenarios/scenarios-t12/set-t12-c11.RData"
+  # 
+  # list.n <- 2
+  # row.n <- 6
+  # seed <- 123
+  # a <- -0.91
+
+  load(s.rdt)
+  
+  S <- set[[list.n]][1,1]
+  conf <- set[[list.n]][row.n, 1:8]
+  
+  b <- set[[list.n]][row.n, 9]
+  # a <- set[[list.n]][row.n, 10]
+
+  ##
+  ## PDATA -----------------------------------------------------------
+  ##
+  set.seed(seed)
+  pdata <- sim.pdata(conf)
+  
+  t <- pdata$t.clnDOR
+  p.a <- pnorm(a + b*t)
+  p.e <- mean(p.a, na.rm = TRUE)
+  
+  cx <- 1
+  #pcex <- 2
+  
+  ##
+  ## SDATA ------------------------------------------------------------
+  ##
+
+  set.seed(seed)
+  s.id <- sapply(1:S, function(i) rbinom(1, 1, p.a[i])) %in% c(1)
+  sdata<- pdata[s.id,] 
+  rdata<- pdata[!s.id,] 
+
+  n.s <- sum(s.id)
+  n.r <- sum(!s.id)
+  
+
+  p.seq <- c(1, 0.9, 0.7, 0.5)
+  
+  pchs <- ifelse(s.id==TRUE, 19, 1)
+
+## SA1  
+  fit.m <- mvmeta::mvmeta(cbind(y1,y2),S=cbind(v1, rep(0, n.s), v2), data = sdata, method="ml")
+  p1 <- sqrt(fit.m$Psi[1])
+  p2 <- sqrt(fit.m$Psi[4])
+  p.r<- fit.m$Psi[3]/(p1*p2)
+
+  init <- c(fit.m$coefficients, p1, p2, p.r)
+  
+  est <- sapply(p.seq, function(p){
+  
+  sa <- dtametasa.fc(sdata, 
+                     p = p.seq, 
+                     c1.sq = set[[list.n]][row.n, 7],
+                     brem.init = init,
+                     b.init = 1, 
+                     b.interval = c(0,2),
+                     a.interval = c(-3, 3))
+  
+  sa$par
+  
+} )
+  
+  
+  plot(1-pdata$sp, pdata$se, 
+       xlim = c(0,1), ylim = c(0,1),
+       xlab = "FPR",
+       ylab = "TPR",
+       type = "p",
+       cex = 1, pch = pchs)
+  # title(t.num1, adj = 0, cex.main = 1.5, font.main = 1)
+  title(TeX(title), cex.main = 1.5)
+  
+  sy <- sdata[,2:1]
+  ry <- rdata[,2:1]
+  
+lines(plogis(ellipse::
+               ellipse(abs(cov(sy)),
+                       centre = colMeans(sy)*c(-1,1),
+                       level = 0.7
+                       # scale = c(1,1), 
+                       # scale = sqrt(var(sdata[,1:2])[c(4,1)]),
+                       )), col="grey48", lty=1)
+
+lines(plogis(ellipse::
+               ellipse(abs(cov(ry)),
+                       centre = colMeans(ry)*c(-1,1),
+                       level = 0.7
+                       # scale = sqrt(var(sdata[,1:2])[c(4,1)])
+                       )),  col="grey48", lty=2)
+  
+  # legend("bottomright", legend=round(p.e, 4))
+
+  x <- est[c(1,2,4,5),]
+  SROC.matrix(x,
+              ncols = 1:4,
+              spoint.cex = 2,
+              add = FALSE)
+  # title(t.num2, adj = 0, cex.main = 1.5, font.main = 1)
+  arrows(plogis(-x[2,1]), plogis(x[1,1])-0.1,plogis(-x[2,4])+0.05, plogis(x[1,4])-0.1, col = "red",
+         length = 0.1)
+  title(TeX(title), cex.main = 1.5)
+  
+lines(plogis(ellipse::
+               ellipse(abs(cov(sy)),
+                       centre = colMeans(sy)*c(-1,1),
+                       level = 0.7
+                       # scale = c(1,1), 
+                       # scale = sqrt(var(sdata[,1:2])[c(4,1)]),
+                       )), col="grey48", lty=1)
+
+lines(plogis(ellipse::
+               ellipse(abs(cov(ry)),
+                       centre = colMeans(ry)*c(-1,1),
+                       level = 0.7
+                       # scale = sqrt(var(sdata[,1:2])[c(4,1)])
+                       )),  col="grey48", lty=2)
+
+  # fit <- mvmeta::mvmeta(cbind(y1,y2),S=cbind(v1, rep(0, nrow(pdata)), v2), data=pdata, method = "ml")
+  # SROC.matrix(c(fit$coefficients, fit$Psi[c(4,3)]),
+  #             ncols = 5,
+  #             sroc.lty = 2,
+  #             spoint.cex = 2.5,
+  #             add = TRUE)
+  # points(1-plogis(fit$coefficients[2]), plogis(fit$coefficients[1]), col=5, cex=2, pch=19)
+  # 
+
+}
+
+
+```
+
+
+```{r, echo = FALSE}
+s.rdt1 <- "scenarios/scenarios-t12/set-t12-c11.RData"
+
+s.rdt2 <- "scenarios/scenarios-t12/set-t12-c10.RData"
+
+s.rdt3 <- "scenarios/scenarios-t12/set-t12-c01.RData"
+
+list.n <- 3  # S = 50
+
+save.plot <- FALSE
+```
+
+
+
+
+```{r, fig.width=9, fig.height=7}
+seed <- 123
+
+
+if (save.plot) setEPS(width = 9, height = 7); postscript("sim-sa3.eps") 
+
+par(oma = c(8,1,1,1),
+    mfcol = c(2, 3), 
+    mar = c(4, 4, 3, 1))
+
+imput.plot(s.rdt1, list.n, 3, a = -1.51, 
+           title ="$(c_1, \\,c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$", seed = seed)
+
+imput.plot(s.rdt2, list.n, 3, a = -1.21, 
+           title = "$(c_1, \\,  c_2) = (1, 0)$", seed = seed)
+
+imput.plot(s.rdt3, list.n, 3, a = -1.05, 
+           title = "$(c_1, \\,  c_2) = (0, 1)$", seed = seed)
+
+
+par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(2, 0, 2, 0), new = TRUE)
+plot(0, 0, type = 'l', bty = 'n', xaxt = 'n', yaxt = 'n')
+
+legend_order <- matrix(1:8, ncol=4, byrow = TRUE)
+
+legend('bottom',
+       legend = c("Published studies", "Region of publication",
+                  "Unpublished studies", "Region of unpublication",
+                  paste0("p = ", c(1, 0.9, 0.7, 0.5)))[legend_order], 
+       col = c("black", "grey48", "black", "grey48", 1:4)[legend_order], 
+       lty = c(0,1,0,2, rep(1,4))[legend_order],
+       pch = c(1,0,4,0, rep(18,4))[legend_order],
+       xpd = TRUE, 
+       #horiz = TRUE, 
+       cex = 1.2,
+       pt.cex =c(1.2, 0, 1.2, 0, rep(2,4))[legend_order],
+       #seg.len=1, 
+       bty = 'n',
+       ncol = 4)
+
+par(mfrow = c(1,1))
+
+if (save.plot) dev.off()
+```
+
