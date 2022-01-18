@@ -6,7 +6,7 @@
 
 # par <- c(20, 0, 1.73, 0.5, 0.5, -0.15, 0.5, 0.5); DT  <- sim.pdata(par)
 
-sim.pdata <- function(par){
+.sim.pdata <- function(par){
 
 
   # S <- 20; u1 <- 0; u2 <- 1.73; t11 <- 0.5; t22 <- 0.5; t12 <- -0.15; c11 <- 0; c22 <- 1; b <- 0.5; a <- -0.99; suac <- 0.62; r <- -0.3; se <- 0.5; sp <- 0.85

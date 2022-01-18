@@ -1,24 +1,18 @@
+##------------------------------------------------------------------------------
 ##
 ## HECKMANTYPE SELECTION FUNCTION IN Piao et al. (2019)
 ##
-
-# Y <- cbind(DT$y1, DT$y2)
-# S <- cbind(DT$v1, rep(0, length(DT$v1)), DT$v2)
-# fit <- mixmeta::mixmeta(Y, S, method = "ml")
-# 
-# init <- rep(0,10)
-# init[1:5]  <- c(b = unname(fit$coefficients), t = sqrt(fit$Psi[c(1,4)]), r = fit$Psi[3]/prod(sqrt(fit$Psi[c(1,4)])) )
-# init[6:10] <- c(0.3, 0.3, -1, 0.25, 0.25)
-# # init[6:10] <- c(0.3, 0.3, -0.5, 0.5, 0.5)
-
-# Piao2019(y1 = DT$y1, y2 = DT$y2, v1 = DT$v1, v2 = DT$v2, init = init, tol = 1e-7)
-
+##------------------------------------------------------------------------------
 
 ## EM-ALGORITHM
 
+##
 ## E-STEP ---- 
+##
 
-E.m <- function(par, y1, y2, v1, v2){ 
+.E.m <- function(
+  par, y1, y2, v1, v2
+  ){ 
   
   beta1 <- par[1]; beta2 <- par[2]  ## mu1, mu2
   tau1  <- par[3]; tau2 <- par[4]; rho.b <- par[5]  ##tau1, tau2, rho
@@ -59,9 +53,13 @@ E.m <- function(par, y1, y2, v1, v2){
   return(p2/p1)  
 }
 
+##
 ## M-STEP ----
+##
 
-E.loglik <- function(par, y1, y2, v1, v2, m){ 
+.E.loglik <- function(
+  par, y1, y2, v1, v2, m
+  ){ 
   
   beta1 <- par[1]; beta2 <- par[2]  ##mu1, mu2
   tau1  <- par[3]; tau2  <- par[4]; rho.b <- par[5]  ## tau1, tau2, rho
@@ -123,7 +121,9 @@ E.loglik <- function(par, y1, y2, v1, v2, m){
 
 ## HECKMAN-TYPE ----
 
-Piao2019 <- function(data, init, tol=1e-10, maxit=1000){
+Piao2019 <- function(
+  data, init, tol=1e-10, maxit=1000
+  ){
   
   
   n <- nrow(data)
@@ -141,24 +141,24 @@ Piao2019 <- function(data, init, tol=1e-10, maxit=1000){
     counter <- counter + 1
     par.old <- par.new
     
-    # E-step for EM algorithm
-    myM <- E.m(par.old, y1, y2, v1, v2)  
+    ## E-step for EM algorithm
+    myM <- .E.m(par.old, y1, y2, v1, v2)  
 
-    fn <- function(par) E.loglik(par, y1, y2, v1, v2, myM)
+    fn <- function(par) .E.loglik(par, y1, y2, v1, v2, myM)
     
-    # M-step for EM algorithm
-    # par: beta1, beta2, tau1, tau2, rho.b, rho1, rho2, gamma0, gamma1, gamma2
+    ## M-step for EM algorithm
+    ## par: beta1, beta2, tau1, tau2, rho.b, rho1, rho2, gamma0, gamma1, gamma2
     
     eps <- sqrt(.Machine$double.eps)
     
-    output <- nlminb(par.old, fn, 
+    output <- nlminb(
+      par.old, fn, 
       lower=c(-5, -5, eps, eps, -1, -1, -1, -2, 0, 0), 
       upper=c( 5,  5,   2,   2,  1,  1,  1,  2, 2, 2), 
-      control = list(maxit = 1000), hessian=FALSE)
+      control = list(maxit = 1000), hessian=FALSE
+      )
     
     par.new <- output$par
-    
-    #cat("iter = ", counter, "P = ", par.new, "\n")
     
     if (max(abs(par.new-par.old)) < tol){  ###if convergence achieved
       
@@ -167,10 +167,9 @@ Piao2019 <- function(data, init, tol=1e-10, maxit=1000){
     }
   }
   
-  # print("Convergence Failed")
 
-
-  return(list(par = par.new,
-              conv=FALSE)) 
+  return(list(
+    par = par.new,
+    conv=FALSE)) 
   
 }  

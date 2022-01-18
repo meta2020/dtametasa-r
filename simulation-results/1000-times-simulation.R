@@ -6,9 +6,9 @@
 ##
 ##  
 ##******************************************************************************
-rm(list = ls())
 
-## 1. LOAD FUNCTIONS
+
+## 1. LOAD PKGS
 
 library("mixmeta")
 library("foreach")
@@ -17,10 +17,11 @@ library("doSNOW")
 library("doRNG")
 
 
-## 2. LOAD SIMULATION FUNCTIONs 
+## 2. LOAD SIMULATION FUNCTIONS
 
-files.sources <- list.files("functions/")
-sapply(paste0("functions/", files.sources), source)
+rm(list = ls())
+.files.sources <- list.files("../R/")
+sapply(paste0("../R/", .files.sources), source)
 
 
 ## 3. CHOOSE ONE OF THE scenariosS
@@ -49,7 +50,6 @@ cl <- makeCluster(ncores, "SOCK")
 doSNOW::registerDoSNOW(cl)
 
 
-
 t <- proc.time()
 
 
@@ -68,11 +68,11 @@ for(list.n in c(1:4)){  ## i list  # Sample Size
 
       simu(list.n, 
            row.n,
-           b0 = 1,
+           beta0 = 1,
            csq0 = 0.5,   ## SA2: INITIAL VALUE OF c11
            csq.w = 1,    ## SA1: MIS-SPECIFIED VALUE OF c11
-           b.interval = c(0, 2),
-           a.interval = c(-2, 2)
+           beta.interval = c(0, 2),
+           alpha.interval = c(-2, 2)
            )
     }
     save(DATA, file = paste0(folder1, "/sim_l", list.n, "_r", row.n, ".RData"))  
@@ -113,11 +113,11 @@ for(list.n in c(1:4)){  ## i list  # Sample Size
       
       simu(list.n, 
            row.n,
-           b0 = 1,
+           beta0 = 1,
            csq0 = 0.5,   ## SA2: INITIAL VALUE OF c11
            csq.w = 0.5,  ## SA1: MIS-SPECIFIED VALUE OF c11
-           b.interval = c(0, 2),
-           a.interval = c(-2, 2))
+           beta.interval = c(0, 2),
+           alpha.interval = c(-2, 2))
     }
     save(DATA, file = paste0(folder2, "/sim_l", list.n, "_r", row.n, ".RData"))  
   }
@@ -157,11 +157,11 @@ for(list.n in c(1:4)){  ## i list  # Sample Size
       
       simu(list.n, 
            row.n,
-           b0 = 1,
+           beta0 = 1,
            csq0 = 0.5,   ## SA2: INITIAL VALUE OF c11
            csq.w = 0.5,  ## SA1: MIS-SPECIFIED VALUE OF c11
-           b.interval = c(0, 2),
-           a.interval = c(-2, 2))
+           beta.interval = c(0, 2),
+           alpha.interval = c(-2, 2))
     }
     save(DATA, file = paste0(folder3, "/sim_l", list.n, "_r", row.n, ".RData"))  
   }

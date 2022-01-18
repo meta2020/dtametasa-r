@@ -1,5 +1,5 @@
 ---
-title: 'CD64 Example: Li (2013)'
+title: 'Example: Li (2013)'
 subtitle: "HSROC"
 author: "Yi"
 date: "`r format(Sys.Date())`"
@@ -32,11 +32,8 @@ data <- read.csv("data-CD64.csv")
 save.results <- FALSE
 
 sauc.type <- "hsroc"
-```
 
-# SROC plot results
 
-```{r}
 ## SET SELECTION PROBABILITY p 
 
 p.seq <- c(1, 0.8, 0.6, 0.4)
@@ -164,9 +161,226 @@ kbl(tb,
 if(save.results)  sink()
 ```
 
-# SAUC matplot resuts
+
+
+
+# PLOT: SROC curve 
+
+```{r, fig.width=10, fig.height=10}
+# PLEASE CHOOSE ONE SAVED DATA *******
+
+
+se <- data$TP/(data$TP+data$FN)
+sp <- data$TN/(data$TN+data$FP)
+
+est2.par  <- est2[15:19,]
+est11.par <- est11[15:19,]
+est10.par <- est10[15:19,]
+est01.par <- est01[15:19,]
+
+sauc2  <- est2[2,]
+sauc11 <- est11[2,]
+sauc10 <- est10[2,]
+sauc01 <- est01[2,]
+
+if(save.results)  {setEPS(width = 9, height = 9); postscript("CD64-SROC.eps")}
+
+par(mfrow = c(2, 2))
+
+# col <- gray.colors(10, gamma = 1, start = 0, end = 0.8)
+col <- 1:4
+
+plot(1-sp, se, type = "p", ylim = c(0,1), xlim = c(0,1), 
+     xlab = "FPR", ylab = "TPR")
+# text(1-sp, se, labels=data$cutoff, cex=0.9, font=2)
+SROC(est2.par, add = TRUE, ncols = col, sroc.type = sauc.type)
+legend("bottomright", 
+       bty='n',
+       # legend = c(sprintf("p = %.1f, SAUC = %.3f",  p.seq[1], est2[10,1]),
+       #            #TeX(sprintf("$(\\hat{c}_1, \\, \\hat{c}_2) = (-, -)$", est2[6,1], est2[7,1])),
+       #            sprintf("p = %.1f, SAUC = %.3f",  p.seq[2], est2[10,2]),
+       #            TeX(sprintf("$(\\hat{c}_1, \\, \\hat{c}_2) = (%.3f, %.3f)$", est2[6,2], est2[7,2])),
+       #            sprintf("p = %.1f, SAUC = %.3f",  p.seq[3], est2[10,3]),
+       #            TeX(sprintf("$(\\hat{c}_1, \\, \\hat{c}_2) = (%.3f, %.3f)$", est2[6,3], est2[7,3])),
+       #            sprintf("p = %.1f, SAUC = %.3f",  p.seq[4], est2[10,4]),
+       #            TeX(sprintf("$(\\hat{c}_1, \\, \\hat{c}_2) = (%.3f, %.3f)$", est2[6,4], est2[7,4]))
+       #            ), 
+       legend = c(sprintf("p = %.1f, SAUC = %.3f", p.seq, sauc2)), 
+       col = col, pch = 18, pt.cex = 2, cex = 1.2, 
+       lty = rep(1,3))
+title("(A)", adj = 0, font.main = 1, cex.main = 1.5)
+title(TeX("$(\\hat{c}_1, \\, \\hat{c}_2)$"), cex.main = 1.5)
+
+      
+plot(1-sp, se, type = "p", ylim = c(0,1), xlim = c(0,1), 
+     xlab = "FPR",
+     ylab = "TPR")
+SROC(est11.par, add = TRUE, ncols = col, sroc.type = sauc.type)
+legend("bottomright", 
+       bty='n',
+       legend = c(sprintf("p = %.1f, SAUC = %.3f", p.seq, sauc11)), 
+       col = col, pch = 18, pt.cex = 2, cex = 1.2, 
+       lty = rep(1,3))
+title("(B)", adj = 0, font.main = 1, cex.main = 1.5)
+title(TeX("$(c_1, \\,c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$"), cex.main = 1.5)
+
+
+
+plot(1-sp, se, type = "p", ylim = c(0,1), xlim = c(0,1), 
+     xlab = "FPR",
+     ylab = "TPR")
+SROC(est10.par, add = TRUE, ncols = col, sroc.type = sauc.type)
+legend("bottomright", 
+       bty='n',
+       legend = c(sprintf("p = %.1f, SAUC = %.3f", p.seq, sauc10)), 
+       col = col, pch = 18, pt.cex = 2, cex = 1.2, 
+       lty = rep(1,3))
+title("(C)", adj = 0, font.main = 1, cex.main = 1.5)
+title(TeX("$(c_1,\\, c_2) = (1,\\, 0)$"), cex.main = 1.5)
+
+
+plot(1-sp, se, type = "p", ylim = c(0,1), xlim = c(0,1), 
+     xlab = "FPR",
+     ylab = "TPR")
+SROC(est01.par, add = TRUE, ncols = col, sroc.type = sauc.type)
+legend("bottomright", 
+       bty='n',
+       legend = c(sprintf("p = %.1f, SAUC = %.3f", p.seq, sauc01)), 
+       col = col, pch = 18, pt.cex = 2, cex = 1.2, 
+       lty = rep(1,3))
+title("(D)", adj = 0, font.main = 1, cex.main = 1.5)
+title(TeX("$(c_1,\\, c_2) = (0,\\, 1)$"), cex.main = 1.5)
+
+par(mfrow = c(1,1))
+
+
+if(save.results) dev.off()
+```
+
+
+# PLOT: Probit of $\alpha$ and $\beta$
+
+```{r, fig.width=10, fig.height=6}
+
+ldata <- logit.data(correction(data, type = "single"))
+
+t11 <- (ldata$y1 + ldata$y2)/sqrt(ldata$v1+ldata$v2)
+t10 <- (ldata$y1 )/sqrt(ldata$v1)
+t01 <- (ldata$y2)/sqrt(ldata$v2)
+
+beta2  <- est2[11,];  alpha2  <- est2[14,]
+beta11 <- est11[11,]; alpha11 <- est11[14,]
+beta10 <- est10[11,]; alpha10 <- est10[14,]
+beta01 <- est01[11,]; alpha01 <- est01[14,]
+
+c1 <- est2[21,]
+c2 <- sqrt(1-est2[21,]^2)
+
+  
+# Plot
+if(save.results) {setEPS(width = 10, height = 5); postscript("CD64-PROBIT.eps")}
+
+par(mfrow = c(2, 2))
+curve(pnorm(beta2[2]*x + alpha2[2]), -5, 15, ylim = c(0,1),
+      xlab = ("t"), ylab = TeX("$p = \\Phi(\\beta \\, t + \\alpha)$"), 
+      col=2,
+      yaxt='n')
+axis(2, at=c(0,0.5,1), labels = c(0,0.5,1))
+curve(pnorm(beta2[3]*x + alpha2[3]), -5, 15, add = TRUE, col=3)
+curve(pnorm(beta2[4]*x + alpha2[4]), -5, 15, add = TRUE, col=4)
+
+t02 <- (c1[2]*ldata$y1 + c2[2]*ldata$y2)/sqrt(c1[2]^2*ldata$v1+c2[2]^2*ldata$v2)
+t03 <- (c1[3]*ldata$y1 + c2[3]*ldata$y2)/sqrt(c1[3]^2*ldata$v1+c2[3]^2*ldata$v2)
+t04 <- (c1[4]*ldata$y1 + c2[4]*ldata$y2)/sqrt(c1[4]^2*ldata$v1+c2[4]^2*ldata$v2)
+points(t02, rep(0.2, length(t02)), pch="|", col=2, cex=0.7)
+points(t03, rep(0.1, length(t03)), pch="|", col=3, cex=0.7)
+points(t04, rep(0,   length(t04)), pch="|", col=4, cex=0.7)
+
+title(TeX("$(\\hat{c}_1, \\, \\hat{c}_2)$"), cex.main = 1.5)
+legend("topright", 
+       bty='n',
+       legend = TeX(sprintf("$p = %.1f$", p.seq[-1])), 
+       col = 2:4, cex = 1.2, 
+       lty = rep(1,3))
+title("(A)", adj = 0, font.main = 1, cex.main = 1.5)
+
+# legend("topright", 
+#        bty='n',
+#        legend = c(
+#          sprintf("p = %.2f", p.seq[2]), 
+#          TeX(sprintf("$(\\hat{c}_1, \\, \\hat{c}_2) = (%.3f, %.3f)$",est2[6, 2], est2[7, 2])),
+#          sprintf("p = %.2f", p.seq[3]),
+#          TeX(sprintf("$(\\hat{c}_1, \\, \\hat{c}_2) = (%.3f, %.3f)$", est2[6, 3], est2[7, 3])),
+#          sprintf("p = %.2f", p.seq[4]),
+#          TeX(sprintf("$(\\hat{c}_1, \\, \\hat{c}_2) = (%.3f, %.3f)$", est2[6, 4], est2[7, 4]))
+#          ),
+#        col = c(2, NA, 3, NA, 4, NA), cex = 1, 
+#        lty = c(1, NA, 1, NA, 1, NA))
+
+
+curve(pnorm(beta11[2]*x + alpha11[2]), -5, 15,ylim = c(0,1),
+      xlab = ("t"), ylab = TeX("$p = \\Phi(\\beta \\, t + \\alpha)$"), col=2,
+      yaxt='n')
+axis(2, at=c(0,0.5,1), labels = c(0,0.5,1))
+curve(pnorm(beta11[3]*x + alpha11[3]), -5, 15, add = TRUE, col=3)
+curve(pnorm(beta11[4]*x + alpha11[4]), -5, 15, add = TRUE, col=4)
+points(t11, rep(0, length(t11)), pch="|", cex=0.7)
+title(TeX("$(c_1, \\,c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$"), cex.main = 1.5)
+legend("topright", 
+       bty='n',
+       legend = TeX(sprintf("$p = %.1f$", p.seq[-1])), 
+       col = 2:4, cex = 1.2, 
+       lty = rep(1,3))
+title("(B)", adj = 0, font.main = 1, cex.main = 1.5)
+
+
+
+
+curve(pnorm(beta10[2]*x + alpha10[2]), -5, 15,ylim = c(0,1),
+      xlab = ("t"), ylab = TeX("$p = \\Phi(\\beta \\, t + \\alpha)$"), col=2,
+      yaxt='n')
+axis(2, at=c(0,0.5,1), labels = c(0,0.5,1))
+curve(pnorm(beta10[3]*x + alpha10[3]), -5, 15, add = TRUE, col=3)
+curve(pnorm(beta10[4]*x + alpha10[4]), -5, 15, add = TRUE, col=4)
+points(t10, rep(0, length(t10)), pch="|", cex=0.7)
+title(TeX("$(c_1, \\,c_2) = (1, \\,0)$"), cex.main = 1.5)
+legend("topright", 
+       bty='n',
+       legend = TeX(sprintf("$p = %.1f$", p.seq[-1])), 
+       col = 2:4, cex = 1.2, 
+       lty = rep(1,3))
+title("(C)", adj = 0, font.main = 1, cex.main = 1.5)
+
+
+
+curve(pnorm(beta01[2]*x + alpha01[2]), -5, 15, ylim = c(0,1),
+      xlab = ("t"), ylab = TeX("$p = \\Phi(\\beta \\, t + \\alpha)$"), col=2,
+      yaxt='n')
+axis(2, at=c(0,0.5,1), labels = c(0,0.5,1))
+curve(pnorm(beta01[3]*x + alpha01[3]), -5, 15, add = TRUE, col=3)
+curve(pnorm(beta01[4]*x + alpha01[4]), -5, 15, add = TRUE, col=4)
+points(t01, rep(0, length(t01)), pch="|", cex=0.7)
+title(TeX("$(c_1, \\,c_2) = (0, \\,1)$"), cex.main = 1.5)
+legend("topright", 
+       bty='n',
+       legend = TeX(sprintf("$p = %.1f$", p.seq[-1])), 
+       col = 2:4, cex = 1.2, 
+       lty = rep(1,3))
+title("(D)", adj = 0, font.main = 1, cex.main = 1.5)
+
+
+par(mfrow = c(1, 1))
+
+if(save.results) dev.off()
+
+
+```
+
+
+# PLOT: SAUC matplot 
 
 ```{r, fig.height=6, fig.width=10}
+
 p.10 <- seq(1, 0.1, -0.1)
 
 
@@ -213,296 +427,59 @@ est.sauc01 <- sapply(p.10, function(p) {
 ## ALL RESULTS
 
 colnames(est.sauc2) <- colnames(est.sauc11) <- colnames(est.sauc10) <- colnames(est.sauc01) <- paste0("p = ", p.10)
-```
+
+## Plot
+if(save.results)  {setEPS(width = 10, height = 8); postscript("CD64-SAUC.eps")}
+
+par(mfrow = c(2,2))
 
 
-# PLOT: SROC curve and corresponding SAUC
-
-```{r, fig.width=10, fig.height=6}
-# PLEASE CHOOSE ONE SAVED DATA *******
-
-
-se <- data$TP/(data$TP+data$FN)
-sp <- data$TN/(data$TN+data$FP)
-
-est2.par  <- est2[15:19,]
-est11.par <- est11[15:19,]
-est10.par <- est10[15:19,]
-est01.par <- est01[15:19,]
-
-sauc2  <- est2[2,]
-sauc11 <- est11[2,]
-sauc10 <- est10[2,]
-sauc01 <- est01[2,]
-
-title.cex <- 1.5
-legend.cex <- 1.2
-
-save.results <- TRUE
-if(save.results)  {setEPS(width = 10, height = 6); postscript("CD64-SROC.eps")}
-
-par(mfrow = c(2, 4), oma = c(0.2, 3, 0.2, 0.3), mar = c(3, 0.2, 2, 0.2))
-
-##
-## SROC
-##
-col <- 1:4
-
-## A
-
-plot(1-sp, se, type = "p", ylim = c(0,1), xlim = c(0,1), 
-     xlab = "", ylab = "")
-SROC(est2.par, add = TRUE, ncols = col, sroc.type = sauc.type)
-
-legend("bottomright", 
-       bty='n',
-       legend = c(sprintf("p = %.1f, SAUC = %.3f", p.seq, sauc2)), 
-       col = col, pch = 18, pt.cex = 2, cex = legend.cex, 
-       lty = rep(1,3))
-
-title("(A)", adj = 0, font.main = 1, cex.main = title.cex)
-title(TeX("$(\\hat{c}_1, \\, \\hat{c}_2)$"), cex.main = title.cex)
-title(xlab = "FPR", line=2, cex = 0.7)
-mtext("TPR", side=2, line=2, at=0.5, cex = 0.7)
-
-
-## B
-
-plot(1-sp, se, type = "p", ylim = c(0,1), xlim = c(0,1), 
-     xlab = "",
-     yaxt = "n")
-SROC(est11.par, add = TRUE, ncols = col, sroc.type = sauc.type)
-legend("bottomright", 
-       bty='n',
-       legend = c(sprintf("p = %.1f, SAUC = %.3f", p.seq, sauc11)), 
-       col = col, pch = 18, pt.cex = 2, cex = legend.cex, 
-       lty = rep(1,3))
-title("(B)", adj = 0, font.main = 1, cex.main = title.cex)
-title(TeX("$(c_1, \\,c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$"), cex.main = title.cex)
-title(xlab = "FPR", line=2, cex = 0.7)
-
-## zC
-
-plot(1-sp, se, type = "p", ylim = c(0,1), xlim = c(0,1), 
-     xlab = "",
-     yaxt = "n")
-SROC(est10.par, add = TRUE, ncols = col, sroc.type = sauc.type)
-legend("bottomright", 
-       bty='n',
-       legend = c(sprintf("p = %.1f, SAUC = %.3f", p.seq, sauc10)), 
-       col = col, pch = 18, pt.cex = 2, cex = legend.cex, 
-       lty = rep(1,3))
-title("(C)", adj = 0, font.main = 1, cex.main = title.cex)
-title(TeX("$(c_1,\\, c_2) = (1,\\, 0)$"), cex.main = title.cex)
-title(xlab = "FPR", line=2, cex = 0.7)
-
-## D
-
-plot(1-sp, se, type = "p", ylim = c(0,1), xlim = c(0,1), 
-     xlab = "",
-     yaxt = "n")
-SROC(est01.par, add = TRUE, ncols = col, sroc.type = sauc.type)
-legend("bottomright", 
-       bty='n',
-       legend = c(sprintf("p = %.1f, SAUC = %.3f", p.seq, sauc01)), 
-       col = col, pch = 18, pt.cex = 2, cex = legend.cex, 
-       lty = rep(1,3))
-title("(D)", adj = 0, font.main = 1, cex.main = title.cex)
-title(TeX("$(c_1,\\, c_2) = (0,\\, 1)$"), cex.main = title.cex)
-title(xlab = "FPR", line=2, cex = 0.7)
-
-
-##
-## SAUC
-##
-
-## E(A)
-
-matplot(t(est.sauc2),ylim=c(0,1), type = "b",lty = c(1,2,2), pch=20, col = c(1, 2,2),
-         ylab = "SAUC", xlab = "", xaxt = "n", yaxt = "n")
-title(TeX("$(\\hat{c}_1, \\, \\hat{c}_2)$"), cex.main = title.cex)
+matplot(t(est.sauc2),ylim=c(0.4,1), type = "b",lty = c(1,2,2), pch=20, col = c(1, 2,2),
+         ylab = "SAUC", xlab = "p", xaxt = "n", yaxt = "n")
+title(TeX("$(\\hat{c}_1, \\, \\hat{c}_2)$"), cex.main = 1.5)
 axis(1, at = 1:10, labels = p.10)
-axis(2, at = seq(0, 1, 0.2), labels = seq(0, 1, 0.2))
+axis(2, at = seq(0.4, 1, 0.2), labels = seq(0.4, 1, 0.2))
 abline(h=0.5, col="grey54", lty=2)
-title("(E)", adj = 0, font.main = 1, cex.main = title.cex)
-title(xlab = "p", line=2, cex = 0.7)
-mtext("SAUC", side=2, line=2, at=0.5, cex = 0.7)
+title("(A)", adj = 0, font.main = 1, cex.main = 1.5)
 
 
-## F(B)
-
-matplot(t(est.sauc11),ylim=c(0,1), type = "b",lty = c(1,2,2), pch=20, col = c(1, 2,2),
-         ylab = "SAUC", xlab = "", xaxt = "n", yaxt = "n")
-title(TeX("$(c_1, \\,c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$"), cex.main = title.cex)
+matplot(t(est.sauc11),ylim=c(0.4,1), type = "b",lty = c(1,2,2), pch=20, col = c(1, 2,2),
+         ylab = "SAUC", xlab = "p", xaxt = "n", yaxt = "n")
+title(TeX("$(c_1, \\,c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$"), cex.main = 1.5)
 axis(1, at = 1:10, labels = p.10)
+axis(2, at = seq(0.4,1, 0.2), labels = seq(0.4,1, 0.2))
 abline(h=0.5, col="grey54", lty=2)
-title("(F)", adj = 0, font.main = 1, cex.main = title.cex)
-title(xlab = "p", line=2, cex = 0.7)
+title("(B)", adj = 0, font.main = 1, cex.main = 1.5)
 
 
-## G(C)
-
-matplot(t(est.sauc10),ylim=c(0,1), type = "b",lty = c(1,2,2), pch=20, col = c(1, 2,2),
-         ylab = "SAUC", xlab = "", xaxt = "n", yaxt = "n")
-title(TeX("$(c_1, \\,c_2) = (1, \\,0)$"), cex.main = title.cex)
+matplot(t(est.sauc10),ylim=c(0.4,1), type = "b",lty = c(1,2,2), pch=20, col = c(1, 2,2),
+         ylab = "SAUC", xlab = "p", xaxt = "n", yaxt = "n")
+title(TeX("$(c_1, \\,c_2) = (1, \\,0)$"), cex.main = 1.5)
 axis(1, at = 1:10, labels = p.10)
-# axis(2, at = seq(0.4,1, 0.2), labels = seq(0.4,1, 0.2))
+axis(2, at = seq(0.4,1, 0.2), labels = seq(0.4,1, 0.2))
 abline(h=0.5, col="grey54", lty=2)
-title("(G)", adj = 0, font.main = 1, cex.main = title.cex)
-title(xlab = "p", line=2, cex = 0.7)
+title("(C)", adj = 0, font.main = 1, cex.main = 1.5)
 
 
-## H(D)
-
-matplot(t(est.sauc01),ylim=c(0,1), type = "b",lty = c(1,2,2), pch=20, col = c(1, 2,2),
-         ylab = "SAUC", xlab = "", xaxt = "n", yaxt = "n")
-title(TeX("$(c_1, \\,c_2) = (0, \\,1)$"), cex.main = title.cex)
+matplot(t(est.sauc01),ylim=c(0.4,1), type = "b",lty = c(1,2,2), pch=20, col = c(1, 2,2),
+         ylab = "SAUC", xlab = "p", xaxt = "n", yaxt = "n")
+title(TeX("$(c_1, \\,c_2) = (0, \\,1)$"), cex.main = 1.5)
 axis(1, at = 1:10, labels = p.10)
-# axis(2, at = seq(0.4,1, 0.2), labels = seq(0.4,1, 0.2))
+axis(2, at = seq(0.4,1, 0.2), labels = seq(0.4,1, 0.2))
 abline(h=0.5, col="grey54", lty=2)
-title("(H)", adj = 0, font.main = 1, cex.main = title.cex)
-title(xlab = "p", line=2, cex = 0.7)
+title("(D)", adj = 0, font.main = 1, cex.main = 1.5)
 
 
 par(mfrow = c(1,1))
-
-
 
 if(save.results)  dev.off()
 ```
 
 
-
-# PLOT: Probit of $\alpha$ and $\beta$
-
-```{r, fig.width=10, fig.height=4}
-
-ldata <- logit.data(correction(data, type = "single"))
-
-t11 <- (ldata$y1 + ldata$y2)/sqrt(ldata$v1+ldata$v2)
-t10 <- (ldata$y1 )/sqrt(ldata$v1)
-t01 <- (ldata$y2)/sqrt(ldata$v2)
-
-beta2  <- est2[11,];  alpha2  <- est2[14,]
-beta11 <- est11[11,]; alpha11 <- est11[14,]
-beta10 <- est10[11,]; alpha10 <- est10[14,]
-beta01 <- est01[11,]; alpha01 <- est01[14,]
-
-c1 <- est2[21,]
-c2 <- sqrt(1-est2[21,]^2)
-
-ytext <- TeX("$p = \\Phi(\\beta \\, t + \\alpha)$")
-title.cex <- 1.2
-
-##
-## Plot
-##
-
-
-if(save.results) {setEPS(width = 10, height = 4); postscript("CD64-PROBIT.eps")}
-
-par(mfrow = c(2, 2), oma = c(0.2, 3, 0.2, 0.2), mar = c(3, 0.2, 2, 0.2))
-
-
-## A
-
-curve(pnorm(beta2[2]*x + alpha2[2]), -5, 15, ylim = c(0,1),
-      xlab = "", 
-      col=2,
-      yaxt='n')
-axis(2, at=c(0,0.5,1), labels = c(0,0.5,1))
-curve(pnorm(beta2[3]*x + alpha2[3]), -5, 15, add = TRUE, col=3)
-curve(pnorm(beta2[4]*x + alpha2[4]), -5, 15, add = TRUE, col=4)
-
-t02 <- (c1[2]*ldata$y1 + c2[2]*ldata$y2)/sqrt(c1[2]^2*ldata$v1+c2[2]^2*ldata$v2)
-t03 <- (c1[3]*ldata$y1 + c2[3]*ldata$y2)/sqrt(c1[3]^2*ldata$v1+c2[3]^2*ldata$v2)
-t04 <- (c1[4]*ldata$y1 + c2[4]*ldata$y2)/sqrt(c1[4]^2*ldata$v1+c2[4]^2*ldata$v2)
-points(t02, rep(0.2, length(t02)), pch="|", col=2, cex = 1)
-points(t03, rep(0.1, length(t03)), pch="|", col=3, cex = 1)
-points(t04, rep(0,   length(t04)), pch="|", col=4, cex = 1)
-title(TeX("$(\\hat{c}_1, \\, \\hat{c}_2)$"), cex.main = title.cex)
-legend("topright", 
-       bty='n',
-       legend = TeX(sprintf("$p = %.1f$", p.seq[-1])), 
-       col = 2:4, cex = 1.2, 
-       lty = rep(1,3))
-title("(A)", adj = 0, font.main = 1, cex.main = title.cex)
-mtext(c(ytext), side=2, line=2, at=c(0.5), cex = 0.8)
-title(xlab = "t", line=2, cex = 0.7)
-
-
-## B
-
-curve(pnorm(beta11[2]*x + alpha11[2]), -5, 15,ylim = c(0,1),
-      xlab = "", 
-      col=2,
-      yaxt='n')
-curve(pnorm(beta11[3]*x + alpha11[3]), -5, 15, add = TRUE, col=3)
-curve(pnorm(beta11[4]*x + alpha11[4]), -5, 15, add = TRUE, col=4)
-points(t11, rep(0, length(t11)), pch="|", cex = 1)
-title(TeX("$(c_1, \\,c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$"), cex.main = title.cex)
-legend("topright", 
-       bty='n',
-       legend = TeX(sprintf("$p = %.1f$", p.seq[-1])), 
-       col = 2:4, cex = 1.2, 
-       lty = rep(1,3))
-title("(B)", adj = 0, font.main = 1, cex.main = title.cex)
-title(xlab = "t", line=2, cex = 0.7)
-
-
-## C
-
-curve(pnorm(beta10[2]*x + alpha10[2]), -5, 15,ylim = c(0,1),
-      xlab = "", 
-      col=2,
-      yaxt='n')
-axis(2, at=c(0,0.5,1), labels = c(0,0.5,1))
-curve(pnorm(beta10[3]*x + alpha10[3]), -5, 15, add = TRUE, col=3)
-curve(pnorm(beta10[4]*x + alpha10[4]), -5, 15, add = TRUE, col=4)
-points(t10, rep(0, length(t10)), pch="|", cex = 1)
-title(TeX("$(c_1, \\,c_2) = (1, \\,0)$"), cex.main = title.cex)
-legend("topright", 
-       bty='n',
-       legend = TeX(sprintf("$p = %.1f$", p.seq[-1])), 
-       col = 2:4, cex = 1.2, 
-       lty = rep(1,3))
-title("(C)", adj = 0, font.main = 1, cex.main = title.cex)
-mtext(c(ytext), side=2, line=2, at=c(0.5), cex = 0.8)
-title(xlab = "t", line=2, cex = 0.7)
-
-
-## D
-
-curve(pnorm(beta01[2]*x + alpha01[2]), -5, 15, ylim = c(0,1),
-      xlab = "", 
-      col=2,
-      yaxt='n')
-curve(pnorm(beta01[3]*x + alpha01[3]), -5, 15, add = TRUE, col=3)
-curve(pnorm(beta01[4]*x + alpha01[4]), -5, 15, add = TRUE, col=4)
-points(t01, rep(0, length(t01)), pch="|", cex = 1)
-title(TeX("$(c_1, \\,c_2) = (0, \\,1)$"), cex.main = title.cex)
-legend("topright", 
-       bty='n',
-       legend = TeX(sprintf("$p = %.1f$", p.seq[-1])), 
-       col = 2:4, cex = 1.2, 
-       lty = rep(1,3))
-title("(D)", adj = 0, font.main = 1, cex.main = title.cex)
-title(xlab = "t", line=2, cex = 0.7)
-
-
-par(mfrow = c(1, 1))
-
-if(save.results) dev.off()
-
-
-```
-
-
-
 # PLOT: Funnel plot
 
 
-```{r, fig.width=10, fig.height=4}
+```{r, fig.width=10, fig.height=5}
 data.cc <- correction(data, type = "single")
 ldata   <- logit.data(correction(data, type = "single"))
 nr <- nrow(ldata)
@@ -522,17 +499,17 @@ col3 <- rgb(pal((x3 - min(x3)) / diff(range(x3))), max=255)  # 2) interpolate nu
 colors <- c(col1, col2, col3, "grey")
 
 
-if(save.results)  {setEPS(width = 10, height = 4); postscript("CD64-FUNNEL.eps")}
+if(save.results)  {setEPS(width = 10, height = 5); postscript("CD64-SAUC.eps")}
 
-par(oma = c(6,1,1,1),
+par(oma = c(8,1,1,1),
     mfrow = c(1, 3), 
     mar = c(4, 4, 3, 1))
 
 ml.lnDOR <- metabin(TP, with(data.cc, TP+FN), FP, with(data.cc, TN+FP), data = data.cc, sm ="OR", fixed = FALSE)
 tf.lndor <- trimfill(ml.lnDOR, fixed = FALSE)
 funnel(tf.lndor, xlab = "lnDOR", 
-       pch = c(rep(21, nr), rep(1, sum(tf.lndor[["trimfill"]]))),
-       bg = c(colors, rep(1, sum(tf.lndor[["trimfill"]]))),
+       pch = c(rep(19, nr), rep(1, sum(tf.lndor[["trimfill"]]))),
+       col = c(colors, rep(1, sum(tf.lndor[["trimfill"]]))),
        cex = 1.5, studlab = FALSE, backtransf = FALSE
 )
 
@@ -540,11 +517,9 @@ funnel(tf.lndor, xlab = "lnDOR",
 ## Sens
 ml.se <- metabin(TP, with(data.cc, TP+FN), FN, with(data.cc, TP+FN), data = data.cc, sm ="OR", fixed = FALSE)
 tf.se <- trimfill(ml.se, fixed = FALSE)
-tf.se[["TE"]] <- tf.se[["TE"]]/2
-tf.se[["seTE"]] <- tf.se[["seTE"]]/sqrt(2) 
 funnel(tf.se, xlab = "logit(sensitivity)",
-       pch = c(rep(21, nr), rep(1, sum(tf.se[["trimfill"]]))),
-       bg = c(colors, rep(1, sum(tf.se[["trimfill"]]))),
+       pch = c(rep(19, nr), rep(1, sum(tf.se[["trimfill"]]))),
+       col = c(colors, rep(1, sum(tf.se[["trimfill"]]))),
        cex = 1.5, studlab = FALSE, backtransf = FALSE
 )
 
@@ -552,11 +527,9 @@ funnel(tf.se, xlab = "logit(sensitivity)",
 ## Spec
 ml.sp <- metabin(TN, with(data.cc, TN+FP), FP, with(data.cc, TN+FP), data = data.cc, sm ="OR", fixed = FALSE)
 tf.sp <- trimfill(ml.sp, fixed = FALSE)
-tf.sp[["TE"]] <- tf.sp[["TE"]]/2
-tf.sp[["seTE"]] <- tf.sp[["seTE"]]/sqrt(2) 
 funnel(ml.sp, xlab = "logit(specificity)", fixed = FALSE,
-       pch = c(rep(21, nr), rep(1, sum(tf.sp[["trimfill"]]))),
-       bg = c(colors, rep(1, sum(tf.sp[["trimfill"]]))),
+       pch = c(rep(19, nr), rep(1, sum(tf.sp[["trimfill"]]))),
+       col = c(colors, rep(1, sum(tf.sp[["trimfill"]]))),
        cex = 1.5, studlab = FALSE, backtransf = FALSE
 )
 
@@ -564,24 +537,21 @@ funnel(ml.sp, xlab = "logit(specificity)", fixed = FALSE,
 par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(1, 0, 1, 0), new = TRUE)
 plot(0, 0, type = 'l', bty = 'n', xaxt = 'n', yaxt = 'n')
 
-legend_order <- matrix(1:6, ncol=2, byrow = TRUE)
+legend_order <- matrix(1:6, ncol=3, byrow = TRUE)
 
 legend('bottom',
-       legend = c("Unpublished studies", "Published studies with cutoff values of 1800-10000 (mol/cell)",
-                  "Published studies with cutoff values of 3.05-43.5 (MFI/cell)", 
-                  "Published studies with cutoff values 1.19-4.39", 
-                  "Published studies with other cutoff value", 
-                  "")[legend_order],
-       pch = c(21,rep(21, 4), NA)[legend_order],
-       pt.bg = c("white", "red", "tan4", "skyblue4", "grey", "white")[legend_order],
+       legend = c("Unpublished studies", "Published studies with cutoff in MOL/cell",
+                  "Published studies with cutoff in MFI/cell", "Published studies with cutoff without unit", 
+                  "Published studies with unknown cutoff", "")[legend_order],
+       col = c("black", "red", "tan4", "skyblue4", "grey", "white")[legend_order], 
+       pch = c(1,rep(19, 4), 1)[legend_order],
        xpd = TRUE, 
        horiz = FALSE, 
        cex = 1.2,
        # pt.cex =c(1.2, 0, 1.2, 0, rep(2,4))[legend_order],
        seg.len=2,
        bty = 'n',
-       ncol = 2,
-       pt.cex = 1.5)
+       ncol = 3)
 
 par(mfrow = c(1,1))
 

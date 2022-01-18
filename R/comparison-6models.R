@@ -19,17 +19,18 @@
 
 simu <- function(list.n, 
                  row.n, 
-                 b0, 
+                 beta0, 
                  csq0,  # initial
                  #csq.c, # correct
                  csq.w, # wrong 
-                 b.interval, 
-                 a.interval){ 
+                 beta.interval, 
+                 alpha.interval){ 
   
-  # files.sources <- list.files("functions/"); sapply(paste0("functions/", files.sources), source)
-  # source("scenarios/scenarios-t12/set-t12-c11.RData")
-  # list.n <- row.n <- 1; b0 <- 0.5; b.interval <- c(0,2); a.interval <- c(-2,2); csq.w <-1; csq0 <- 0.5; library(mixmeta)
-  # 
+  # rm(list = ls())
+  # .files.sources <- list.files("../R/"); sapply(paste0("../R/", .files.sources), source)
+  # load("../simulation-results/scenarios/scenarios-t12/set-t12-c11.RData")
+  # list.n <- row.n <- 1; beta0 <- 0.5; beta.interval <- c(0,2); alpha.interval <- c(-2,2); csq.w <-1; csq0 <- 0.5; library(mixmeta)
+
   conf <- set[[list.n]][row.n,]
   
   S  <- conf[1]
@@ -43,7 +44,7 @@ simu <- function(list.n,
   ## PDATA -----------------------------------------------------------
   ##
   
-  pdata <- sim.pdata(conf[c(1:8)])
+  pdata <- .sim.pdata(conf[c(1:8)])
   
   
   ml.p <- ml.s <- ml.sa1.c <- ml.sa1.w <- ml.sa2<- ml.hec <- rep(NA, 9)
@@ -96,9 +97,7 @@ simu <- function(list.n,
         
         v <- fit.s$Psi
         
-        ml.s[c(1:5, 9)]<- c(fit.s$coefficients, 
-                             sqrt(v[c(1,4)]), v[3]/prod(sqrt(v[c(1,4)])), 
-                             fit.s$converged-1)
+        ml.s[c(1:5, 9)]<- c(fit.s$coefficients, sqrt(v[c(1,4)]), v[3]/prod(sqrt(v[c(1,4)])), fit.s$converged-1)
         
       } 
       
@@ -111,73 +110,50 @@ simu <- function(list.n,
 
   ## 3. ml.sa1 TRUE FOR SDATA (ADJUST PB)  -------------------------------------------
   
-  sa1.c <- try(dtametasa.fc(data=sdata, 
-                            p = p.e,
-                            c1.sq = true.c11,  
-                            brem.init = start0,
-                            b.init = b0, 
-                            b.interval = b.interval,
-                            a.interval = a.interval,
-                            show.warn.message = FALSE
-  ), 
-  silent = TRUE)
+  sa1.c <- try(dtametasa.fc.lit(
+    data = sdata, 
+    p = p.e,
+    c1.sq = true.c11,  
+    brem.init = start0,
+    beta.init = beta0, 
+    beta.interval = beta.interval,
+    alpha.interval = alpha.interval,
+    show.warn.message = FALSE
+  ), silent = TRUE)
   
-  if(!inherits(sa1.c, "try-error")) {
-    
-    if(sa1.c$convergence == 0) {
-      
-      ml.sa1.c <- c(sa1.c$par, sa1.c$convergence)  
-      
-    }
-    
-  } 
+  if(!inherits(sa1.c, "try-error")) if(sa1.c$convergence == 0) ml.sa1.c <- c(sa1.c$par, sa1.c$convergence)  
+
   
   ## 4. ml.sa1 WRONG FOR SDATA (ADJUST PB)   -------------------------------------------
   
-  sa1.w <- try(dtametasa.fc(data=sdata, 
-                            p = p.e,
-                            c1.sq = csq.w,  
-                            brem.init = start0,
-                            b.init = b0, 
-                            b.interval = b.interval,
-                            a.interval = a.interval,
-                            show.warn.message = FALSE
-  ), 
-  silent = TRUE)
+  sa1.w <- try(dtametasa.fc.lit(
+    data = sdata, 
+    p = p.e,
+    c1.sq = csq.w,  
+    brem.init = start0,
+    beta.init = beta0, 
+    beta.interval = beta.interval,
+    alpha.interval = alpha.interval,
+    show.warn.message = FALSE
+  ), silent = TRUE)
   
-  if(!inherits(sa1.w, "try-error")) {
-    
-    if(sa1.w$convergence == 0) {
-      
-      ml.sa1.w <- c(sa1.w$par, sa1.w$convergence)  
-      
-    }
-    
-  } 
+  if(!inherits(sa1.w, "try-error")) if(sa1.w$convergence == 0) ml.sa1.w <- c(sa1.w$par, sa1.w$convergence)  
   
   
   ## 5. ml.sa2 FOR SDATA (ADJUST PB) ------------------------------------------------
   
-  sa2 <- try(dtametasa.rc(data=sdata, 
-                          p = p.e,   
-                          brem.init = start0,
-                          c1.sq.init = csq0,
-                          b.init = b0,
-                          b.interval = b.interval,
-                          a.interval = a.interval,
-                          show.warn.message = FALSE
-  ), 
-  silent = TRUE)
+  sa2 <- try(dtametasa.rc.lit(
+    data = sdata, 
+    p = p.e,   
+    brem.init = start0,
+    c1.sq.init = csq0,
+    beta.init = beta0,
+    beta.interval = beta.interval,
+    alpha.interval = alpha.interval,
+    show.warn.message = FALSE
+  ), silent = TRUE)
   
-  if(!inherits(sa2, "try-error")) {
-    
-    if(sa2$convergence == 0) {
-      
-      ml.sa2 <- c(sa2$par, sa2$convergence)
-      
-    }
-    
-  } 
+  if(!inherits(sa2, "try-error")) if(sa2$convergence == 0) ml.sa2 <- c(sa2$par, sa2$convergence)
   
   
   ## 6. ml.hec FOR SDATA (Piao 2019) ------------------------------------------------
@@ -189,15 +165,8 @@ simu <- function(list.n,
   
   hec <- try(Piao2019(data = sdata, init = start.hec), silent = TRUE)
   
-  if(!inherits(hec, "try-error")) {
+  if(!inherits(hec, "try-error")) if(hec$conv == TRUE) ml.hec[c(1:5, 9)] <- c(hec$par[1:5], hec$conv-1)
     
-    if(hec$conv == TRUE) {
-      
-      ml.hec[c(1:5, 9)] <- c(hec$par[1:5], hec$conv-1)
-      
-    }
-    
-  } 
   ## COMBINE RES ------------------------------------------------
   
   

@@ -1,10 +1,14 @@
+##------------------------------------------------------------------------------
 ##
 ## SAUC BY SROC OR HSROC
 ##
+##------------------------------------------------------------------------------
 
+##
 ## DID for SROC
+##
 
-DID.sroc <- function(x, u1, u2, t1, t2, r, var.matrix){
+.DID.sroc <- function(x, u1, u2, t1, t2, r, var.matrix){
 	
 	Q1 <- function(x) {
 		
@@ -51,11 +55,11 @@ DID.sroc <- function(x, u1, u2, t1, t2, r, var.matrix){
 
 
 
-
+##
 ## DID for HSROC (not change yet)
+##
 
-
-DID.hsroc <- function(x, u1, u2, t1, t2, r, var.matrix){
+.DID.hsroc <- function(x, u1, u2, t1, t2, r, var.matrix){
 	
 	Q1 <- function(x) {
 	
@@ -102,10 +106,14 @@ DID.hsroc <- function(x, u1, u2, t1, t2, r, var.matrix){
 
 
 ##
-## SAUC AND CI
+## SAUC AND CI -----------------------------------------------------------------
 ##
 	
-sauc.ci <- function(u1 = u1, u2 = u2, t1 = t1, t2 = t2, r = r, var.matrix, sauc.type = c("sroc", "hsroc"), ci.level = 0.95){
+SAUC.ci <- function(
+	u1, u2, t1, t2, r, 
+	var.matrix, 
+	sauc.type = c("sroc", "hsroc"), 
+	ci.level = 0.95){
 	
 		if (sauc.type=="sroc") {
 		
@@ -115,11 +123,11 @@ sauc.ci <- function(u1 = u1, u2 = u2, t1 = t1, t2 = t2, r = r, var.matrix, sauc.
 		
 		sauc.lb <-  plogis(qlogis(sauc) + qnorm((1-ci.level)/2, lower.tail = TRUE) *
 																							suppressWarnings(
-																								sqrt(DID.sroc(x, u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
+																								sqrt(.DID.sroc(x, u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
 		
 		sauc.ub <-  plogis(qlogis(sauc) + qnorm((1-ci.level)/2, lower.tail = FALSE)*
 																							suppressWarnings(
-																								sqrt(DID.sroc(x, u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
+																								sqrt(.DID.sroc(x, u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
 		
 	}  else {
 	
@@ -147,11 +155,11 @@ sauc.ci <- function(u1 = u1, u2 = u2, t1 = t1, t2 = t2, r = r, var.matrix, sauc.
 	
 	sauc.lb <-  plogis(qlogis(sauc) + qnorm((1-ci.level)/2, lower.tail = TRUE) *
 																					suppressWarnings(
-																						sqrt(DID.hsroc(x, u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
+																						sqrt(.DID.hsroc(x, u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
 	
 	sauc.ub <-  plogis(qlogis(sauc) + qnorm((1-ci.level)/2, lower.tail = FALSE)*
 																					suppressWarnings(
-																						sqrt(DID.hsroc(x, u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
+																						sqrt(.DID.hsroc(x, u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
 	
 }
 
@@ -161,6 +169,36 @@ names(sauc.ci) <- c("sauc", "sauc.lb", "sauc.ub")
 sauc.ci
 }
 
-# sauc.ci(u1, u2, t1, t2, r, var.matrix, "sroc")
-# sauc.ci(u1, u2, t1, t2, r, var.matrix, "hsroc")
 
+
+
+##------------------------------------------------------------------------------
+##
+## SIMPLE CALCULATION (WITHOUT CONFIDENCE INTERVAL)
+## USED IN THE SIMULATION
+##
+##------------------------------------------------------------------------------
+
+SAUC <- function(par){
+	
+	par <- as.matrix(par)
+	
+	sapply(1:ncol(par), function(i) {
+		
+		u1  <- par[1,i]
+		u2  <- par[2,i]
+		t1  <- par[3,i]
+		t2  <- par[4,i]
+		r   <- par[5,i]
+		
+		if (NA %in% par[,i]) {auc <- NA} else {
+			
+			auc.try <- try(integrate(function(x) { plogis(u1 - (t1*r/t2) * (qlogis(x) + u2)) }, 0, 1))
+			
+			if(!inherits(auc.try,"try-error")) auc.try$value else NA
+			
+		}
+		
+	})
+	
+}

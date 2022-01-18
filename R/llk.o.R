@@ -5,13 +5,14 @@
 ##******************************************************************************
 
 
-llk.o <- function(par,
-                  y1, y2, v1, v2,
-                  n, p,
-                  a.interval,
-                  a.root.extendInt,
-                  show.warn.message
-                  ) {
+.llk.o <- function(
+  par,
+  y1, y2, v1, v2,
+  n, p,
+  alpha.interval,
+  alpha.root.extendInt,
+  show.warn.message
+){
 
   u1 <- par[1]
   u2 <- par[2]
@@ -57,7 +58,7 @@ llk.o <- function(par,
 
   a.p <- function(a) {sum(1/f.b(a), na.rm = TRUE) - n/p}
 
-  if (!show.warn.message) a.opt.try <- suppressWarnings(try(uniroot(a.p, a.interval, extendInt=a.root.extendInt), silent = TRUE)) else a.opt.try <- try(uniroot(a.p, a.interval, extendInt=a.root.extendInt), silent = FALSE)
+  if (!show.warn.message) a.opt.try <- suppressWarnings(try(uniroot(a.p, alpha.interval, extendInt=alpha.root.extendInt), silent = TRUE)) else a.opt.try <- try(uniroot(a.p, alpha.interval, extendInt=alpha.root.extendInt), silent = FALSE)
 
   a.opt <- a.opt.try$root
 

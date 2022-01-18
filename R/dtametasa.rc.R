@@ -1,27 +1,24 @@
 ##******************************************************************************
 ##
-## PROPOSED MODEL, NOT SPECIFY C VECTOR, SA2
-##
+## PROPOSED MODEL, NOT SPECIFY C VECTOR, SA2 (FULL VERSION)
+## USED IN THE EXAMPLE
 ##
 ##******************************************************************************
 
 
 
-dtametasa.rc <- 
-  function(data,
-           p,
-           correct.value = 0.5,
-           correct.type = "single",
-           beta.init = 1,
-           c1.sq.init = 0.5,
-           beta.interval = c(0, 2),
-           alpha.interval = c(-3, 3),
-           ci.level = 0.95,
-           show.warn.message = FALSE,
-           a.root.extendInt = "downX",
-           sauc.type = c("sroc", "hsroc")
-  )
-  {
+dtametasa.rc <- function(
+  data,
+  p = 0.8,
+  beta.init = 1,
+  c1.sq.init = 0.5,
+  beta.interval = c(0, 2),
+  alpha.interval = c(-3, 3),
+  ci.level = 0.95,
+  show.warn.message = FALSE,
+  alpha.root.extendInt = "downX",
+  sauc.type = c("sroc", "hsroc")
+){
     
     ##
     ## INPUT: DATA PREPROCESS ----------------------------------------------------------
@@ -31,7 +28,7 @@ dtametasa.rc <-
     
     if ("TP" %in% names(data)){
       
-      data <- correction(data, value = correct.value, type=correct.type)
+      data <- correction(data, value = 0.5, type="single")
       
       data <- logit.data(data)
       
@@ -70,17 +67,19 @@ dtametasa.rc <-
     
     eps <- .Machine$double.eps^0.5
     
-    fn <- function(par) llk.o(par,
-                              y1, y2, v1, v2, n, p,
-                              a.root.extendInt = a.root.extendInt,
-                              a.interval = alpha.interval,
-                              show.warn.message = show.warn.message)
+    fn <- function(par) .llk.o(
+      par,
+      y1, y2, v1, v2, n, p,
+      alpha.interval,
+      alpha.root.extendInt,
+      show.warn.message)
     
-    opt <- try(nlminb(sa.rc.init,
-                      fn,
-                      lower = c(-5, -5, eps, eps,-1, beta.interval[1], 0),
-                      upper = c( 5,  5, 3, 3,  1, beta.interval[2], 1)
-    ),silent = TRUE)
+    opt <- try(nlminb(
+      sa.rc.init,
+      fn,
+      lower = c(-5, -5, eps, eps,-1, beta.interval[1], 0),
+      upper = c( 5,  5, 3, 3,  1, beta.interval[2], 1)
+    ), silent = TRUE)
     
     if(!inherits(opt,"try-error")) {
       
@@ -127,7 +126,7 @@ dtametasa.rc <-
         
       var.matrix <-  inv.I.fun.m[1:5, 1:5]
       
-      opt$sauc.ci <- sauc.ci(u1 = u1, u2 = u2, t1 = t1, t2 = t2, r = r, var.matrix = var.matrix, sauc.type = sauc.type, ci.level = ci.level)
+      opt$sauc.ci <- SAUC.ci(u1 = u1, u2 = u2, t1 = t1, t2 = t2, r = r, var.matrix = var.matrix, sauc.type = sauc.type, ci.level = ci.level)
       
       
       #
@@ -151,9 +150,9 @@ dtametasa.rc <-
       
       if(p==1) a.opt <- NA else {
         
-        a.p <- function(a) { sum(1/ pnorm( (a + b * u.ldor/se.ldor) / sq ), na.rm = TRUE) - n/p }
+        .a.p <- function(a) { sum(1/ pnorm( (a + b * u.ldor/se.ldor) / sq ), na.rm = TRUE) - n/p }
         
-        if (!show.warn.message) a.opt.try <- suppressWarnings(try(uniroot(a.p, interval = alpha.interval, extendInt = a.root.extendInt), silent = TRUE)) else a.opt.try <- try(uniroot(a.p, interval = alpha.interval, extendInt=a.root.extendInt), silent = TRUE)
+        if (!show.warn.message) a.opt.try <- suppressWarnings(try(uniroot(.a.p, interval = alpha.interval, extendInt = alpha.root.extendInt), silent = TRUE)) else a.opt.try <- try(uniroot(.a.p, interval = alpha.interval, extendInt=alpha.root.extendInt), silent = TRUE)
         
         a.opt <- a.opt.try$root
         
@@ -169,9 +168,6 @@ dtametasa.rc <-
       u1.lb <- u1 + qnorm((1-ci.level)/2, lower.tail = TRUE)*u1.se
       u1.ub <- u1 + qnorm((1-ci.level)/2, lower.tail = FALSE)*u1.se
       
-      # se.lb <- se + qnorm((1-ci.level)/2, lower.tail = TRUE)*se*(1-se)*u1.se
-      # se.ub <- se + qnorm((1-ci.level)/2, lower.tail = FALSE)*se*(1-se)*u1.se
-      
       opt$mu1.ci <- c(u1, u1.lb, u1.ub, se, plogis(u1.lb), plogis(u1.ub))
       names(opt$mu1.ci) <- c("mu1", "mu1.lb", "mu1.ub", "sens", "se.lb", "se.ub")
       
@@ -182,9 +178,6 @@ dtametasa.rc <-
       u2.se <- suppressWarnings(sqrt(inv.I.fun.m[2,2]))
       u2.lb <- u2 + qnorm((1-ci.level)/2, lower.tail = TRUE)*u2.se
       u2.ub <- u2 + qnorm((1-ci.level)/2, lower.tail = FALSE)*u2.se
-      
-      # sp.lb <- sp + qnorm((1-ci.level)/2, lower.tail = TRUE)*sp*(1-sp)*u2.se
-      # sp.ub <- sp + qnorm((1-ci.level)/2, lower.tail = FALSE)*sp*(1-sp)*u2.se
       
       opt$mu2.ci <- c(u2, u2.lb, u2.ub, sp, plogis(u2.lb), plogis(u2.ub))
       names(opt$mu2.ci) <- c("mu2", "mu2.lb", "mu2.ub", "spec", "sp.lb", "sp.ub")

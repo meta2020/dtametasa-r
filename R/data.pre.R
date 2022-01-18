@@ -8,8 +8,11 @@
 ## CONTINUITY CORRECTION -------------------------------------------------------
 ##
 
-correction <- function(data, value = 0.5,
-                       type = c("single", "all")){
+correction <- function(
+  data, 
+  value = 0.5,
+  type = c("single", "all")
+){
 
   type <- match.arg(type)
 
@@ -41,7 +44,7 @@ correction <- function(data, value = 0.5,
 
 
 ##
-## TRANSFORM DATA: TO GENERATE y1 y2 --------------------------------------------------------------
+## TRANSFORM DATA: TO GENERATE y1 y2 -------------------------------------------
 ##
 
 logit.data <- function(data){
@@ -64,19 +67,5 @@ logit.data <- function(data){
 
 }
 
-##
-## CALCULATE DELTA VAR-COV
-##
 
-# QIQ <- function(x, u1, u2, t1, t2, r, inv.I.fun.m) {
-#
-#   sapply(1: length(x), function(i){
-#
-#     Q <- c(1, -r*t1/t2, -r/t2*(qlogis(x[i])+u2), r*t1/t2^2*(qlogis(x[i])+u2), -t1/t2*(qlogis(x[i])+u2))
-#
-#     (Q %*% inv.I.fun.m %*% Q)
-#
-#   })
-#
-# }
 
