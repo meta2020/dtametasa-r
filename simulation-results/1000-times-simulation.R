@@ -28,11 +28,11 @@ sapply(paste0("../R/", .files.sources), source)
 
 
 # tset <- "t12"  ## SMALL TAU
-tset <- "t0.7"   ## LARGE TAU
+# tset <- "t0.7"   ## LARGE TAU
 
 ## 4. 1000 TIMES REPEAT FOR 3 SETTING OF C=(c11, c22)
 
-re <- 2
+re <- 1000
 
 
 ##******************************************************************************
