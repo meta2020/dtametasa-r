@@ -1,13 +1,11 @@
 ---
-title: 'CD64 Example: Li (2013)'
-subtitle: "HSROC"
+title: 'IVD Example'
+subtitle: "SROC"
 author: "Yi"
 date: "`r format(Sys.Date())`"
-output:
-  pdf_document:
+output: html_document
 editor_options:
   chunk_output_type: console
-classoption: landscape
 ---
 
 ```{r setup, include=FALSE}
@@ -24,14 +22,15 @@ rm(list = ls())
 .files.sources = list.files("../R/")
 sapply(paste0("../R/", .files.sources), source)
 
-data <- read.csv("data-CD64.csv")
+data <- read.csv("data-IVD.csv")
 
 
 ## WHETHER TO SAVE PLOTS AND TABLES
 
 save.results <- FALSE
+# save.results <- TRUE
 
-sauc.type <- "hsroc"
+sauc.type <- "sroc"
 ```
 
 # SROC plot results
@@ -45,7 +44,7 @@ p.seq <- c(1, 0.8, 0.6, 0.4)
 
 est2 <- sapply(p.seq, function(p) {
   
-  opt2 <- dtametasa.rc(data, p, c1.sq.init = 0.5, beta.interval = c(0,5), sauc.type = sauc.type)
+  opt2 <- dtametasa.rc(data, p, c1.sq.init = 0.5, beta.interval = c(0,2), sauc.type = sauc.type)
 
   c(conv = opt2$convergence, opt2$sauc.ci, opt2$mu1.ci[4:6], opt2$mu2.ci[4:6], opt2$beta.ci, opt2$alpha, opt2$par)
   
@@ -149,20 +148,21 @@ tb <- cbind("$(c_1, \\,c_2)$" = c("$(\\hat{c}_1, \\hat{c}_2)$", rep("", 3),
                             "$(0, 1)$", rep("", 3)),
              tb1)
 
-if(save.results)  sink("TAB-RES-CD64.tex")
+if(save.results)  sink("~/Documents/GitHub/Manu1/SIM-2/SIM-ver2-supp-1221/TAB-RES-IVD.tex")
 
 kbl(tb, 
-    format = "latex",
+    format =  ifelse(save.results, "latex", "html"),
     longtable = F, 
     booktabs = T, 
     digits = 2,
     align = "r",
     linesep = c(rep("",3), "\\addlinespace"),
     escape = FALSE,
-    caption = "CD64 example: the estimation under four selective publication mechanisms")
+    caption = "IVD example: the estimation under four selective publication mechanisms")
 
 if(save.results)  sink()
 ```
+
 
 # SAUC matplot resuts
 
@@ -175,7 +175,7 @@ p.10 <- seq(1, 0.1, -0.1)
 est.sauc2 <- sapply(p.10, function(p) {
   
   ## ESTIMATES OF THE PARAMETERS
-  opt2 <- dtametasa.rc(data, p, beta.interval = c(0,5), sauc.type = sauc.type)
+  opt2 <- dtametasa.rc(data, p, beta.interval = c(0,2), sauc.type = sauc.type)
 
   c(opt2$sauc.ci)
   
@@ -218,6 +218,7 @@ colnames(est.sauc2) <- colnames(est.sauc11) <- colnames(est.sauc10) <- colnames(
 
 # PLOT: SROC curve and corresponding SAUC
 
+
 ```{r, fig.width=10, fig.height=6}
 # PLEASE CHOOSE ONE SAVED DATA *******
 
@@ -238,8 +239,8 @@ sauc01 <- est01[2,]
 title.cex <- 1.5
 legend.cex <- 1.2
 
-save.results <- TRUE
-if(save.results)  {setEPS(width = 10, height = 6); postscript("CD64-SROC.eps")}
+
+if(save.results)  {setEPS(width = 10, height = 6); postscript("IVD-SROC.eps")}
 
 par(mfrow = c(2, 4), oma = c(0.2, 3, 0.2, 0.3), mar = c(3, 0.2, 2, 0.2))
 
@@ -399,7 +400,7 @@ title.cex <- 1.2
 ##
 
 
-if(save.results) {setEPS(width = 10, height = 4); postscript("CD64-PROBIT.eps")}
+if(save.results) {setEPS(width = 10, height = 4); postscript("IVD-PROBIT.eps")}
 
 par(mfrow = c(2, 2), oma = c(0.2, 3, 0.2, 0.2), mar = c(3, 0.2, 2, 0.2))
 
@@ -507,32 +508,18 @@ data.cc <- correction(data, type = "single")
 ldata   <- logit.data(correction(data, type = "single"))
 nr <- nrow(ldata)
 
-x1 <- data.cc[data.cc$unit.grp==1,"cutoff"]
-pal  <- colorRamp(c("lightpink", "red"))                     # 1) choose colors
-col1 <- rgb(pal((x1 - min(x1)) / diff(range(x1))), max=255)  # 2) interpolate numbers
+shapes <- ifelse(data.cc$type=="SQ", 21, 24)
+# cols <- ifelse(data.cc$cutoff.grp== 1, 21, ifelse(data.cc$cutoff.grp==2, 24, ))
+if(save.results)  {setEPS(width = 10, height = 4); postscript("IVD-FUNNEL.eps")}
 
-x2 <- data.cc[data.cc$unit.grp==2,"cutoff"]
-pal  <- colorRamp(c("tan3", "tan4"))                # 1) choose colors
-col2 <- rgb(pal((x2 - min(x2)) / diff(range(x2))), max=255)  # 2) interpolate numbers
-
-x3 <- data.cc[data.cc$unit.grp==3,"cutoff"]
-pal  <- colorRamp(c("lightskyblue", "skyblue4"))       # 1) choose colors
-col3 <- rgb(pal((x3 - min(x3)) / diff(range(x3))), max=255)  # 2) interpolate numbers
-
-colors <- c(col1, col2, col3, "grey")
-
-
-if(save.results)  {setEPS(width = 10, height = 4); postscript("CD64-FUNNEL.eps")}
-
-par(oma = c(6,1,1,1),
-    mfrow = c(1, 3), 
-    mar = c(4, 4, 3, 1))
+par(oma = c(6,1,1,1), mfrow = c(1, 3), mar = c(4, 4, 3, 1))
 
 ml.lnDOR <- metabin(TP, with(data.cc, TP+FN), FP, with(data.cc, TN+FP), data = data.cc, sm ="OR", fixed = FALSE)
 tf.lndor <- trimfill(ml.lnDOR, fixed = FALSE)
 funnel(tf.lndor, xlab = "lnDOR", 
-       pch = c(rep(21, nr), rep(1, sum(tf.lndor[["trimfill"]]))),
-       bg = c(colors, rep(1, sum(tf.lndor[["trimfill"]]))),
+       pch = c(shapes, rep(1, sum(tf.lndor[["trimfill"]]))),
+       bg = data.cc$cutoff.grp+1,
+       # col = c(data.cc$cutoff.grp+1, rep(1, sum(tf.lndor[["trimfill"]]))),
        cex = 1.5, studlab = FALSE, backtransf = FALSE
 )
 
@@ -543,8 +530,8 @@ tf.se <- trimfill(ml.se, fixed = FALSE)
 tf.se[["TE"]] <- tf.se[["TE"]]/2
 tf.se[["seTE"]] <- tf.se[["seTE"]]/sqrt(2) 
 funnel(tf.se, xlab = "logit(sensitivity)",
-       pch = c(rep(21, nr), rep(1, sum(tf.se[["trimfill"]]))),
-       bg = c(colors, rep(1, sum(tf.se[["trimfill"]]))),
+       pch = c(shapes, rep(1, sum(tf.se[["trimfill"]]))),
+       bg = data.cc$cutoff.grp+1,
        cex = 1.5, studlab = FALSE, backtransf = FALSE
 )
 
@@ -555,8 +542,8 @@ tf.sp <- trimfill(ml.sp, fixed = FALSE)
 tf.sp[["TE"]] <- tf.sp[["TE"]]/2
 tf.sp[["seTE"]] <- tf.sp[["seTE"]]/sqrt(2) 
 funnel(ml.sp, xlab = "logit(specificity)", fixed = FALSE,
-       pch = c(rep(21, nr), rep(1, sum(tf.sp[["trimfill"]]))),
-       bg = c(colors, rep(1, sum(tf.sp[["trimfill"]]))),
+       pch = c(shapes, rep(1, sum(tf.sp[["trimfill"]]))),
+       bg = data.cc$cutoff.grp+1,
        cex = 1.5, studlab = FALSE, backtransf = FALSE
 )
 
@@ -567,13 +554,14 @@ plot(0, 0, type = 'l', bty = 'n', xaxt = 'n', yaxt = 'n')
 legend_order <- matrix(1:6, ncol=2, byrow = TRUE)
 
 legend('bottom',
-       legend = c("Unpublished studies", "Published studies with cutoff values of 1800-10000 (mol/cell)",
-                  "Published studies with cutoff values of 3.05-43.5 (MFI/cell)", 
-                  "Published studies with cutoff values 1.19-4.39", 
-                  "Published studies with other cutoff value", 
-                  "")[legend_order],
-       pch = c(21,rep(21, 4), NA)[legend_order],
-       pt.bg = c("white", "red", "tan4", "skyblue4", "grey", "white")[legend_order],
+       legend = c("Unpublished studies", 
+                  "Published studies with cutoff values >15 colony forming units",
+                  "Published studies with cutoff values >1000 colony forming units", 
+                  "Published studies with other cutoffs",
+                  "Semi-quantitative segment cultures",
+                  "Quantitative segment cultures")[legend_order],
+       pch = c(1,rep(21, 3),19,17)[legend_order],
+       pt.bg = c(1:4,1,1)[legend_order], 
        xpd = TRUE, 
        horiz = FALSE, 
        cex = 1.2,

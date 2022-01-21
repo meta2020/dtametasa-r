@@ -5,76 +5,46 @@ This folder contains reproducible R codes of simulation studies and re-analysis 
 
 The following packages are used in the simulation or example data
 
-- "mvmeta", "foreach", "parallel", "doSNOW", "doRNG", "latex2exp", "kable; 
+- "mixmeta", "foreach", "parallel", "doSNOW", "doRNG", used in the simulations
+
+- "latex2exp", "kable, "Extra; 
 
 If they are not installed, please install from R CRAN `install.packages("package_name")`.
  
 
-## example/
+## Example
 
+- [Example 1](example-results/HTML-Example-IVD.html)
 
-- [simfun/](example/simfun/): R functions 
+- [Example 2](example-results/HTML-Example-CD64.html)
 
-- [data-IVD.csv](example/data-IVD.csv): Example data
+## Simulation
 
-- [Example-ivd-color.Rmd](example/Example-ivd-color.Rmd): codes to reproduce Section 3. Example
+- [Scenarios](simulation-results/scenarios/HTML-Table-scenarios.html)
 
-- [Example-ivd-color.pdf](example/Example-ivd-color.pdf): Fig. 1 2 3, Table S1 (color)
+### Large tau
 
-- [Example-ivd-bw.pdf](example/Example-ivd-bw.pdf): Fig. 1 2 3, Table S1 (black and white)
+- [SAUC estimates](simulation-results/results-RData-Rmd/t12/htmlSAUC-line-plot-t12.html)
 
-## simulation/
+- [Parameter estimates, c11](simulation-results/results-RData-Rmd/t12/htmlTab-other-pars-t12-c11.html)
 
-- scenario/ 
+- [Parameter estimates, c10](simulation-results/results-RData-Rmd/t12/htmlTab-other-pars-t12-c10.html)
 
-	- scenario-t12/: scenarios RData for $(\tau_1^2, \tau_1^2) = (1, 4)$
+- [Parameter estimates, c01](simulation-results/results-RData-Rmd/t12/htmlTab-other-pars-t12-c01.html)
 
-	- scenario-t0.7/: scenarios RData for $(\tau_1^2, \tau_1^2) = (0.5, 0.5)$
+### Small tau
 
-	- [Table-scenario.Rmd](simulation/scenario/Table-scenario.Rmd): codes to reproduce scenario table
+- [SAUC estimates](simulation-results/results-RData-Rmd/t0.7/htmlSAUC-line-plot-t0.7.html)
 
-	- [Table-scenario.pdf](simulation/scenario/Table-scenario.pdf): Table 2 and Table S2
+- [Parameter estimates, c11](simulation-results/results-RData-Rmd/t0.7/htmlTab-other-pars-t0.7-c11.html)
 
-- [sim-sroc-color.Rmd](simulation/sim-sroc-color.Rmd): codes to reproduce Fig. 4
+- [Parameter estimates, c10](simulation-results/results-RData-Rmd/t0.7/htmlTab-other-pars-t0.7-c10.html)
 
-- [sim-sroc-color.pdf](simulation/sim-sroc-color.pdf): Fig. 4 (color)
+- [Parameter estimates, c01](simulation-results/results-RData-Rmd/t0.7/htmlTab-other-pars-t0.7-c01.html)
 
-- [sim-sroc-bw.pdf](simulation/sim-sroc-bw.pdf): Fig. 4 (black and white)
+### Trend in SROC curves
 
-
-- [1000-times-sim-par.R](simulation/1000-times-sim-par.R): codes to reproduce simulation
-
-
-
-- [simfun/](simulation/simfun/): R functions 
-
-- res-par/
-
-	- t12/: 
-
-		- c11/ or c10/ or c01/: simulated results
-
-		- [Tab3-5-sauc-med-iqr-t12.Rmd](simulation/res-par/t12/Tab3-5-sauc-med-iqr-t12.Rmd): codes to reproduce Table 3-5
-
-		- [Tab3-5-sauc-med-iqr-t12.pdf](simulation/res-par/t12/Tab3-5-sauc-med-iqr-t12.pdf): Table 3-5
-
-
-
-	- t0.7/:
-
-		- c11/ or c10/ or c01/: simulated results
-
-		- [TabS3-S5-sauc-med-iqr-t0.7.Rmd](simulation/res-par/t0.7/TabS3-S5-sauc-med-iqr-t0.7.Rmd): codes to reproduce Table S3-S5
-
-		- [TabS3-S5-sauc-med-iqr-t0.7.pdf](simulation/res-par/t0.7/TabS3-S5-sauc-med-iqr-t0.7.pdf): Table S3-S5
-
-
-
-
-
-
-
-
+- [Summary point in the SROC curve](simulation-results/HTML-sim-sroc.html)
 
 
 

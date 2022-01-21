@@ -5,7 +5,6 @@ author: "Yi"
 date: "`r format(Sys.Date())`"
 output:
   pdf_document: default
-  html_document: 
 editor_options:
   chunk_output_type: console
 # classoption: landscape
@@ -20,8 +19,14 @@ opts_chunk$set(echo = FALSE, warning = FALSE, error = TRUE, message=FALSE, comme
 
 options(knitr.kable.NA = "")
 
+save.path <- "~/Documents/GitHub/Manu1/SIM-2/SIM-ver2-supp-1221/tab/"
+
+save.tex <- FALSE
+# save.tex <- TRUE
+
 table.sauc <- function(list.n, row.n){
- 
+
+  
   load(s.rdt) 
 
   # list.n <- row.n <- 4
@@ -40,7 +45,8 @@ table.sauc <- function(list.n, row.n){
   true.show<- c(set[[list.n]][row.n, 11], rep(NA, dim2-1))
 
   
-  med <- 100*(apply(DATA[10, , ,drop=FALSE], 1:2, function(x) median(x, na.rm = TRUE)) - true.par)
+  if(save.tex)  med <- 100*(apply(DATA[10, , ,drop=FALSE], 1:2, function(x) median(x, na.rm = TRUE) ))#- true.par )#
+  if(!save.tex) med <- 100*(apply(DATA[10, , ,drop=FALSE], 1:2, function(x) median(x, na.rm = TRUE))- true.par )#
   q1  <- 100*apply(DATA[10, , ,drop=FALSE], 1:2, function(x) quantile(x, prob =0.25, na.rm = TRUE))
   q3  <- 100*apply(DATA[10, , ,drop=FALSE], 1:2, function(x) quantile(x, prob =0.75, na.rm = TRUE))
   
@@ -61,7 +67,7 @@ table.sauc <- function(list.n, row.n){
   X
 }
 
-save.path <- "~/Documents/GitHub/Manu1/SIM/SIM-ver2-1102/tab/"
+
 ```
 
 
@@ -87,9 +93,9 @@ for(row.n in c(1:6)){
 }
 
 longtab.f <- cbind.data.frame(no = c(1, rep(NA, 5),2, rep(NA, 5),3, rep(NA, 5),4, rep(NA, 5),5, rep(NA, 5),6, rep(NA, 5) ),
-                              " " = rep(c("Prop $(\\hat{c}_1, \\hat{c}_2)$",
-                                          "Prop $(c_1 = c_2)$",
-                                          "Prop $(c_1 = 0)$",
+                              " " = rep(c("Proposed $(\\hat{c}_1, \\hat{c}_2)$",
+                                          "Proposed $(c_1 = c_2)$",
+                                          "Proposed $(c_1 = 0)$",
                                           # "Proposed (correct)",
                                           # "Proposed (wrong)",
                                           "Heckman-type",
@@ -100,7 +106,7 @@ rownames(longtab.f) <- NULL
 colnames(longtab.f) <- c("No."," Methods", "True", rep(c("Median (Q1, Q3)"), 4))
 
 
-#sink(paste0(save.path, "tb-sauc-t0.7-c11.tex"))
+if (save.tex) sink(paste0(save.path, "tb-sauc-t0.7-c11.tex"))
 
 kbl(longtab.f, 
     format = "latex",
@@ -113,21 +119,23 @@ kbl(longtab.f,
     caption = "Summary of the SAUC estimates under the true selective publication mechanism of $(c_1, c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$") %>% 
   add_header_above(c("","","", "$S = 15$", "$S = 25$", "$S = 50$", "$S = 200$"), escape = FALSE) %>% 
   kable_styling(font_size = 9) %>%
-  footnote(general = "Median with 25th empirical quartile (Q1) and 75th empirical quartile (Q3) and convergence rate (CR) are reported. 
-  No. denotes the senario numbers.
-   $S$ denotes the number of the population studies; True denotes the the true value of the SAUC.
-   Prop $(hat c_1, hat c_2)$, Prop $(c_1 = c_2)$, and Prop $(c_1 = 1)$ denote 
-   the proposed method that estimates $(c_1, c_2)$, 
-   correctly specifies $(c_1, c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$, 
-   and misspecifies $(c_1, c_2) = (1,0)$, respectively;
-   Heckman-type denotes the method of Piao et al.;
-   Reitsma$_O$ and Reitsma$_P$ denote the Reitsma model 
-   based on $N$ observed studies and$S$ population studies, respectively. 
-  All the entries are multiplied by 100.", 
-   escape = FALSE, threeparttable = TRUE)
+  footnote(general = "
+Median with 25th empirical quartile (Q1) and 75th empirical quartile (Q3) and convergence rate (CR) are reported. 
+No. corresponds to the scenario    number.
+$S$ denotes the number of the population studies. 
+True denotes the the true value of the SAUC.
+Proposed $(\\hat c_1, \\hat c_2)$, Proposed $(c_1 = c_2)$, and Proposed $(c_1 = 1)$ denote 
+the proposed method that estimates $(c_1, c_2)$, 
+correctly specifies $(c_1, c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$, 
+and misspecifies $(c_1, c_2) = (1,0)$, respectively;
+Heckman-type denotes the method of Piao et al.;
+Reitsma$_O$ and Reitsma$_P$ denote the Reitsma model 
+based on $N$ published studies and $S$ population studies, respectively. 
+All the entries are multiplied by 100.", 
+   escape = FALSE, threeparttable = TRUE,  general_title = "")
 
 
-#sink()
+if (save.tex)  sink()
 
 
 
@@ -155,9 +163,9 @@ for(row.n in c(1:6)){
 }
 
 longtab.f <- cbind.data.frame(no = c(1, rep(NA, 5),2, rep(NA, 5),3, rep(NA, 5),4, rep(NA, 5),5, rep(NA, 5),6, rep(NA, 5) ),
-                              " " = rep(c("Prop $(\\hat{c}_1, \\hat{c}_2)$",
-                                          "Prop $(c_1 = 1)$",
-                                          "Prop $(c_1 = c_2)$",
+                              " " = rep(c("Proposed $(\\hat{c}_1, \\hat{c}_2)$",
+                                          "Proposed $(c_1 = 1)$",
+                                          "Proposed $(c_1 = c_2)$",
                                           # "Proposed (correct)",
                                           # "Proposed (wrong)",
                                           "Heckman-type",
@@ -169,7 +177,7 @@ colnames(longtab.f) <- c("No."," ", "True", rep(c("Median (Q1, Q3)"), 4))
 
 
 
-#sink(paste0(save.path, "tb-sauc-t0.7-c10.tex"))
+if (save.tex) sink(paste0(save.path, "tb-sauc-t0.7-c10.tex"))
 
 kbl(longtab.f, 
     format = "latex",
@@ -182,20 +190,22 @@ kbl(longtab.f,
     caption = "Summary of the SAUC estimates under the true selective publication mechanism of $(c_1, c_2) = (1,0)$") %>% 
   add_header_above(c("","","", "$S = 15$", "$S = 25$", "$S = 50$", "$S = 200$"), escape = FALSE) %>% 
   kable_styling(font_size = 9) %>%
-  footnote(general = "Median with 25th empirical quartile (Q1) and 75th empirical quartile (Q3) and convergence rate (CR) are reported. 
-  No. denotes the senario numbers.
-   $S$ denotes the number of the population studies; True denotes the the true value of the SAUC.
-   Prop $(hat c_1, hat c_2)$, Prop $(c_1 = 1)$, and Prop $(c_1 = c_2)$ denote 
-   the proposed method that estimates $(c_1, c_2)$, 
-   correctly specifies $(c_1, c_2) = (1,0)$, 
-   and misspecifies $(c_1, c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$, respectively;
-   Heckman-type denotes the method of Piao et al.;
-   Reitsma$_O$ and Reitsma$_P$ denote the Reitsma model 
-   based on $N$ observed studies and$S$ population studies, respectively. 
-  All the entries are multiplied by 100.", 
-   escape = FALSE, threeparttable = TRUE)
+  footnote(general = "
+Median with 25th empirical quartile (Q1) and 75th empirical quartile (Q3) and convergence rate (CR) are reported. 
+No. corresponds to the scenario    number.
+$S$ denotes the number of population studies.
+True denotes the true value of the SAUC.
+Proposed $(hat c_1, hat c_2)$, Proposed $(c_1 = 1)$, and Proposed $(c_1 = c_2)$ denote 
+the proposed method that estimates $(c_1, c_2)$, 
+correctly specifies $(c_1, c_2)=(1,0)$, 
+and misspecifies $(c_1, c_2)=(1/\\sqrt{2}, 1/\\sqrt{2})$, respectively;
+Heckman-type denotes the method of Piao et al.;
+Reitsma$_O$ and Reitsma$_P$ denote the Reitsma model 
+based on $N$ published studies and $S$ population studies, respectively. 
+All the entries are multiplied by 100.", 
+   escape = FALSE, threeparttable = TRUE, general_title = "")
 
-#sink()
+if (save.tex)  sink()
 
 
 
@@ -225,9 +235,9 @@ for(row.n in c(1:6)){
 }
 
 longtab.f <- cbind.data.frame(no = c(1, rep(NA, 5),2, rep(NA, 5),3, rep(NA, 5),4, rep(NA, 5),5, rep(NA, 5),6, rep(NA, 5) ),
-                              " " = rep(c("Prop $(\\hat{c}_1, \\hat{c}_2)$",
-                                          "Prop $(c_1 = 0)$",
-                                          "Prop $(c_1 = c_2)$",
+                              " " = rep(c("Proposed $(\\hat{c}_1, \\hat{c}_2)$",
+                                          "Proposed $(c_1 = 0)$",
+                                          "Proposed $(c_1 = c_2)$",
                                           # "Proposed (correct)",
                                           # "Proposed (wrong)",
                                           "Heckman-type",
@@ -239,7 +249,7 @@ colnames(longtab.f) <- c("No."," ", "True", rep(c("Median (Q1, Q3)"), 4))
 
 
 
-#sink(paste0(save.path, "tb-sauc-t0.7-c01.tex"))
+if (save.tex)  sink(paste0(save.path, "tb-sauc-t0.7-c01.tex"))
 
 kbl(longtab.f, 
     format = "latex",
@@ -252,20 +262,22 @@ kbl(longtab.f,
     caption = "Summary of the SAUC estimates under the true selective publication mechanism of $(c_1, c_2) = (0,1)$") %>% 
   add_header_above(c("","","", "$S = 15$", "$S = 25$", "$S = 50$", "$S = 200$"), escape = FALSE) %>% 
   kable_styling(font_size = 9) %>%
-  footnote(general = "Median with 25th empirical quartile (Q1) and 75th empirical quartile (Q3) and convergence rate (CR) are reported. 
-  No. denotes the senario numbers.
-   $S$ denotes the number of the population studies; True denotes the the true value of the SAUC.
-   Prop $(hat c_1, hat c_2)$, Prop $(c_1 = 1)$, and Prop $(c_1 = c_2)$ denote 
-   the proposed method that estimates $(c_1, c_2)$, 
-   correctly specifies $(c_1, c_2) = (0,1)$, 
-   and misspecifies $(c_1, c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$, respectively;
-   Heckman-type denotes the method of Piao et al.;
-   Reitsma$_O$ and Reitsma$_P$ denote the Reitsma model 
-   based on $N$ observed studies and$S$ population studies, respectively. 
-  All the entries are multiplied by 100.", 
-   escape = FALSE, threeparttable = TRUE)
+  footnote(general = "
+Median with 25th empirical quartile (Q1) and 75th empirical quartile (Q3) and convergence rate (CR) are reported. 
+No. corresponds to the scenario    number.
+$S$ denotes the number of the population studies. 
+True denotes the the true value of the SAUC.
+Proposed $(hat c_1, hat c_2)$, Proposed $(c_1 = 1)$, and Proposed $(c_1 = c_2)$ denote 
+the proposed method that estimates $(c_1, c_2)$, 
+correctly specifies $(c_1, c_2) = (0,1)$, 
+and misspecifies $(c_1, c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$, respectively;
+Heckman-type denotes the method of Piao et al.;
+Reitsma$_O$ and Reitsma$_P$ denote the Reitsma model 
+based on $N$ published studies and $S$ population studies, respectively. 
+All the entries are multiplied by 100.", 
+   escape = FALSE, threeparttable = TRUE, general_title = "")
 
-#sink()
+if (save.tex)  sink()
 
 
 

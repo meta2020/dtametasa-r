@@ -1,10 +1,8 @@
 ---
-title: "Scenarios Table"
+title: "scenarioss Table"
 author: "Yi"
 date: "`r format(Sys.Date())`"
-output:
-  pdf_document: default
-  html_document: default
+output: html_document
 editor_options:
   chunk_output_type: console
 ---
@@ -16,18 +14,20 @@ opts_chunk$set(echo = FALSE, warning = FALSE, error = TRUE, message=FALSE, comme
 options(knitr.kable.NA = " ")
 library(kableExtra)
 
+save.result <- FALSE
+# save.result <- TRUE
 ```
 
 # $(\tau_1^2, \tau_2^2) = (1, 4)$
 
 ```{r}
-load("scenario-t12/set-t12-c11.RData")
+load("scenarios-t12/set-t12-c11.RData")
 set1 <- set[[1]][c(1:6), c(11, 2:6, 12, 9, 10)]
 
-load("scenario-t12/set-t12-c10.RData")
+load("scenarios-t12/set-t12-c10.RData")
 set2 <- set[[1]][c(1:6), c(10)]
 
-load("scenario-t12/set-t12-c01.RData")
+load("scenarios-t12/set-t12-c01.RData")
 set3 <- set[[1]][c(1:6), c(10)]
 
 id <- 1:6
@@ -40,10 +40,10 @@ rownames(scen) <- NULL
 
 
 
-# sink("tb-scenario-t12.tex")
+# sink("tb-scenarios-t12.tex")
 
 kbl(scen, 
-    format = "latex",
+    format = ifelse(save.result, "latex", "html"),
     longtable = F, 
     booktabs = T, 
     digits =3,
@@ -63,13 +63,13 @@ kbl(scen,
 
 
 ```{r}
-load("scenario-t0.7/set-t0.7-c11.RData")
+load("scenarios-t0.7/set-t0.7-c11.RData")
 set1 <- set[[1]][c(1:6), c(11, 2:6, 12, 9, 10)]
 
-load("scenario-t0.7/set-t0.7-c10.RData")
+load("scenarios-t0.7/set-t0.7-c10.RData")
 set2 <- set[[1]][c(1:6), c(10)]
 
-load("scenario-t0.7/set-t0.7-c01.RData")
+load("scenarios-t0.7/set-t0.7-c01.RData")
 set3 <- set[[1]][c(1:6), c(10)]
 
 id <- 1:6
@@ -85,10 +85,10 @@ rownames(scen) <- NULL
 library(kableExtra)
 
 
-# sink("tb-scenario-t12.tex")
+# sink("tb-scenarios-t12.tex")
 
 kbl(scen, 
-    format = "latex",
+    format = ifelse(save.result, "latex", "html"),
     longtable = F, 
     booktabs = T, 
     digits =3,

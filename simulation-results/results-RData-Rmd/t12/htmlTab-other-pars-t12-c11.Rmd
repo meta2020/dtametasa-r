@@ -1,14 +1,11 @@
 ---
-title: "Estimates of Parameters ($c_1=c_2=0.5$)"
+title: "Estimates of Parameters ($c_1=0, c_2=1$)"
 subtitle: "$(\\tau_1^2, \\tau_2^2) = (1, 4)$"
 author: "Yi"
 date: "`r format(Sys.Date())`"
-output:
-  html_document: default
-  pdf_document: 
+output: html_document
 editor_options:
   chunk_output_type: console
-classoption: landscape
 ---
 
 ```{r setup, include=FALSE}
@@ -43,7 +40,7 @@ table.pars <- function(list.n, row.n){
                 set[[list.n]][row.n, ][c(9:10)],      # b a
                 sqrt(set[[list.n]][row.n, ][c(7)]))   # c1
 
-  med  <- apply(DATA, 1:2, function(x) median(x, na.rm = TRUE))[1:8,]  -true.par
+  med  <- apply(DATA, 1:2, function(x) median(x, na.rm = TRUE))[1:8,] # -true.par
   iq25 <- apply(DATA, 1:2, function(x) quantile(x, prob =0.25, na.rm = TRUE))[1:8,]
   iq75 <- apply(DATA, 1:2, function(x) quantile(x, prob =0.75, na.rm = TRUE))[1:8,]
 
@@ -104,6 +101,7 @@ kbl(x,
 ```
 
 
+
 # Results
 
 **Note: results are shown as "median of the estimates - true values (lower, upper quartiles of the estimates)"**
@@ -117,13 +115,14 @@ $N = S\times p \approx S \times 0.7$
 
 longtab <- rbind(table.pars(1, 1),
             table.pars(2, 1),
-            table.pars(3, 1))
+            table.pars(3, 1),
+            table.pars(4, 1))
 
 PAR <- rep(c("$\\mu_1$", "$\\mu_2$", "$\\tau_1$", "$\\tau_2$", "$\\rho$", 
          "$\\beta$", "$\\alpha$", "$c_1$"),3)
 
-S <- c(10, rep(NA, 7), 35, rep(NA,7), 140, rep(NA,7))
-colnm <- c("$N$","Par","True", 
+S <- c(10, rep(NA, 7), 15, rep(NA,7), 50, rep(NA,7), 200, rep(NA,7))
+colnm <- c("$S$","Par","True", 
            "Proposed $(\\hat{c}_1^2, \\hat{c}_2^2)$",
            "Proposed (correct)",
            "Proposed (wrong)",
@@ -159,7 +158,8 @@ kbl(longtab.f,
 
 longtab <- rbind(table.pars(1, 2),
             table.pars(2, 2),
-            table.pars(3, 2))
+            table.pars(3, 2),
+            table.pars(4, 2))
 
 longtab.f <- cbind.data.frame(S = S, PAR = PAR, longtab)
 
@@ -190,7 +190,8 @@ kbl(longtab.f,
 
 longtab <- rbind(table.pars(1, 3),
             table.pars(2, 3),
-            table.pars(3, 3))
+            table.pars(3, 3),
+            table.pars(4, 3))
 
 longtab.f <- cbind.data.frame(S = S, PAR = PAR, longtab)
 
@@ -221,7 +222,8 @@ kbl(longtab.f,
 
 longtab <- rbind(table.pars(1, 4),
             table.pars(2, 4),
-            table.pars(3, 4))
+            table.pars(3, 4),
+            table.pars(4, 4))
 
 
 longtab.f <- cbind.data.frame(S = S, PAR = PAR, longtab)

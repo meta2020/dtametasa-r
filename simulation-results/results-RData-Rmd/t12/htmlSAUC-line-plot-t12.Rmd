@@ -3,9 +3,7 @@ title: 'SAUC Median Lines Comparisions'
 subtitle: "$(\\tau_1^2, \\tau_2^2) = (1, 4)$"
 author: "Yi"
 date: "`r format(Sys.Date())`"
-output:
-  html_document: null
-  pdf_document: default
+output: html_document
 editor_options:
   chunk_output_type: console
 ---
@@ -21,7 +19,7 @@ library(kableExtra)
 auc.med <- function(row.n){
   
   auc <- NULL
-  for(list.n in 1:3){
+  for(list.n in 1:4){
     
     load(paste0(dt, "/sim_l", list.n, "_r",row.n, ".RData"))
     dim(DATA) <- c(11,6,1000)
@@ -44,7 +42,7 @@ auc.med <- function(row.n){
           xlab = "N (Number of the selected studies)",
           ylim =c(y1, y2),
           col = c(1:6), xaxt="n")
-  axis(1, at = 1:3, labels = c("10", "35", "140"))
+  axis(1, at = 1:4, labels = c("10","25", "50", "200"))
   title(main = sprintf("%s", row.n))
 }
 
