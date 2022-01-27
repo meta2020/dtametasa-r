@@ -1,13 +1,13 @@
 ---
 title: "Estimates of the summary AUC under three settings of $(c_1, c_2)$"
-subtitle: "$(\\tau_1^2, \\tau_2^2) = (1, 4)$"
 author: "Yi"
 date: "`r format(Sys.Date())`"
 output:
-  pdf_document: default
+  html_document:
+    df_print: paged
+subtitle: $(\tau_1^2, \tau_2^2) = (1, 4)$
 editor_options:
   chunk_output_type: console
-# classoption: landscape
 ---
 
 ```{r setup, include=FALSE}
@@ -19,10 +19,10 @@ opts_chunk$set(echo = FALSE, warning = FALSE, error = TRUE, message=FALSE, comme
 
 options(knitr.kable.NA = "")
 
-save.path <- "~/Documents/GitHub/Manu1/SIM-2/SIM-ver2-1221/tab/"
 
 save.tex <- FALSE
-# save.tex <- TRUE
+# save.tex <- TRUE; save.path <- "~/Documents/GitHub/Manu1/SIM-2/SIM-ver2-1221/tab/"
+
 
 table.sauc <- function(list.n, row.n){
 
@@ -99,8 +99,8 @@ longtab.f <- cbind.data.frame(no = c(1, rep(NA, 5),2, rep(NA, 5),3, rep(NA, 5),4
                                           # "Proposed (correct)",
                                           # "Proposed (wrong)",
                                           "Heckman-type",
-                                          "Reistma$_O$",
-                                          "Reistma$_P$"),6),
+                                          "Reitsma$_O$",
+                                          "Reitsma$_P$"),6),
                               longtab)
 rownames(longtab.f) <- NULL
 colnames(longtab.f) <- c("No."," Methods", "True", rep(c("Median (Q1, Q3)"), 4))
@@ -109,19 +109,20 @@ colnames(longtab.f) <- c("No."," Methods", "True", rep(c("Median (Q1, Q3)"), 4))
 if (save.tex) sink(paste0(save.path, "tb-sauc-t12-c11.tex"))
 
 kbl(longtab.f, 
-    format = "latex",
+    format = ifelse(save.tex, "latex", "html"),
     longtable = F, 
     booktabs = T, 
     digits = 1,
     align = "r",
     linesep = c('', '', '', '', '', '\\addlinespace'),
     escape = FALSE,
+    label = "c11",
     caption = "Summary of the SAUC estimates under the true selective publication mechanism of $(c_1, c_2) = (1/\\sqrt{2}, 1/\\sqrt{2})$") %>% 
   add_header_above(c("","","", "$S = 15$", "$S = 25$", "$S = 50$", "$S = 200$"), escape = FALSE) %>% 
-  kable_styling(font_size = 9) %>%
+  # kable_styling(font_size = 9) %>%
   footnote(general = "
 Median with 25th empirical quartile (Q1) and 75th empirical quartile (Q3) and convergence rate (CR) are reported. 
-No. corresponds to the scenario    number.
+No. corresponds to the scenario number.
 $S$ denotes the number of the population studies. 
 True denotes the the true value of the SAUC.
 Proposed $(\\hat c_1, \\hat c_2)$, Proposed $(c_1 = c_2)$, and Proposed $(c_1 = 1)$ denote 
@@ -169,8 +170,8 @@ longtab.f <- cbind.data.frame(no = c(1, rep(NA, 5),2, rep(NA, 5),3, rep(NA, 5),4
                                           # "Proposed (correct)",
                                           # "Proposed (wrong)",
                                           "Heckman-type",
-                                          "Reistma$_O$",
-                                          "Reistma$_P$"),6),
+                                          "Reitsma$_O$",
+                                          "Reitsma$_P$"),6),
                               longtab)
 rownames(longtab.f) <- NULL
 colnames(longtab.f) <- c("No."," ", "True", rep(c("Median (Q1, Q3)"), 4))
@@ -180,19 +181,20 @@ colnames(longtab.f) <- c("No."," ", "True", rep(c("Median (Q1, Q3)"), 4))
 if (save.tex) sink(paste0(save.path, "tb-sauc-t12-c10.tex"))
 
 kbl(longtab.f, 
-    format = "latex",
+    format = ifelse(save.tex, "latex", "html"),
     longtable = F, 
     booktabs = T, 
     digits = 1,
     align = "r",
     linesep = c('', '', '', '', '','\\addlinespace'),
     escape = FALSE,
+    label = "c10",
     caption = "Summary of the SAUC estimates under the true selective publication mechanism of $(c_1, c_2) = (1,0)$") %>% 
   add_header_above(c("","","", "$S = 15$", "$S = 25$", "$S = 50$", "$S = 200$"), escape = FALSE) %>% 
-  kable_styling(font_size = 9) %>%
+  # kable_styling(font_size = 9) %>%
   footnote(general = "
 Median with 25th empirical quartile (Q1) and 75th empirical quartile (Q3) and convergence rate (CR) are reported. 
-No. corresponds to the scenario    number.
+No. corresponds to the scenario number.
 $S$ denotes the number of population studies.
 True denotes the true value of the SAUC.
 Proposed $(hat c_1, hat c_2)$, Proposed $(c_1 = 1)$, and Proposed $(c_1 = c_2)$ denote 
@@ -241,8 +243,8 @@ longtab.f <- cbind.data.frame(no = c(1, rep(NA, 5),2, rep(NA, 5),3, rep(NA, 5),4
                                           # "Proposed (correct)",
                                           # "Proposed (wrong)",
                                           "Heckman-type",
-                                          "Reistma$_O$",
-                                          "Reistma$_P$"),6),
+                                          "Reitsma$_O$",
+                                          "Reitsma$_P$"),6),
                               longtab)
 rownames(longtab.f) <- NULL
 colnames(longtab.f) <- c("No."," ", "True", rep(c("Median (Q1, Q3)"), 4))
@@ -252,16 +254,17 @@ colnames(longtab.f) <- c("No."," ", "True", rep(c("Median (Q1, Q3)"), 4))
 if (save.tex)  sink(paste0(save.path, "tb-sauc-t12-c01.tex"))
 
 kbl(longtab.f, 
-    format = "latex",
+    format = ifelse(save.tex, "latex", "html"),
     longtable = F, 
     booktabs = T, 
     digits = 1,
     align = "r",
     linesep = c('', '', '', '', '','\\addlinespace'),
     escape = FALSE,
+    label = "c01",
     caption = "Summary of the SAUC estimates under the true selective publication mechanism of $(c_1, c_2) = (0,1)$") %>% 
   add_header_above(c("","","", "$S = 15$", "$S = 25$", "$S = 50$", "$S = 200$"), escape = FALSE) %>% 
-  kable_styling(font_size = 9) %>%
+  # kable_styling(font_size = 9) %>%
   footnote(general = "
 Median with 25th empirical quartile (Q1) and 75th empirical quartile (Q3) and convergence rate (CR) are reported. 
 No. corresponds to the scenario    number.

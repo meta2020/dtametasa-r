@@ -40,7 +40,7 @@ rownames(scen) <- NULL
 
 
 
-# sink("tb-scenarios-t12.tex")
+if(save.result) sink("../../../Manu1/SIM-2/SIM-ver2-1221/tab/tb-scenarios-t12.tex")
 
 kbl(scen, 
     format = ifelse(save.result, "latex", "html"),
@@ -50,11 +50,12 @@ kbl(scen,
     align = "r",
     linesep = "",
     escape = FALSE,
-    caption = "$(\\tau_1^2, \\tau_2^2) = (1, 4)$") %>% 
+    caption = "Scenarios for simulation studies given $p \\approx 0.7$",
+    label = "sce12") %>% 
   add_header_above(c(rep(" ",9), "$c_1 = c_2$" = 1, "$c_1 = 1$" = 1, "$c_1 = 0$" = 1),
   																	escape = FALSE)
 
-# sink()
+if(save.result) sink()
 
 ```
 
@@ -72,7 +73,7 @@ set2 <- set[[1]][c(1:6), c(10)]
 load("scenarios-t0.7/set-t0.7-c01.RData")
 set3 <- set[[1]][c(1:6), c(10)]
 
-id <- 1:6
+id <- 7:12
 
 scen <- cbind.data.frame(id, set1, set2, set3)
 colnames(scen) <- c("No.", "SAUC", 
@@ -82,10 +83,9 @@ rownames(scen) <- NULL
 
 
 
-library(kableExtra)
 
 
-# sink("tb-scenarios-t12.tex")
+if(save.result) sink("../../../Manu1/SIM-2/SIM-ver2-supp-1221/tab/tb-scenarios-t0.5.tex")
 
 kbl(scen, 
     format = ifelse(save.result, "latex", "html"),
@@ -95,10 +95,11 @@ kbl(scen,
     align = "r",
     linesep = "",
     escape = FALSE,
-    caption = "$(\\tau_1^2, \\tau_2^2) = (0.5, 0.5)$") %>% 
+    caption = "Additional scenarios for simulation studies given $p \\approx 0.7$",
+    label = "sceall") %>% 
   add_header_above(c(rep(" ",9), "$c_1 = c_2$" = 1, "$c_1 = 1$" = 1, "$c_1 = 0$" = 1),
   																	escape = FALSE)
 
-# sink()
+if(save.result) sink()
 
 ```

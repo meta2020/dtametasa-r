@@ -16,7 +16,7 @@ library(latex2exp)
 rm(list = ls())
 
 save.plot <- FALSE
-
+# save.plot <- TRUE
 .files.sources <- list.files("../R/")
 sapply(paste0("../R/", .files.sources), source)
 
@@ -30,7 +30,7 @@ sapply(paste0("../R/", .files.sources), source)
   yaxt
 ){
   
-  s.rdt <- "scenarios/scenarios-t12/set-t12-c11.RData"
+  # s.rdt <- "scenarios/scenarios-t12/set-t12-c11.RData"
 # 
 #   list.n <- 2
 #   row.n <- 6

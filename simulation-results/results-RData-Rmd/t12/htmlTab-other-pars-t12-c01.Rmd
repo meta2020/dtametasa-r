@@ -119,7 +119,7 @@ longtab <- rbind(table.pars(1, 1),
             table.pars(4, 1))
 
 PAR <- rep(c("$\\mu_1$", "$\\mu_2$", "$\\tau_1$", "$\\tau_2$", "$\\rho$", 
-         "$\\beta$", "$\\alpha$", "$c_1$"),3)
+         "$\\beta$", "$\\alpha$", "$c_1$"),4)
 
 S <- c(10, rep(NA, 7), 15, rep(NA,7), 50, rep(NA,7), 200, rep(NA,7))
 colnm <- c("$S$","Par","True", 
@@ -255,7 +255,8 @@ kbl(longtab.f,
 
 longtab <- rbind(table.pars(1, 5),
             table.pars(2, 5),
-            table.pars(3, 5))
+            table.pars(3, 5),
+            table.pars(4, 5))
 
 
 longtab.f <- cbind.data.frame(S = S, PAR = PAR, longtab)
@@ -287,7 +288,8 @@ kbl(longtab.f,
 
 longtab <- rbind(table.pars(1, 6),
             table.pars(2, 6),
-            table.pars(3, 6))
+            table.pars(3, 6),
+            table.pars(4, 6))
 
 
 longtab.f <- cbind.data.frame(S = S, PAR = PAR, longtab)

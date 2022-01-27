@@ -11,7 +11,7 @@
 
 <meta name="author" content="Yi" />
 
-<meta name="date" content="2022-01-21" />
+<meta name="date" content="2022-01-26" />
 
 <title>Estimates of Parameters (c_1=0, c_2=1)</title>
 
@@ -573,7 +573,7 @@ pre code {
 <h1 class="title toc-ignore">Estimates of Parameters (<span class="math inline">\(c_1=0, c_2=1\)</span>)</h1>
 <h3 class="subtitle"><span class="math inline">\((\tau_1^2, \tau_2^2) = (1, 4)\)</span></h3>
 <h4 class="author">Yi</h4>
-<h4 class="date">2022-01-21</h4>
+<h4 class="date">2022-01-26</h4>
 
 </div>
 
@@ -937,45 +937,5385 @@ Sp
 <p><span class="math inline">\(N = S\times p \approx S \times 0.7\)</span></p>
 <div id="scenario-1" class="section level4">
 <h4>Scenario 1</h4>
-<pre><code>Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 32, 24</code></pre>
-<pre><code>Error in rownames(longtab.f) &lt;- NULL: object &#39;longtab.f&#39; not found</code></pre>
-<pre><code>Error in colnames(longtab.f) &lt;- colnm: object &#39;longtab.f&#39; not found</code></pre>
-<pre><code>Error in knitr::kable(x = x, format = format, digits = digits, row.names = row.names, : object &#39;longtab.f&#39; not found</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+Estimates of the parameters
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+<span class="math inline">\(S\)</span>
+</th>
+<th style="text-align:right;">
+Par
+</th>
+<th style="text-align:right;">
+True
+</th>
+<th style="text-align:right;">
+Proposed <span class="math inline">\((\hat{c}_1^2, \hat{c}_2^2)\)</span>
+</th>
+<th style="text-align:right;">
+Proposed (correct)
+</th>
+<th style="text-align:right;">
+Proposed (wrong)
+</th>
+<th style="text-align:right;">
+Heckman-type
+</th>
+<th style="text-align:right;">
+Reitsma<span class="math inline">\(_O\)</span>
+</th>
+<th style="text-align:right;">
+Reitsma<span class="math inline">\(_P\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+-0.028 (-0.384, 0.307)
+</td>
+<td style="text-align:right;">
+0.038 (-0.237, 0.307)
+</td>
+<td style="text-align:right;">
+-0.077 (-0.360, 0.193)
+</td>
+<td style="text-align:right;">
+0.090 (-0.154, 0.340)
+</td>
+<td style="text-align:right;">
+0.142 (-0.102, 0.366)
+</td>
+<td style="text-align:right;">
+0.009 (-0.191, 0.226)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.735
+</td>
+<td style="text-align:right;">
+2.049 (1.527, 2.541)
+</td>
+<td style="text-align:right;">
+1.916 (1.458, 2.383)
+</td>
+<td style="text-align:right;">
+2.508 (2.136, 2.933)
+</td>
+<td style="text-align:right;">
+2.175 (1.774, 2.595)
+</td>
+<td style="text-align:right;">
+2.362 (2.023, 2.754)
+</td>
+<td style="text-align:right;">
+1.706 (1.363, 2.081)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.943 (0.716, 1.181)
+</td>
+<td style="text-align:right;">
+0.878 (0.674, 1.096)
+</td>
+<td style="text-align:right;">
+0.968 (0.735, 1.156)
+</td>
+<td style="text-align:right;">
+0.852 (0.656, 1.047)
+</td>
+<td style="text-align:right;">
+0.858 (0.656, 1.053)
+</td>
+<td style="text-align:right;">
+0.909 (0.744, 1.076)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.735 (1.378, 2.095)
+</td>
+<td style="text-align:right;">
+1.745 (1.360, 2.164)
+</td>
+<td style="text-align:right;">
+1.565 (1.281, 1.903)
+</td>
+<td style="text-align:right;">
+1.531 (1.234, 1.875)
+</td>
+<td style="text-align:right;">
+1.527 (1.254, 1.860)
+</td>
+<td style="text-align:right;">
+1.872 (1.583, 2.142)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.300
+</td>
+<td style="text-align:right;">
+-0.451 (-0.757, -0.081)
+</td>
+<td style="text-align:right;">
+-0.419 (-0.742, -0.042)
+</td>
+<td style="text-align:right;">
+-0.563 (-0.820, -0.254)
+</td>
+<td style="text-align:right;">
+-0.524 (-0.754, -0.247)
+</td>
+<td style="text-align:right;">
+-0.538 (-0.805, -0.243)
+</td>
+<td style="text-align:right;">
+-0.324 (-0.560, -0.081)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+2.000 (0.569, 2.000)
+</td>
+<td style="text-align:right;">
+0.628 (0.130, 2.000)
+</td>
+<td style="text-align:right;">
+0.109 (0.000, 1.425)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.165
+</td>
+<td style="text-align:right;">
+0.159 (-0.887, 0.944)
+</td>
+<td style="text-align:right;">
+-0.010 (-0.696, 0.362)
+</td>
+<td style="text-align:right;">
+0.743 (0.484, 2.161)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.796 (0.469, 0.949)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+-0.076 (-0.337, 0.209)
+</td>
+<td style="text-align:right;">
+0.024 (-0.169, 0.226)
+</td>
+<td style="text-align:right;">
+-0.041 (-0.270, 0.170)
+</td>
+<td style="text-align:right;">
+0.075 (-0.140, 0.265)
+</td>
+<td style="text-align:right;">
+0.129 (-0.062, 0.316)
+</td>
+<td style="text-align:right;">
+-0.013 (-0.163, 0.149)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.735
+</td>
+<td style="text-align:right;">
+1.984 (1.489, 2.418)
+</td>
+<td style="text-align:right;">
+1.882 (1.486, 2.296)
+</td>
+<td style="text-align:right;">
+2.479 (2.162, 2.813)
+</td>
+<td style="text-align:right;">
+2.198 (1.832, 2.532)
+</td>
+<td style="text-align:right;">
+2.383 (2.081, 2.694)
+</td>
+<td style="text-align:right;">
+1.712 (1.429, 2.002)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.007 (0.823, 1.189)
+</td>
+<td style="text-align:right;">
+0.943 (0.771, 1.102)
+</td>
+<td style="text-align:right;">
+0.977 (0.808, 1.149)
+</td>
+<td style="text-align:right;">
+0.921 (0.766, 1.081)
+</td>
+<td style="text-align:right;">
+0.928 (0.763, 1.075)
+</td>
+<td style="text-align:right;">
+0.952 (0.822, 1.081)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.835 (1.578, 2.144)
+</td>
+<td style="text-align:right;">
+1.849 (1.570, 2.178)
+</td>
+<td style="text-align:right;">
+1.669 (1.439, 1.899)
+</td>
+<td style="text-align:right;">
+1.633 (1.393, 1.882)
+</td>
+<td style="text-align:right;">
+1.644 (1.424, 1.858)
+</td>
+<td style="text-align:right;">
+1.915 (1.703, 2.141)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.300
+</td>
+<td style="text-align:right;">
+-0.404 (-0.614, -0.164)
+</td>
+<td style="text-align:right;">
+-0.385 (-0.600, -0.139)
+</td>
+<td style="text-align:right;">
+-0.526 (-0.681, -0.352)
+</td>
+<td style="text-align:right;">
+-0.495 (-0.663, -0.285)
+</td>
+<td style="text-align:right;">
+-0.523 (-0.677, -0.329)
+</td>
+<td style="text-align:right;">
+-0.310 (-0.463, -0.154)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+2.000 (0.471, 2.000)
+</td>
+<td style="text-align:right;">
+0.544 (0.165, 2.000)
+</td>
+<td style="text-align:right;">
+0.046 (0.000, 0.222)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.165
+</td>
+<td style="text-align:right;">
+0.163 (-0.496, 0.944)
+</td>
+<td style="text-align:right;">
+-0.034 (-0.444, 0.282)
+</td>
+<td style="text-align:right;">
+0.623 (0.478, 0.929)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.786 (0.520, 0.935)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+-0.058 (-0.306, 0.174)
+</td>
+<td style="text-align:right;">
+0.013 (-0.119, 0.162)
+</td>
+<td style="text-align:right;">
+0.036 (-0.142, 0.184)
+</td>
+<td style="text-align:right;">
+0.064 (-0.080, 0.213)
+</td>
+<td style="text-align:right;">
+0.120 (-0.015, 0.255)
+</td>
+<td style="text-align:right;">
+-0.009 (-0.110, 0.109)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.735
+</td>
+<td style="text-align:right;">
+1.873 (1.488, 2.246)
+</td>
+<td style="text-align:right;">
+1.833 (1.479, 2.187)
+</td>
+<td style="text-align:right;">
+2.473 (2.245, 2.713)
+</td>
+<td style="text-align:right;">
+2.200 (1.943, 2.445)
+</td>
+<td style="text-align:right;">
+2.402 (2.196, 2.623)
+</td>
+<td style="text-align:right;">
+1.732 (1.552, 1.931)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.050 (0.925, 1.181)
+</td>
+<td style="text-align:right;">
+0.982 (0.872, 1.093)
+</td>
+<td style="text-align:right;">
+0.984 (0.873, 1.100)
+</td>
+<td style="text-align:right;">
+0.955 (0.858, 1.066)
+</td>
+<td style="text-align:right;">
+0.969 (0.863, 1.072)
+</td>
+<td style="text-align:right;">
+0.983 (0.898, 1.072)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.910 (1.704, 2.176)
+</td>
+<td style="text-align:right;">
+1.911 (1.685, 2.178)
+</td>
+<td style="text-align:right;">
+1.705 (1.545, 1.868)
+</td>
+<td style="text-align:right;">
+1.706 (1.538, 1.882)
+</td>
+<td style="text-align:right;">
+1.698 (1.538, 1.849)
+</td>
+<td style="text-align:right;">
+1.954 (1.814, 2.119)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.300
+</td>
+<td style="text-align:right;">
+-0.342 (-0.505, -0.151)
+</td>
+<td style="text-align:right;">
+-0.349 (-0.503, -0.157)
+</td>
+<td style="text-align:right;">
+-0.494 (-0.596, -0.360)
+</td>
+<td style="text-align:right;">
+-0.466 (-0.587, -0.326)
+</td>
+<td style="text-align:right;">
+-0.483 (-0.588, -0.348)
+</td>
+<td style="text-align:right;">
+-0.304 (-0.421, -0.193)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.823 (0.415, 2.000)
+</td>
+<td style="text-align:right;">
+0.505 (0.249, 0.952)
+</td>
+<td style="text-align:right;">
+0.022 (0.000, 0.088)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.165
+</td>
+<td style="text-align:right;">
+0.101 (-0.248, 0.667)
+</td>
+<td style="text-align:right;">
+-0.040 (-0.272, 0.174)
+</td>
+<td style="text-align:right;">
+0.574 (0.477, 0.712)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.755 (0.529, 0.905)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+-0.043 (-0.157, 0.084)
+</td>
+<td style="text-align:right;">
+0.004 (-0.072, 0.071)
+</td>
+<td style="text-align:right;">
+0.080 (-0.011, 0.148)
+</td>
+<td style="text-align:right;">
+0.070 (-0.002, 0.139)
+</td>
+<td style="text-align:right;">
+0.121 (0.060, 0.182)
+</td>
+<td style="text-align:right;">
+-0.002 (-0.054, 0.051)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.735
+</td>
+<td style="text-align:right;">
+1.762 (1.562, 1.974)
+</td>
+<td style="text-align:right;">
+1.736 (1.576, 1.922)
+</td>
+<td style="text-align:right;">
+2.441 (2.347, 2.538)
+</td>
+<td style="text-align:right;">
+2.181 (2.069, 2.308)
+</td>
+<td style="text-align:right;">
+2.405 (2.298, 2.504)
+</td>
+<td style="text-align:right;">
+1.741 (1.646, 1.846)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.018 (0.954, 1.081)
+</td>
+<td style="text-align:right;">
+0.990 (0.937, 1.045)
+</td>
+<td style="text-align:right;">
+0.980 (0.930, 1.032)
+</td>
+<td style="text-align:right;">
+0.976 (0.927, 1.030)
+</td>
+<td style="text-align:right;">
+0.976 (0.930, 1.028)
+</td>
+<td style="text-align:right;">
+0.993 (0.947, 1.035)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.976 (1.825, 2.140)
+</td>
+<td style="text-align:right;">
+1.994 (1.851, 2.141)
+</td>
+<td style="text-align:right;">
+1.735 (1.658, 1.810)
+</td>
+<td style="text-align:right;">
+1.752 (1.657, 1.839)
+</td>
+<td style="text-align:right;">
+1.733 (1.651, 1.812)
+</td>
+<td style="text-align:right;">
+1.989 (1.916, 2.064)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.300
+</td>
+<td style="text-align:right;">
+-0.290 (-0.391, -0.193)
+</td>
+<td style="text-align:right;">
+-0.297 (-0.382, -0.211)
+</td>
+<td style="text-align:right;">
+-0.467 (-0.522, -0.414)
+</td>
+<td style="text-align:right;">
+-0.452 (-0.511, -0.383)
+</td>
+<td style="text-align:right;">
+-0.458 (-0.514, -0.400)
+</td>
+<td style="text-align:right;">
+-0.302 (-0.355, -0.244)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.556 (0.436, 0.733)
+</td>
+<td style="text-align:right;">
+0.513 (0.400, 0.662)
+</td>
+<td style="text-align:right;">
+0.021 (0.009, 0.037)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.165
+</td>
+<td style="text-align:right;">
+-0.066 (-0.181, 0.090)
+</td>
+<td style="text-align:right;">
+-0.119 (-0.202, -0.035)
+</td>
+<td style="text-align:right;">
+0.533 (0.494, 0.578)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.734 (0.629, 0.826)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="scenario-2" class="section level4">
 <h4>Scenario 2</h4>
-<pre><code>Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 32, 24</code></pre>
-<pre><code>Error in rownames(longtab.f) &lt;- NULL: object &#39;longtab.f&#39; not found</code></pre>
-<pre><code>Error in colnames(longtab.f) &lt;- colnm: object &#39;longtab.f&#39; not found</code></pre>
-<pre><code>Error in knitr::kable(x = x, format = format, digits = digits, row.names = row.names, : object &#39;longtab.f&#39; not found</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+Estimates of the parameters
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+<span class="math inline">\(S\)</span>
+</th>
+<th style="text-align:right;">
+Par
+</th>
+<th style="text-align:right;">
+True
+</th>
+<th style="text-align:right;">
+Proposed <span class="math inline">\((\hat{c}_1^2, \hat{c}_2^2)\)</span>
+</th>
+<th style="text-align:right;">
+Proposed (correct)
+</th>
+<th style="text-align:right;">
+Proposed (wrong)
+</th>
+<th style="text-align:right;">
+Heckman-type
+</th>
+<th style="text-align:right;">
+Reitsma<span class="math inline">\(_O\)</span>
+</th>
+<th style="text-align:right;">
+Reitsma<span class="math inline">\(_P\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+-0.089 (-0.440, 0.234)
+</td>
+<td style="text-align:right;">
+0.012 (-0.245, 0.263)
+</td>
+<td style="text-align:right;">
+-0.183 (-0.469, 0.113)
+</td>
+<td style="text-align:right;">
+-0.027 (-0.277, 0.242)
+</td>
+<td style="text-align:right;">
+0.017 (-0.211, 0.256)
+</td>
+<td style="text-align:right;">
+0.009 (-0.194, 0.214)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.735
+</td>
+<td style="text-align:right;">
+2.079 (1.506, 2.601)
+</td>
+<td style="text-align:right;">
+1.913 (1.391, 2.390)
+</td>
+<td style="text-align:right;">
+2.561 (2.129, 3.007)
+</td>
+<td style="text-align:right;">
+2.161 (1.725, 2.588)
+</td>
+<td style="text-align:right;">
+2.361 (1.945, 2.759)
+</td>
+<td style="text-align:right;">
+1.741 (1.380, 2.124)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.957 (0.754, 1.197)
+</td>
+<td style="text-align:right;">
+0.892 (0.715, 1.108)
+</td>
+<td style="text-align:right;">
+0.942 (0.764, 1.181)
+</td>
+<td style="text-align:right;">
+0.858 (0.689, 1.080)
+</td>
+<td style="text-align:right;">
+0.881 (0.707, 1.093)
+</td>
+<td style="text-align:right;">
+0.911 (0.765, 1.082)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.800 (1.456, 2.155)
+</td>
+<td style="text-align:right;">
+1.777 (1.442, 2.222)
+</td>
+<td style="text-align:right;">
+1.651 (1.365, 2.007)
+</td>
+<td style="text-align:right;">
+1.618 (1.325, 1.944)
+</td>
+<td style="text-align:right;">
+1.607 (1.347, 1.959)
+</td>
+<td style="text-align:right;">
+1.894 (1.616, 2.160)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.600
+</td>
+<td style="text-align:right;">
+-0.734 (-0.934, -0.442)
+</td>
+<td style="text-align:right;">
+-0.726 (-0.928, -0.439)
+</td>
+<td style="text-align:right;">
+-0.785 (-0.936, -0.584)
+</td>
+<td style="text-align:right;">
+-0.744 (-0.900, -0.536)
+</td>
+<td style="text-align:right;">
+-0.778 (-0.945, -0.565)
+</td>
+<td style="text-align:right;">
+-0.657 (-0.808, -0.471)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+2.000 (0.726, 2.000)
+</td>
+<td style="text-align:right;">
+0.663 (0.135, 2.000)
+</td>
+<td style="text-align:right;">
+0.096 (0.000, 1.000)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.251
+</td>
+<td style="text-align:right;">
+0.025 (-1.115, 0.755)
+</td>
+<td style="text-align:right;">
+-0.160 (-0.898, 0.293)
+</td>
+<td style="text-align:right;">
+0.764 (0.512, 1.932)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.795 (0.534, 0.935)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+-0.145 (-0.431, 0.169)
+</td>
+<td style="text-align:right;">
+-0.003 (-0.201, 0.202)
+</td>
+<td style="text-align:right;">
+-0.122 (-0.363, 0.089)
+</td>
+<td style="text-align:right;">
+-0.019 (-0.209, 0.190)
+</td>
+<td style="text-align:right;">
+0.013 (-0.162, 0.210)
+</td>
+<td style="text-align:right;">
+0.009 (-0.144, 0.157)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.735
+</td>
+<td style="text-align:right;">
+1.965 (1.477, 2.423)
+</td>
+<td style="text-align:right;">
+1.815 (1.373, 2.223)
+</td>
+<td style="text-align:right;">
+2.470 (2.155, 2.796)
+</td>
+<td style="text-align:right;">
+2.115 (1.766, 2.471)
+</td>
+<td style="text-align:right;">
+2.307 (2.017, 2.612)
+</td>
+<td style="text-align:right;">
+1.683 (1.427, 1.973)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.020 (0.843, 1.208)
+</td>
+<td style="text-align:right;">
+0.953 (0.793, 1.100)
+</td>
+<td style="text-align:right;">
+0.974 (0.826, 1.157)
+</td>
+<td style="text-align:right;">
+0.931 (0.779, 1.080)
+</td>
+<td style="text-align:right;">
+0.943 (0.787, 1.091)
+</td>
+<td style="text-align:right;">
+0.953 (0.836, 1.080)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.850 (1.558, 2.171)
+</td>
+<td style="text-align:right;">
+1.862 (1.560, 2.193)
+</td>
+<td style="text-align:right;">
+1.671 (1.452, 1.949)
+</td>
+<td style="text-align:right;">
+1.649 (1.430, 1.938)
+</td>
+<td style="text-align:right;">
+1.659 (1.441, 1.916)
+</td>
+<td style="text-align:right;">
+1.922 (1.701, 2.163)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.600
+</td>
+<td style="text-align:right;">
+-0.657 (-0.817, -0.445)
+</td>
+<td style="text-align:right;">
+-0.653 (-0.810, -0.441)
+</td>
+<td style="text-align:right;">
+-0.739 (-0.843, -0.594)
+</td>
+<td style="text-align:right;">
+-0.705 (-0.822, -0.553)
+</td>
+<td style="text-align:right;">
+-0.724 (-0.840, -0.576)
+</td>
+<td style="text-align:right;">
+-0.623 (-0.733, -0.492)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+1.993 (0.499, 2.000)
+</td>
+<td style="text-align:right;">
+0.569 (0.192, 1.508)
+</td>
+<td style="text-align:right;">
+0.042 (0.000, 0.203)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.251
+</td>
+<td style="text-align:right;">
+0.085 (-0.591, 0.686)
+</td>
+<td style="text-align:right;">
+-0.115 (-0.560, 0.195)
+</td>
+<td style="text-align:right;">
+0.623 (0.482, 0.900)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.808 (0.588, 0.922)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+-0.129 (-0.393, 0.104)
+</td>
+<td style="text-align:right;">
+0.001 (-0.133, 0.136)
+</td>
+<td style="text-align:right;">
+-0.076 (-0.244, 0.077)
+</td>
+<td style="text-align:right;">
+-0.022 (-0.166, 0.116)
+</td>
+<td style="text-align:right;">
+0.012 (-0.113, 0.133)
+</td>
+<td style="text-align:right;">
+0.002 (-0.108, 0.102)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.735
+</td>
+<td style="text-align:right;">
+1.926 (1.497, 2.334)
+</td>
+<td style="text-align:right;">
+1.800 (1.480, 2.133)
+</td>
+<td style="text-align:right;">
+2.430 (2.186, 2.661)
+</td>
+<td style="text-align:right;">
+2.132 (1.851, 2.377)
+</td>
+<td style="text-align:right;">
+2.331 (2.119, 2.553)
+</td>
+<td style="text-align:right;">
+1.742 (1.527, 1.948)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.054 (0.935, 1.187)
+</td>
+<td style="text-align:right;">
+0.980 (0.883, 1.079)
+</td>
+<td style="text-align:right;">
+1.002 (0.897, 1.111)
+</td>
+<td style="text-align:right;">
+0.974 (0.872, 1.078)
+</td>
+<td style="text-align:right;">
+0.982 (0.887, 1.080)
+</td>
+<td style="text-align:right;">
+0.981 (0.902, 1.063)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.923 (1.698, 2.164)
+</td>
+<td style="text-align:right;">
+1.932 (1.723, 2.163)
+</td>
+<td style="text-align:right;">
+1.741 (1.595, 1.907)
+</td>
+<td style="text-align:right;">
+1.738 (1.571, 1.931)
+</td>
+<td style="text-align:right;">
+1.732 (1.584, 1.892)
+</td>
+<td style="text-align:right;">
+1.968 (1.819, 2.117)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.600
+</td>
+<td style="text-align:right;">
+-0.615 (-0.734, -0.474)
+</td>
+<td style="text-align:right;">
+-0.627 (-0.742, -0.502)
+</td>
+<td style="text-align:right;">
+-0.712 (-0.791, -0.624)
+</td>
+<td style="text-align:right;">
+-0.694 (-0.772, -0.576)
+</td>
+<td style="text-align:right;">
+-0.707 (-0.779, -0.620)
+</td>
+<td style="text-align:right;">
+-0.610 (-0.696, -0.525)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.913 (0.459, 2.000)
+</td>
+<td style="text-align:right;">
+0.525 (0.225, 1.004)
+</td>
+<td style="text-align:right;">
+0.023 (0.000, 0.083)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.251
+</td>
+<td style="text-align:right;">
+0.085 (-0.297, 0.543)
+</td>
+<td style="text-align:right;">
+-0.112 (-0.396, 0.136)
+</td>
+<td style="text-align:right;">
+0.579 (0.488, 0.690)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.807 (0.601, 0.915)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+-0.047 (-0.180, 0.071)
+</td>
+<td style="text-align:right;">
+0.004 (-0.068, 0.069)
+</td>
+<td style="text-align:right;">
+-0.032 (-0.101, 0.042)
+</td>
+<td style="text-align:right;">
+-0.028 (-0.092, 0.043)
+</td>
+<td style="text-align:right;">
+0.014 (-0.046, 0.076)
+</td>
+<td style="text-align:right;">
+-0.002 (-0.053, 0.051)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.735
+</td>
+<td style="text-align:right;">
+1.793 (1.557, 2.007)
+</td>
+<td style="text-align:right;">
+1.757 (1.558, 1.929)
+</td>
+<td style="text-align:right;">
+2.391 (2.283, 2.503)
+</td>
+<td style="text-align:right;">
+2.143 (2.012, 2.256)
+</td>
+<td style="text-align:right;">
+2.336 (2.222, 2.447)
+</td>
+<td style="text-align:right;">
+1.738 (1.631, 1.827)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.023 (0.967, 1.084)
+</td>
+<td style="text-align:right;">
+0.993 (0.943, 1.047)
+</td>
+<td style="text-align:right;">
+0.996 (0.950, 1.042)
+</td>
+<td style="text-align:right;">
+0.999 (0.939, 1.055)
+</td>
+<td style="text-align:right;">
+0.998 (0.949, 1.051)
+</td>
+<td style="text-align:right;">
+0.995 (0.951, 1.039)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.966 (1.825, 2.134)
+</td>
+<td style="text-align:right;">
+1.988 (1.860, 2.115)
+</td>
+<td style="text-align:right;">
+1.795 (1.691, 1.870)
+</td>
+<td style="text-align:right;">
+1.779 (1.692, 1.879)
+</td>
+<td style="text-align:right;">
+1.771 (1.689, 1.851)
+</td>
+<td style="text-align:right;">
+1.996 (1.917, 2.070)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.600
+</td>
+<td style="text-align:right;">
+-0.594 (-0.669, -0.516)
+</td>
+<td style="text-align:right;">
+-0.607 (-0.662, -0.543)
+</td>
+<td style="text-align:right;">
+-0.697 (-0.735, -0.650)
+</td>
+<td style="text-align:right;">
+-0.680 (-0.722, -0.628)
+</td>
+<td style="text-align:right;">
+-0.686 (-0.726, -0.647)
+</td>
+<td style="text-align:right;">
+-0.602 (-0.636, -0.561)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.594 (0.433, 0.760)
+</td>
+<td style="text-align:right;">
+0.521 (0.380, 0.662)
+</td>
+<td style="text-align:right;">
+0.016 (0.006, 0.029)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.251
+</td>
+<td style="text-align:right;">
+-0.162 (-0.279, 0.005)
+</td>
+<td style="text-align:right;">
+-0.220 (-0.315, -0.129)
+</td>
+<td style="text-align:right;">
+0.538 (0.495, 0.576)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.747 (0.637, 0.842)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="scenario-3" class="section level4">
 <h4>Scenario 3</h4>
-<pre><code>Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 32, 24</code></pre>
-<pre><code>Error in rownames(longtab.f) &lt;- NULL: object &#39;longtab.f&#39; not found</code></pre>
-<pre><code>Error in colnames(longtab.f) &lt;- colnm: object &#39;longtab.f&#39; not found</code></pre>
-<pre><code>Error in knitr::kable(x = x, format = format, digits = digits, row.names = row.names, : object &#39;longtab.f&#39; not found</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+Estimates of the parameters
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+<span class="math inline">\(S\)</span>
+</th>
+<th style="text-align:right;">
+Par
+</th>
+<th style="text-align:right;">
+True
+</th>
+<th style="text-align:right;">
+Proposed <span class="math inline">\((\hat{c}_1^2, \hat{c}_2^2)\)</span>
+</th>
+<th style="text-align:right;">
+Proposed (correct)
+</th>
+<th style="text-align:right;">
+Proposed (wrong)
+</th>
+<th style="text-align:right;">
+Heckman-type
+</th>
+<th style="text-align:right;">
+Reitsma<span class="math inline">\(_O\)</span>
+</th>
+<th style="text-align:right;">
+Reitsma<span class="math inline">\(_P\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.401 (1.111, 1.691)
+</td>
+<td style="text-align:right;">
+1.409 (1.165, 1.674)
+</td>
+<td style="text-align:right;">
+1.212 (0.880, 1.549)
+</td>
+<td style="text-align:right;">
+1.465 (1.177, 1.711)
+</td>
+<td style="text-align:right;">
+1.491 (1.257, 1.741)
+</td>
+<td style="text-align:right;">
+1.383 (1.166, 1.577)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.689 (1.115, 2.154)
+</td>
+<td style="text-align:right;">
+1.605 (1.082, 2.056)
+</td>
+<td style="text-align:right;">
+2.161 (1.769, 2.587)
+</td>
+<td style="text-align:right;">
+1.802 (1.388, 2.245)
+</td>
+<td style="text-align:right;">
+1.975 (1.609, 2.369)
+</td>
+<td style="text-align:right;">
+1.385 (1.037, 1.738)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.951 (0.717, 1.183)
+</td>
+<td style="text-align:right;">
+0.914 (0.695, 1.107)
+</td>
+<td style="text-align:right;">
+1.054 (0.769, 1.274)
+</td>
+<td style="text-align:right;">
+0.890 (0.684, 1.074)
+</td>
+<td style="text-align:right;">
+0.882 (0.676, 1.085)
+</td>
+<td style="text-align:right;">
+0.915 (0.745, 1.089)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.793 (1.426, 2.132)
+</td>
+<td style="text-align:right;">
+1.760 (1.421, 2.138)
+</td>
+<td style="text-align:right;">
+1.653 (1.355, 1.957)
+</td>
+<td style="text-align:right;">
+1.581 (1.299, 1.908)
+</td>
+<td style="text-align:right;">
+1.611 (1.316, 1.886)
+</td>
+<td style="text-align:right;">
+1.851 (1.594, 2.132)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.300
+</td>
+<td style="text-align:right;">
+-0.490 (-0.780, -0.131)
+</td>
+<td style="text-align:right;">
+-0.442 (-0.742, -0.085)
+</td>
+<td style="text-align:right;">
+-0.572 (-0.817, -0.255)
+</td>
+<td style="text-align:right;">
+-0.523 (-0.756, -0.219)
+</td>
+<td style="text-align:right;">
+-0.533 (-0.784, -0.238)
+</td>
+<td style="text-align:right;">
+-0.342 (-0.565, -0.091)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+2.000 (0.478, 2.000)
+</td>
+<td style="text-align:right;">
+0.587 (0.109, 2.000)
+</td>
+<td style="text-align:right;">
+0.295 (0.037, 2.000)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.766
+</td>
+<td style="text-align:right;">
+-1.327 (-3.280, -0.064)
+</td>
+<td style="text-align:right;">
+-0.767 (-2.688, -0.015)
+</td>
+<td style="text-align:right;">
+0.171 (-0.377, 0.496)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.761 (0.403, 0.940)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.387 (1.101, 1.624)
+</td>
+<td style="text-align:right;">
+1.391 (1.186, 1.601)
+</td>
+<td style="text-align:right;">
+1.209 (0.923, 1.462)
+</td>
+<td style="text-align:right;">
+1.451 (1.245, 1.638)
+</td>
+<td style="text-align:right;">
+1.487 (1.302, 1.678)
+</td>
+<td style="text-align:right;">
+1.385 (1.218, 1.541)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.590 (1.092, 2.033)
+</td>
+<td style="text-align:right;">
+1.531 (1.074, 1.909)
+</td>
+<td style="text-align:right;">
+2.185 (1.850, 2.520)
+</td>
+<td style="text-align:right;">
+1.864 (1.499, 2.188)
+</td>
+<td style="text-align:right;">
+2.020 (1.698, 2.317)
+</td>
+<td style="text-align:right;">
+1.392 (1.119, 1.687)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.992 (0.811, 1.171)
+</td>
+<td style="text-align:right;">
+0.945 (0.778, 1.101)
+</td>
+<td style="text-align:right;">
+1.073 (0.865, 1.265)
+</td>
+<td style="text-align:right;">
+0.910 (0.757, 1.074)
+</td>
+<td style="text-align:right;">
+0.921 (0.763, 1.079)
+</td>
+<td style="text-align:right;">
+0.956 (0.819, 1.076)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.852 (1.588, 2.183)
+</td>
+<td style="text-align:right;">
+1.856 (1.575, 2.183)
+</td>
+<td style="text-align:right;">
+1.694 (1.479, 1.940)
+</td>
+<td style="text-align:right;">
+1.629 (1.409, 1.900)
+</td>
+<td style="text-align:right;">
+1.655 (1.445, 1.887)
+</td>
+<td style="text-align:right;">
+1.913 (1.712, 2.144)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.300
+</td>
+<td style="text-align:right;">
+-0.394 (-0.621, -0.148)
+</td>
+<td style="text-align:right;">
+-0.353 (-0.588, -0.081)
+</td>
+<td style="text-align:right;">
+-0.506 (-0.690, -0.292)
+</td>
+<td style="text-align:right;">
+-0.454 (-0.635, -0.231)
+</td>
+<td style="text-align:right;">
+-0.464 (-0.649, -0.261)
+</td>
+<td style="text-align:right;">
+-0.309 (-0.467, -0.152)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+2.000 (0.460, 2.000)
+</td>
+<td style="text-align:right;">
+0.571 (0.198, 2.000)
+</td>
+<td style="text-align:right;">
+0.234 (0.029, 0.922)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.766
+</td>
+<td style="text-align:right;">
+-0.922 (-2.426, -0.030)
+</td>
+<td style="text-align:right;">
+-0.779 (-1.918, -0.201)
+</td>
+<td style="text-align:right;">
+0.192 (-0.159, 0.469)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.731 (0.463, 0.917)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.385 (1.174, 1.574)
+</td>
+<td style="text-align:right;">
+1.404 (1.261, 1.539)
+</td>
+<td style="text-align:right;">
+1.256 (1.053, 1.454)
+</td>
+<td style="text-align:right;">
+1.459 (1.313, 1.606)
+</td>
+<td style="text-align:right;">
+1.498 (1.369, 1.623)
+</td>
+<td style="text-align:right;">
+1.386 (1.287, 1.498)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.477 (1.042, 1.846)
+</td>
+<td style="text-align:right;">
+1.457 (1.111, 1.782)
+</td>
+<td style="text-align:right;">
+2.154 (1.931, 2.382)
+</td>
+<td style="text-align:right;">
+1.855 (1.607, 2.079)
+</td>
+<td style="text-align:right;">
+2.006 (1.793, 2.208)
+</td>
+<td style="text-align:right;">
+1.382 (1.193, 1.586)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.011 (0.896, 1.142)
+</td>
+<td style="text-align:right;">
+0.971 (0.867, 1.084)
+</td>
+<td style="text-align:right;">
+1.074 (0.944, 1.217)
+</td>
+<td style="text-align:right;">
+0.954 (0.857, 1.062)
+</td>
+<td style="text-align:right;">
+0.959 (0.856, 1.070)
+</td>
+<td style="text-align:right;">
+0.982 (0.885, 1.067)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.937 (1.714, 2.215)
+</td>
+<td style="text-align:right;">
+1.907 (1.688, 2.152)
+</td>
+<td style="text-align:right;">
+1.738 (1.565, 1.899)
+</td>
+<td style="text-align:right;">
+1.707 (1.531, 1.885)
+</td>
+<td style="text-align:right;">
+1.708 (1.545, 1.866)
+</td>
+<td style="text-align:right;">
+1.962 (1.809, 2.112)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.300
+</td>
+<td style="text-align:right;">
+-0.368 (-0.530, -0.183)
+</td>
+<td style="text-align:right;">
+-0.326 (-0.487, -0.159)
+</td>
+<td style="text-align:right;">
+-0.486 (-0.605, -0.350)
+</td>
+<td style="text-align:right;">
+-0.451 (-0.581, -0.333)
+</td>
+<td style="text-align:right;">
+-0.456 (-0.568, -0.327)
+</td>
+<td style="text-align:right;">
+-0.304 (-0.415, -0.187)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.801 (0.438, 2.000)
+</td>
+<td style="text-align:right;">
+0.561 (0.298, 0.931)
+</td>
+<td style="text-align:right;">
+0.167 (0.021, 0.452)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.766
+</td>
+<td style="text-align:right;">
+-0.801 (-1.620, -0.270)
+</td>
+<td style="text-align:right;">
+-0.779 (-1.297, -0.415)
+</td>
+<td style="text-align:right;">
+0.197 (-0.053, 0.430)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.719 (0.507, 0.885)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.379 (1.280, 1.483)
+</td>
+<td style="text-align:right;">
+1.389 (1.313, 1.467)
+</td>
+<td style="text-align:right;">
+1.385 (1.243, 1.485)
+</td>
+<td style="text-align:right;">
+1.455 (1.392, 1.531)
+</td>
+<td style="text-align:right;">
+1.496 (1.431, 1.565)
+</td>
+<td style="text-align:right;">
+1.390 (1.329, 1.439)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.385 (1.174, 1.616)
+</td>
+<td style="text-align:right;">
+1.395 (1.225, 1.554)
+</td>
+<td style="text-align:right;">
+2.084 (1.969, 2.212)
+</td>
+<td style="text-align:right;">
+1.843 (1.730, 1.961)
+</td>
+<td style="text-align:right;">
+2.001 (1.893, 2.103)
+</td>
+<td style="text-align:right;">
+1.381 (1.278, 1.480)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.008 (0.951, 1.068)
+</td>
+<td style="text-align:right;">
+1.000 (0.946, 1.048)
+</td>
+<td style="text-align:right;">
+1.032 (0.974, 1.095)
+</td>
+<td style="text-align:right;">
+0.987 (0.931, 1.038)
+</td>
+<td style="text-align:right;">
+0.986 (0.935, 1.036)
+</td>
+<td style="text-align:right;">
+0.997 (0.955, 1.039)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.994 (1.851, 2.155)
+</td>
+<td style="text-align:right;">
+1.982 (1.868, 2.121)
+</td>
+<td style="text-align:right;">
+1.768 (1.692, 1.842)
+</td>
+<td style="text-align:right;">
+1.755 (1.672, 1.836)
+</td>
+<td style="text-align:right;">
+1.750 (1.681, 1.830)
+</td>
+<td style="text-align:right;">
+1.988 (1.917, 2.067)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.300
+</td>
+<td style="text-align:right;">
+-0.317 (-0.409, -0.236)
+</td>
+<td style="text-align:right;">
+-0.305 (-0.388, -0.227)
+</td>
+<td style="text-align:right;">
+-0.456 (-0.516, -0.397)
+</td>
+<td style="text-align:right;">
+-0.449 (-0.510, -0.381)
+</td>
+<td style="text-align:right;">
+-0.439 (-0.497, -0.385)
+</td>
+<td style="text-align:right;">
+-0.308 (-0.355, -0.252)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.558 (0.429, 0.715)
+</td>
+<td style="text-align:right;">
+0.519 (0.394, 0.660)
+</td>
+<td style="text-align:right;">
+0.050 (0.003, 0.187)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.766
+</td>
+<td style="text-align:right;">
+-0.777 (-1.018, -0.524)
+</td>
+<td style="text-align:right;">
+-0.785 (-0.957, -0.595)
+</td>
+<td style="text-align:right;">
+0.300 (0.072, 0.473)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.710 (0.607, 0.801)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="scenario-4" class="section level4">
 <h4>Scenario 4</h4>
-<pre><code>Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 32, 24</code></pre>
-<pre><code>Error in rownames(longtab.f) &lt;- NULL: object &#39;longtab.f&#39; not found</code></pre>
-<pre><code>Error in colnames(longtab.f) &lt;- colnm: object &#39;longtab.f&#39; not found</code></pre>
-<pre><code>Error in knitr::kable(x = x, format = format, digits = digits, row.names = row.names, : object &#39;longtab.f&#39; not found</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+Estimates of the parameters
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+<span class="math inline">\(S\)</span>
+</th>
+<th style="text-align:right;">
+Par
+</th>
+<th style="text-align:right;">
+True
+</th>
+<th style="text-align:right;">
+Proposed <span class="math inline">\((\hat{c}_1^2, \hat{c}_2^2)\)</span>
+</th>
+<th style="text-align:right;">
+Proposed (correct)
+</th>
+<th style="text-align:right;">
+Proposed (wrong)
+</th>
+<th style="text-align:right;">
+Heckman-type
+</th>
+<th style="text-align:right;">
+Reitsma<span class="math inline">\(_O\)</span>
+</th>
+<th style="text-align:right;">
+Reitsma<span class="math inline">\(_P\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.337 (1.027, 1.632)
+</td>
+<td style="text-align:right;">
+1.356 (1.112, 1.642)
+</td>
+<td style="text-align:right;">
+1.099 (0.741, 1.404)
+</td>
+<td style="text-align:right;">
+1.335 (1.063, 1.622)
+</td>
+<td style="text-align:right;">
+1.375 (1.121, 1.649)
+</td>
+<td style="text-align:right;">
+1.379 (1.171, 1.596)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.678 (1.093, 2.184)
+</td>
+<td style="text-align:right;">
+1.553 (1.013, 2.040)
+</td>
+<td style="text-align:right;">
+2.236 (1.782, 2.662)
+</td>
+<td style="text-align:right;">
+1.817 (1.337, 2.286)
+</td>
+<td style="text-align:right;">
+1.961 (1.527, 2.353)
+</td>
+<td style="text-align:right;">
+1.392 (0.999, 1.774)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.972 (0.758, 1.180)
+</td>
+<td style="text-align:right;">
+0.925 (0.731, 1.108)
+</td>
+<td style="text-align:right;">
+1.063 (0.823, 1.314)
+</td>
+<td style="text-align:right;">
+0.893 (0.714, 1.076)
+</td>
+<td style="text-align:right;">
+0.914 (0.721, 1.092)
+</td>
+<td style="text-align:right;">
+0.940 (0.772, 1.093)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.803 (1.463, 2.170)
+</td>
+<td style="text-align:right;">
+1.795 (1.430, 2.167)
+</td>
+<td style="text-align:right;">
+1.738 (1.421, 2.068)
+</td>
+<td style="text-align:right;">
+1.609 (1.329, 1.913)
+</td>
+<td style="text-align:right;">
+1.641 (1.347, 1.939)
+</td>
+<td style="text-align:right;">
+1.865 (1.607, 2.173)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.600
+</td>
+<td style="text-align:right;">
+-0.760 (-0.931, -0.501)
+</td>
+<td style="text-align:right;">
+-0.742 (-0.926, -0.457)
+</td>
+<td style="text-align:right;">
+-0.805 (-0.938, -0.593)
+</td>
+<td style="text-align:right;">
+-0.737 (-0.900, -0.517)
+</td>
+<td style="text-align:right;">
+-0.780 (-0.946, -0.558)
+</td>
+<td style="text-align:right;">
+-0.662 (-0.817, -0.470)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+2.000 (0.591, 2.000)
+</td>
+<td style="text-align:right;">
+0.697 (0.144, 2.000)
+</td>
+<td style="text-align:right;">
+0.303 (0.030, 2.000)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.848
+</td>
+<td style="text-align:right;">
+-1.787 (-3.451, -0.247)
+</td>
+<td style="text-align:right;">
+-1.026 (-2.920, -0.103)
+</td>
+<td style="text-align:right;">
+0.275 (-0.154, 0.565)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.754 (0.499, 0.925)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.359 (1.090, 1.614)
+</td>
+<td style="text-align:right;">
+1.394 (1.196, 1.584)
+</td>
+<td style="text-align:right;">
+1.108 (0.831, 1.377)
+</td>
+<td style="text-align:right;">
+1.366 (1.148, 1.559)
+</td>
+<td style="text-align:right;">
+1.400 (1.215, 1.580)
+</td>
+<td style="text-align:right;">
+1.379 (1.208, 1.539)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.520 (0.998, 2.005)
+</td>
+<td style="text-align:right;">
+1.482 (1.042, 1.877)
+</td>
+<td style="text-align:right;">
+2.188 (1.850, 2.546)
+</td>
+<td style="text-align:right;">
+1.777 (1.470, 2.116)
+</td>
+<td style="text-align:right;">
+1.925 (1.627, 2.225)
+</td>
+<td style="text-align:right;">
+1.395 (1.126, 1.669)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.008 (0.833, 1.190)
+</td>
+<td style="text-align:right;">
+0.953 (0.798, 1.110)
+</td>
+<td style="text-align:right;">
+1.097 (0.908, 1.285)
+</td>
+<td style="text-align:right;">
+0.943 (0.788, 1.087)
+</td>
+<td style="text-align:right;">
+0.942 (0.788, 1.100)
+</td>
+<td style="text-align:right;">
+0.961 (0.839, 1.089)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.915 (1.602, 2.244)
+</td>
+<td style="text-align:right;">
+1.861 (1.573, 2.212)
+</td>
+<td style="text-align:right;">
+1.802 (1.542, 2.053)
+</td>
+<td style="text-align:right;">
+1.695 (1.457, 1.930)
+</td>
+<td style="text-align:right;">
+1.713 (1.485, 1.934)
+</td>
+<td style="text-align:right;">
+1.917 (1.713, 2.122)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.600
+</td>
+<td style="text-align:right;">
+-0.683 (-0.818, -0.494)
+</td>
+<td style="text-align:right;">
+-0.654 (-0.799, -0.465)
+</td>
+<td style="text-align:right;">
+-0.747 (-0.851, -0.598)
+</td>
+<td style="text-align:right;">
+-0.699 (-0.809, -0.534)
+</td>
+<td style="text-align:right;">
+-0.706 (-0.823, -0.561)
+</td>
+<td style="text-align:right;">
+-0.626 (-0.733, -0.488)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+2.000 (0.509, 2.000)
+</td>
+<td style="text-align:right;">
+0.582 (0.229, 1.671)
+</td>
+<td style="text-align:right;">
+0.228 (0.040, 0.885)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.848
+</td>
+<td style="text-align:right;">
+-1.231 (-2.966, -0.125)
+</td>
+<td style="text-align:right;">
+-0.931 (-2.168, -0.273)
+</td>
+<td style="text-align:right;">
+0.257 (-0.091, 0.492)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.742 (0.499, 0.912)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.358 (1.118, 1.561)
+</td>
+<td style="text-align:right;">
+1.388 (1.256, 1.522)
+</td>
+<td style="text-align:right;">
+1.166 (0.940, 1.361)
+</td>
+<td style="text-align:right;">
+1.373 (1.239, 1.502)
+</td>
+<td style="text-align:right;">
+1.395 (1.273, 1.521)
+</td>
+<td style="text-align:right;">
+1.391 (1.283, 1.490)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.500 (1.048, 1.920)
+</td>
+<td style="text-align:right;">
+1.474 (1.125, 1.770)
+</td>
+<td style="text-align:right;">
+2.180 (1.904, 2.450)
+</td>
+<td style="text-align:right;">
+1.800 (1.577, 2.050)
+</td>
+<td style="text-align:right;">
+1.938 (1.737, 2.161)
+</td>
+<td style="text-align:right;">
+1.396 (1.198, 1.586)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.017 (0.913, 1.147)
+</td>
+<td style="text-align:right;">
+0.968 (0.871, 1.070)
+</td>
+<td style="text-align:right;">
+1.078 (0.954, 1.223)
+</td>
+<td style="text-align:right;">
+0.961 (0.867, 1.069)
+</td>
+<td style="text-align:right;">
+0.967 (0.871, 1.068)
+</td>
+<td style="text-align:right;">
+0.974 (0.894, 1.066)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.960 (1.729, 2.216)
+</td>
+<td style="text-align:right;">
+1.936 (1.733, 2.169)
+</td>
+<td style="text-align:right;">
+1.818 (1.655, 2.010)
+</td>
+<td style="text-align:right;">
+1.739 (1.588, 1.916)
+</td>
+<td style="text-align:right;">
+1.765 (1.606, 1.903)
+</td>
+<td style="text-align:right;">
+1.970 (1.830, 2.103)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.600
+</td>
+<td style="text-align:right;">
+-0.643 (-0.750, -0.504)
+</td>
+<td style="text-align:right;">
+-0.622 (-0.727, -0.496)
+</td>
+<td style="text-align:right;">
+-0.712 (-0.786, -0.610)
+</td>
+<td style="text-align:right;">
+-0.678 (-0.758, -0.575)
+</td>
+<td style="text-align:right;">
+-0.679 (-0.759, -0.575)
+</td>
+<td style="text-align:right;">
+-0.609 (-0.686, -0.520)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.834 (0.435, 2.000)
+</td>
+<td style="text-align:right;">
+0.535 (0.281, 0.955)
+</td>
+<td style="text-align:right;">
+0.159 (0.018, 0.435)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.848
+</td>
+<td style="text-align:right;">
+-0.945 (-1.928, -0.233)
+</td>
+<td style="text-align:right;">
+-0.874 (-1.506, -0.434)
+</td>
+<td style="text-align:right;">
+0.268 (0.039, 0.463)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.748 (0.556, 0.894)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.379 (1.270, 1.483)
+</td>
+<td style="text-align:right;">
+1.385 (1.325, 1.455)
+</td>
+<td style="text-align:right;">
+1.298 (1.164, 1.386)
+</td>
+<td style="text-align:right;">
+1.359 (1.294, 1.432)
+</td>
+<td style="text-align:right;">
+1.393 (1.335, 1.461)
+</td>
+<td style="text-align:right;">
+1.386 (1.334, 1.442)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+1.386
+</td>
+<td style="text-align:right;">
+1.396 (1.162, 1.641)
+</td>
+<td style="text-align:right;">
+1.395 (1.226, 1.564)
+</td>
+<td style="text-align:right;">
+2.046 (1.917, 2.197)
+</td>
+<td style="text-align:right;">
+1.797 (1.675, 1.906)
+</td>
+<td style="text-align:right;">
+1.932 (1.823, 2.037)
+</td>
+<td style="text-align:right;">
+1.380 (1.284, 1.485)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.015 (0.960, 1.070)
+</td>
+<td style="text-align:right;">
+0.994 (0.945, 1.044)
+</td>
+<td style="text-align:right;">
+1.040 (0.982, 1.100)
+</td>
+<td style="text-align:right;">
+0.999 (0.948, 1.055)
+</td>
+<td style="text-align:right;">
+0.999 (0.949, 1.048)
+</td>
+<td style="text-align:right;">
+0.995 (0.954, 1.037)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.996 (1.858, 2.163)
+</td>
+<td style="text-align:right;">
+1.996 (1.874, 2.116)
+</td>
+<td style="text-align:right;">
+1.827 (1.744, 1.916)
+</td>
+<td style="text-align:right;">
+1.801 (1.718, 1.892)
+</td>
+<td style="text-align:right;">
+1.804 (1.722, 1.888)
+</td>
+<td style="text-align:right;">
+1.989 (1.915, 2.063)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.600
+</td>
+<td style="text-align:right;">
+-0.616 (-0.675, -0.554)
+</td>
+<td style="text-align:right;">
+-0.610 (-0.663, -0.550)
+</td>
+<td style="text-align:right;">
+-0.684 (-0.724, -0.639)
+</td>
+<td style="text-align:right;">
+-0.675 (-0.713, -0.630)
+</td>
+<td style="text-align:right;">
+-0.672 (-0.709, -0.628)
+</td>
+<td style="text-align:right;">
+-0.603 (-0.639, -0.564)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.558 (0.429, 0.718)
+</td>
+<td style="text-align:right;">
+0.512 (0.386, 0.652)
+</td>
+<td style="text-align:right;">
+0.040 (0.003, 0.146)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.848
+</td>
+<td style="text-align:right;">
+-0.878 (-1.120, -0.594)
+</td>
+<td style="text-align:right;">
+-0.867 (-1.073, -0.646)
+</td>
+<td style="text-align:right;">
+0.346 (0.156, 0.482)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.714 (0.628, 0.806)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="scenario-5" class="section level4">
 <h4>Scenario 5</h4>
-<pre><code>Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 32, 24</code></pre>
-<pre><code>Error in rownames(longtab.f) &lt;- NULL: object &#39;longtab.f&#39; not found</code></pre>
-<pre><code>Error in colnames(longtab.f) &lt;- colnm: object &#39;longtab.f&#39; not found</code></pre>
-<pre><code>Error in knitr::kable(x = x, format = format, digits = digits, row.names = row.names, : object &#39;longtab.f&#39; not found</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+Estimates of the parameters
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+<span class="math inline">\(S\)</span>
+</th>
+<th style="text-align:right;">
+Par
+</th>
+<th style="text-align:right;">
+True
+</th>
+<th style="text-align:right;">
+Proposed <span class="math inline">\((\hat{c}_1^2, \hat{c}_2^2)\)</span>
+</th>
+<th style="text-align:right;">
+Proposed (correct)
+</th>
+<th style="text-align:right;">
+Proposed (wrong)
+</th>
+<th style="text-align:right;">
+Heckman-type
+</th>
+<th style="text-align:right;">
+Reitsma<span class="math inline">\(_O\)</span>
+</th>
+<th style="text-align:right;">
+Reitsma<span class="math inline">\(_P\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+2.197
+</td>
+<td style="text-align:right;">
+2.231 (1.926, 2.503)
+</td>
+<td style="text-align:right;">
+2.221 (1.951, 2.473)
+</td>
+<td style="text-align:right;">
+2.077 (1.743, 2.371)
+</td>
+<td style="text-align:right;">
+2.263 (1.997, 2.530)
+</td>
+<td style="text-align:right;">
+2.298 (2.061, 2.555)
+</td>
+<td style="text-align:right;">
+2.203 (1.993, 2.389)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+-0.405
+</td>
+<td style="text-align:right;">
+-0.215 (-0.744, 0.367)
+</td>
+<td style="text-align:right;">
+-0.221 (-0.684, 0.274)
+</td>
+<td style="text-align:right;">
+0.431 (-0.012, 0.863)
+</td>
+<td style="text-align:right;">
+0.088 (-0.340, 0.523)
+</td>
+<td style="text-align:right;">
+0.293 (-0.116, 0.673)
+</td>
+<td style="text-align:right;">
+-0.405 (-0.766, -0.042)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.939 (0.720, 1.184)
+</td>
+<td style="text-align:right;">
+0.927 (0.702, 1.138)
+</td>
+<td style="text-align:right;">
+0.995 (0.730, 1.299)
+</td>
+<td style="text-align:right;">
+0.885 (0.664, 1.073)
+</td>
+<td style="text-align:right;">
+0.894 (0.682, 1.100)
+</td>
+<td style="text-align:right;">
+0.926 (0.758, 1.078)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.815 (1.463, 2.215)
+</td>
+<td style="text-align:right;">
+1.796 (1.452, 2.212)
+</td>
+<td style="text-align:right;">
+1.638 (1.357, 1.972)
+</td>
+<td style="text-align:right;">
+1.611 (1.297, 1.899)
+</td>
+<td style="text-align:right;">
+1.600 (1.328, 1.909)
+</td>
+<td style="text-align:right;">
+1.893 (1.615, 2.178)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.300
+</td>
+<td style="text-align:right;">
+-0.463 (-0.777, -0.088)
+</td>
+<td style="text-align:right;">
+-0.416 (-0.756, -0.022)
+</td>
+<td style="text-align:right;">
+-0.586 (-0.823, -0.262)
+</td>
+<td style="text-align:right;">
+-0.529 (-0.755, -0.206)
+</td>
+<td style="text-align:right;">
+-0.552 (-0.790, -0.235)
+</td>
+<td style="text-align:right;">
+-0.346 (-0.588, -0.091)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+2.000 (0.738, 2.000)
+</td>
+<td style="text-align:right;">
+0.716 (0.169, 2.000)
+</td>
+<td style="text-align:right;">
+0.356 (0.044, 2.000)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.198
+</td>
+<td style="text-align:right;">
+-0.214 (-2.116, 1.211)
+</td>
+<td style="text-align:right;">
+-0.043 (-0.781, 0.298)
+</td>
+<td style="text-align:right;">
+-0.449 (-1.670, 0.247)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.721 (0.461, 0.897)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+2.197
+</td>
+<td style="text-align:right;">
+2.242 (1.986, 2.465)
+</td>
+<td style="text-align:right;">
+2.227 (2.030, 2.447)
+</td>
+<td style="text-align:right;">
+2.098 (1.814, 2.351)
+</td>
+<td style="text-align:right;">
+2.281 (2.064, 2.480)
+</td>
+<td style="text-align:right;">
+2.330 (2.133, 2.513)
+</td>
+<td style="text-align:right;">
+2.204 (2.047, 2.362)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+-0.405
+</td>
+<td style="text-align:right;">
+-0.275 (-0.768, 0.231)
+</td>
+<td style="text-align:right;">
+-0.232 (-0.702, 0.196)
+</td>
+<td style="text-align:right;">
+0.420 (0.077, 0.727)
+</td>
+<td style="text-align:right;">
+0.041 (-0.272, 0.399)
+</td>
+<td style="text-align:right;">
+0.253 (-0.038, 0.543)
+</td>
+<td style="text-align:right;">
+-0.415 (-0.668, -0.129)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.959 (0.808, 1.136)
+</td>
+<td style="text-align:right;">
+0.935 (0.786, 1.094)
+</td>
+<td style="text-align:right;">
+1.024 (0.830, 1.236)
+</td>
+<td style="text-align:right;">
+0.914 (0.769, 1.066)
+</td>
+<td style="text-align:right;">
+0.923 (0.777, 1.070)
+</td>
+<td style="text-align:right;">
+0.948 (0.837, 1.072)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.859 (1.600, 2.224)
+</td>
+<td style="text-align:right;">
+1.838 (1.574, 2.181)
+</td>
+<td style="text-align:right;">
+1.677 (1.458, 1.906)
+</td>
+<td style="text-align:right;">
+1.635 (1.431, 1.889)
+</td>
+<td style="text-align:right;">
+1.639 (1.425, 1.852)
+</td>
+<td style="text-align:right;">
+1.937 (1.721, 2.137)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.300
+</td>
+<td style="text-align:right;">
+-0.400 (-0.629, -0.165)
+</td>
+<td style="text-align:right;">
+-0.368 (-0.603, -0.132)
+</td>
+<td style="text-align:right;">
+-0.546 (-0.709, -0.351)
+</td>
+<td style="text-align:right;">
+-0.494 (-0.657, -0.274)
+</td>
+<td style="text-align:right;">
+-0.512 (-0.673, -0.330)
+</td>
+<td style="text-align:right;">
+-0.324 (-0.485, -0.142)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+1.922 (0.425, 2.000)
+</td>
+<td style="text-align:right;">
+0.501 (0.146, 1.514)
+</td>
+<td style="text-align:right;">
+0.268 (0.044, 0.856)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.198
+</td>
+<td style="text-align:right;">
+-0.023 (-1.334, 0.850)
+</td>
+<td style="text-align:right;">
+-0.029 (-0.404, 0.298)
+</td>
+<td style="text-align:right;">
+-0.379 (-1.204, 0.236)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.713 (0.501, 0.884)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+2.197
+</td>
+<td style="text-align:right;">
+2.213 (2.011, 2.411)
+</td>
+<td style="text-align:right;">
+2.214 (2.066, 2.368)
+</td>
+<td style="text-align:right;">
+2.141 (1.947, 2.312)
+</td>
+<td style="text-align:right;">
+2.261 (2.124, 2.417)
+</td>
+<td style="text-align:right;">
+2.315 (2.192, 2.455)
+</td>
+<td style="text-align:right;">
+2.203 (2.089, 2.305)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+-0.405
+</td>
+<td style="text-align:right;">
+-0.380 (-0.793, 0.010)
+</td>
+<td style="text-align:right;">
+-0.310 (-0.682, -0.005)
+</td>
+<td style="text-align:right;">
+0.379 (0.176, 0.603)
+</td>
+<td style="text-align:right;">
+0.039 (-0.178, 0.282)
+</td>
+<td style="text-align:right;">
+0.262 (0.049, 0.462)
+</td>
+<td style="text-align:right;">
+-0.404 (-0.609, -0.212)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.993 (0.876, 1.114)
+</td>
+<td style="text-align:right;">
+0.970 (0.861, 1.072)
+</td>
+<td style="text-align:right;">
+1.023 (0.902, 1.170)
+</td>
+<td style="text-align:right;">
+0.950 (0.855, 1.062)
+</td>
+<td style="text-align:right;">
+0.953 (0.848, 1.052)
+</td>
+<td style="text-align:right;">
+0.973 (0.882, 1.061)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.971 (1.724, 2.265)
+</td>
+<td style="text-align:right;">
+1.906 (1.677, 2.197)
+</td>
+<td style="text-align:right;">
+1.721 (1.562, 1.886)
+</td>
+<td style="text-align:right;">
+1.690 (1.530, 1.879)
+</td>
+<td style="text-align:right;">
+1.687 (1.540, 1.846)
+</td>
+<td style="text-align:right;">
+1.963 (1.812, 2.117)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.300
+</td>
+<td style="text-align:right;">
+-0.358 (-0.539, -0.178)
+</td>
+<td style="text-align:right;">
+-0.344 (-0.510, -0.158)
+</td>
+<td style="text-align:right;">
+-0.504 (-0.626, -0.363)
+</td>
+<td style="text-align:right;">
+-0.467 (-0.595, -0.312)
+</td>
+<td style="text-align:right;">
+-0.482 (-0.599, -0.343)
+</td>
+<td style="text-align:right;">
+-0.318 (-0.414, -0.187)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.762 (0.401, 2.000)
+</td>
+<td style="text-align:right;">
+0.537 (0.238, 1.002)
+</td>
+<td style="text-align:right;">
+0.181 (0.029, 0.485)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.198
+</td>
+<td style="text-align:right;">
+0.031 (-0.708, 0.602)
+</td>
+<td style="text-align:right;">
+-0.052 (-0.312, 0.183)
+</td>
+<td style="text-align:right;">
+-0.192 (-0.749, 0.282)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.687 (0.528, 0.819)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+2.197
+</td>
+<td style="text-align:right;">
+2.203 (2.106, 2.291)
+</td>
+<td style="text-align:right;">
+2.201 (2.122, 2.284)
+</td>
+<td style="text-align:right;">
+2.175 (2.053, 2.284)
+</td>
+<td style="text-align:right;">
+2.271 (2.197, 2.339)
+</td>
+<td style="text-align:right;">
+2.320 (2.257, 2.384)
+</td>
+<td style="text-align:right;">
+2.195 (2.140, 2.252)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+-0.405
+</td>
+<td style="text-align:right;">
+-0.444 (-0.637, -0.226)
+</td>
+<td style="text-align:right;">
+-0.401 (-0.590, -0.215)
+</td>
+<td style="text-align:right;">
+0.346 (0.227, 0.475)
+</td>
+<td style="text-align:right;">
+0.036 (-0.084, 0.160)
+</td>
+<td style="text-align:right;">
+0.248 (0.140, 0.355)
+</td>
+<td style="text-align:right;">
+-0.407 (-0.504, -0.309)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.001 (0.937, 1.062)
+</td>
+<td style="text-align:right;">
+0.995 (0.932, 1.051)
+</td>
+<td style="text-align:right;">
+1.031 (0.958, 1.106)
+</td>
+<td style="text-align:right;">
+0.979 (0.922, 1.040)
+</td>
+<td style="text-align:right;">
+0.985 (0.925, 1.034)
+</td>
+<td style="text-align:right;">
+0.995 (0.949, 1.041)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+2.007 (1.861, 2.158)
+</td>
+<td style="text-align:right;">
+1.984 (1.861, 2.126)
+</td>
+<td style="text-align:right;">
+1.746 (1.670, 1.827)
+</td>
+<td style="text-align:right;">
+1.747 (1.660, 1.839)
+</td>
+<td style="text-align:right;">
+1.731 (1.657, 1.808)
+</td>
+<td style="text-align:right;">
+1.991 (1.923, 2.065)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.300
+</td>
+<td style="text-align:right;">
+-0.314 (-0.406, -0.213)
+</td>
+<td style="text-align:right;">
+-0.301 (-0.401, -0.214)
+</td>
+<td style="text-align:right;">
+-0.475 (-0.536, -0.417)
+</td>
+<td style="text-align:right;">
+-0.451 (-0.520, -0.381)
+</td>
+<td style="text-align:right;">
+-0.460 (-0.522, -0.401)
+</td>
+<td style="text-align:right;">
+-0.303 (-0.354, -0.244)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.551 (0.419, 0.715)
+</td>
+<td style="text-align:right;">
+0.512 (0.383, 0.667)
+</td>
+<td style="text-align:right;">
+0.139 (0.026, 0.281)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.198
+</td>
+<td style="text-align:right;">
+-0.122 (-0.372, 0.166)
+</td>
+<td style="text-align:right;">
+-0.155 (-0.241, -0.062)
+</td>
+<td style="text-align:right;">
+-0.079 (-0.436, 0.327)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.700 (0.627, 0.758)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="scenario-6" class="section level4">
 <h4>Scenario 6</h4>
-<pre><code>Error in data.frame(..., check.names = FALSE): arguments imply differing number of rows: 32, 24</code></pre>
-<pre><code>Error in rownames(longtab.f) &lt;- NULL: object &#39;longtab.f&#39; not found</code></pre>
-<pre><code>Error in colnames(longtab.f) &lt;- colnm: object &#39;longtab.f&#39; not found</code></pre>
-<pre><code>Error in knitr::kable(x = x, format = format, digits = digits, row.names = row.names, : object &#39;longtab.f&#39; not found</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+Estimates of the parameters
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+<span class="math inline">\(S\)</span>
+</th>
+<th style="text-align:right;">
+Par
+</th>
+<th style="text-align:right;">
+True
+</th>
+<th style="text-align:right;">
+Proposed <span class="math inline">\((\hat{c}_1^2, \hat{c}_2^2)\)</span>
+</th>
+<th style="text-align:right;">
+Proposed (correct)
+</th>
+<th style="text-align:right;">
+Proposed (wrong)
+</th>
+<th style="text-align:right;">
+Heckman-type
+</th>
+<th style="text-align:right;">
+Reitsma<span class="math inline">\(_O\)</span>
+</th>
+<th style="text-align:right;">
+Reitsma<span class="math inline">\(_P\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+2.197
+</td>
+<td style="text-align:right;">
+2.151 (1.862, 2.440)
+</td>
+<td style="text-align:right;">
+2.194 (1.923, 2.447)
+</td>
+<td style="text-align:right;">
+1.969 (1.633, 2.274)
+</td>
+<td style="text-align:right;">
+2.162 (1.907, 2.418)
+</td>
+<td style="text-align:right;">
+2.198 (1.965, 2.455)
+</td>
+<td style="text-align:right;">
+2.202 (1.991, 2.386)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+-0.405
+</td>
+<td style="text-align:right;">
+-0.103 (-0.678, 0.362)
+</td>
+<td style="text-align:right;">
+-0.234 (-0.728, 0.260)
+</td>
+<td style="text-align:right;">
+0.445 (-0.006, 0.840)
+</td>
+<td style="text-align:right;">
+0.005 (-0.418, 0.478)
+</td>
+<td style="text-align:right;">
+0.180 (-0.215, 0.588)
+</td>
+<td style="text-align:right;">
+-0.425 (-0.757, -0.063)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.940 (0.716, 1.171)
+</td>
+<td style="text-align:right;">
+0.912 (0.697, 1.098)
+</td>
+<td style="text-align:right;">
+1.004 (0.737, 1.287)
+</td>
+<td style="text-align:right;">
+0.870 (0.679, 1.069)
+</td>
+<td style="text-align:right;">
+0.893 (0.689, 1.080)
+</td>
+<td style="text-align:right;">
+0.919 (0.750, 1.088)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.753 (1.421, 2.130)
+</td>
+<td style="text-align:right;">
+1.738 (1.388, 2.141)
+</td>
+<td style="text-align:right;">
+1.654 (1.340, 1.980)
+</td>
+<td style="text-align:right;">
+1.551 (1.297, 1.879)
+</td>
+<td style="text-align:right;">
+1.576 (1.295, 1.901)
+</td>
+<td style="text-align:right;">
+1.853 (1.601, 2.117)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.600
+</td>
+<td style="text-align:right;">
+-0.760 (-0.952, -0.493)
+</td>
+<td style="text-align:right;">
+-0.734 (-0.947, -0.445)
+</td>
+<td style="text-align:right;">
+-0.812 (-0.963, -0.594)
+</td>
+<td style="text-align:right;">
+-0.750 (-0.919, -0.506)
+</td>
+<td style="text-align:right;">
+-0.791 (-0.964, -0.567)
+</td>
+<td style="text-align:right;">
+-0.664 (-0.810, -0.478)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+2.000 (0.576, 2.000)
+</td>
+<td style="text-align:right;">
+0.626 (0.099, 2.000)
+</td>
+<td style="text-align:right;">
+0.330 (0.049, 2.000)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.284
+</td>
+<td style="text-align:right;">
+-0.600 (-2.565, 0.546)
+</td>
+<td style="text-align:right;">
+-0.169 (-1.032, 0.253)
+</td>
+<td style="text-align:right;">
+-0.351 (-1.510, 0.201)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.766 (0.569, 0.922)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+2.197
+</td>
+<td style="text-align:right;">
+2.161 (1.876, 2.421)
+</td>
+<td style="text-align:right;">
+2.180 (1.971, 2.394)
+</td>
+<td style="text-align:right;">
+1.975 (1.696, 2.219)
+</td>
+<td style="text-align:right;">
+2.152 (1.959, 2.373)
+</td>
+<td style="text-align:right;">
+2.200 (2.011, 2.401)
+</td>
+<td style="text-align:right;">
+2.190 (2.031, 2.354)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+-0.405
+</td>
+<td style="text-align:right;">
+-0.215 (-0.737, 0.263)
+</td>
+<td style="text-align:right;">
+-0.253 (-0.709, 0.143)
+</td>
+<td style="text-align:right;">
+0.451 (0.113, 0.808)
+</td>
+<td style="text-align:right;">
+0.034 (-0.300, 0.368)
+</td>
+<td style="text-align:right;">
+0.221 (-0.062, 0.524)
+</td>
+<td style="text-align:right;">
+-0.401 (-0.677, -0.104)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.989 (0.826, 1.148)
+</td>
+<td style="text-align:right;">
+0.947 (0.796, 1.080)
+</td>
+<td style="text-align:right;">
+1.037 (0.844, 1.254)
+</td>
+<td style="text-align:right;">
+0.924 (0.774, 1.068)
+</td>
+<td style="text-align:right;">
+0.932 (0.790, 1.072)
+</td>
+<td style="text-align:right;">
+0.954 (0.834, 1.065)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.884 (1.591, 2.217)
+</td>
+<td style="text-align:right;">
+1.851 (1.577, 2.191)
+</td>
+<td style="text-align:right;">
+1.731 (1.500, 1.979)
+</td>
+<td style="text-align:right;">
+1.651 (1.432, 1.921)
+</td>
+<td style="text-align:right;">
+1.660 (1.459, 1.889)
+</td>
+<td style="text-align:right;">
+1.944 (1.737, 2.158)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.600
+</td>
+<td style="text-align:right;">
+-0.670 (-0.815, -0.466)
+</td>
+<td style="text-align:right;">
+-0.631 (-0.795, -0.446)
+</td>
+<td style="text-align:right;">
+-0.744 (-0.845, -0.603)
+</td>
+<td style="text-align:right;">
+-0.694 (-0.802, -0.538)
+</td>
+<td style="text-align:right;">
+-0.713 (-0.827, -0.568)
+</td>
+<td style="text-align:right;">
+-0.619 (-0.733, -0.489)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+2.000 (0.525, 2.000)
+</td>
+<td style="text-align:right;">
+0.616 (0.199, 1.932)
+</td>
+<td style="text-align:right;">
+0.287 (0.042, 0.978)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.284
+</td>
+<td style="text-align:right;">
+-0.430 (-1.870, 0.634)
+</td>
+<td style="text-align:right;">
+-0.182 (-0.681, 0.170)
+</td>
+<td style="text-align:right;">
+-0.309 (-1.176, 0.215)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.728 (0.546, 0.893)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+2.197
+</td>
+<td style="text-align:right;">
+2.186 (1.977, 2.362)
+</td>
+<td style="text-align:right;">
+2.188 (2.041, 2.334)
+</td>
+<td style="text-align:right;">
+1.999 (1.785, 2.190)
+</td>
+<td style="text-align:right;">
+2.163 (2.013, 2.300)
+</td>
+<td style="text-align:right;">
+2.206 (2.074, 2.331)
+</td>
+<td style="text-align:right;">
+2.194 (2.074, 2.301)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+-0.405
+</td>
+<td style="text-align:right;">
+-0.367 (-0.781, 0.074)
+</td>
+<td style="text-align:right;">
+-0.310 (-0.709, 0.021)
+</td>
+<td style="text-align:right;">
+0.408 (0.144, 0.697)
+</td>
+<td style="text-align:right;">
+-0.008 (-0.258, 0.261)
+</td>
+<td style="text-align:right;">
+0.192 (-0.034, 0.420)
+</td>
+<td style="text-align:right;">
+-0.414 (-0.609, -0.186)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+0.996 (0.886, 1.108)
+</td>
+<td style="text-align:right;">
+0.968 (0.865, 1.071)
+</td>
+<td style="text-align:right;">
+1.046 (0.921, 1.207)
+</td>
+<td style="text-align:right;">
+0.961 (0.853, 1.070)
+</td>
+<td style="text-align:right;">
+0.962 (0.867, 1.069)
+</td>
+<td style="text-align:right;">
+0.975 (0.885, 1.054)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.970 (1.748, 2.226)
+</td>
+<td style="text-align:right;">
+1.937 (1.706, 2.169)
+</td>
+<td style="text-align:right;">
+1.781 (1.606, 1.980)
+</td>
+<td style="text-align:right;">
+1.741 (1.569, 1.925)
+</td>
+<td style="text-align:right;">
+1.722 (1.569, 1.892)
+</td>
+<td style="text-align:right;">
+1.957 (1.810, 2.109)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.600
+</td>
+<td style="text-align:right;">
+-0.641 (-0.753, -0.495)
+</td>
+<td style="text-align:right;">
+-0.623 (-0.733, -0.475)
+</td>
+<td style="text-align:right;">
+-0.715 (-0.805, -0.624)
+</td>
+<td style="text-align:right;">
+-0.677 (-0.768, -0.573)
+</td>
+<td style="text-align:right;">
+-0.694 (-0.773, -0.602)
+</td>
+<td style="text-align:right;">
+-0.602 (-0.687, -0.514)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.792 (0.388, 2.000)
+</td>
+<td style="text-align:right;">
+0.526 (0.210, 0.975)
+</td>
+<td style="text-align:right;">
+0.216 (0.038, 0.505)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.284
+</td>
+<td style="text-align:right;">
+-0.179 (-0.960, 0.463)
+</td>
+<td style="text-align:right;">
+-0.157 (-0.435, 0.124)
+</td>
+<td style="text-align:right;">
+-0.250 (-0.730, 0.246)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.705 (0.566, 0.855)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_1\)</span>
+</td>
+<td style="text-align:right;">
+2.197
+</td>
+<td style="text-align:right;">
+2.199 (2.104, 2.288)
+</td>
+<td style="text-align:right;">
+2.193 (2.125, 2.264)
+</td>
+<td style="text-align:right;">
+2.052 (1.945, 2.164)
+</td>
+<td style="text-align:right;">
+2.175 (2.102, 2.248)
+</td>
+<td style="text-align:right;">
+2.208 (2.142, 2.277)
+</td>
+<td style="text-align:right;">
+2.198 (2.140, 2.252)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\mu_2\)</span>
+</td>
+<td style="text-align:right;">
+-0.405
+</td>
+<td style="text-align:right;">
+-0.412 (-0.626, -0.171)
+</td>
+<td style="text-align:right;">
+-0.368 (-0.578, -0.191)
+</td>
+<td style="text-align:right;">
+0.338 (0.217, 0.479)
+</td>
+<td style="text-align:right;">
+-0.004 (-0.151, 0.118)
+</td>
+<td style="text-align:right;">
+0.191 (0.086, 0.305)
+</td>
+<td style="text-align:right;">
+-0.405 (-0.507, -0.297)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_1\)</span>
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+1.009 (0.953, 1.062)
+</td>
+<td style="text-align:right;">
+0.997 (0.945, 1.050)
+</td>
+<td style="text-align:right;">
+1.055 (0.992, 1.125)
+</td>
+<td style="text-align:right;">
+1.002 (0.944, 1.057)
+</td>
+<td style="text-align:right;">
+1.003 (0.950, 1.055)
+</td>
+<td style="text-align:right;">
+0.996 (0.955, 1.041)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\tau_2\)</span>
+</td>
+<td style="text-align:right;">
+2.000
+</td>
+<td style="text-align:right;">
+1.998 (1.854, 2.146)
+</td>
+<td style="text-align:right;">
+1.974 (1.848, 2.098)
+</td>
+<td style="text-align:right;">
+1.805 (1.705, 1.884)
+</td>
+<td style="text-align:right;">
+1.790 (1.686, 1.881)
+</td>
+<td style="text-align:right;">
+1.770 (1.682, 1.844)
+</td>
+<td style="text-align:right;">
+1.990 (1.920, 2.062)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\rho\)</span>
+</td>
+<td style="text-align:right;">
+-0.600
+</td>
+<td style="text-align:right;">
+-0.614 (-0.674, -0.549)
+</td>
+<td style="text-align:right;">
+-0.608 (-0.665, -0.544)
+</td>
+<td style="text-align:right;">
+-0.703 (-0.743, -0.660)
+</td>
+<td style="text-align:right;">
+-0.680 (-0.724, -0.629)
+</td>
+<td style="text-align:right;">
+-0.687 (-0.726, -0.644)
+</td>
+<td style="text-align:right;">
+-0.606 (-0.642, -0.566)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\beta\)</span>
+</td>
+<td style="text-align:right;">
+0.500
+</td>
+<td style="text-align:right;">
+0.537 (0.414, 0.706)
+</td>
+<td style="text-align:right;">
+0.504 (0.367, 0.651)
+</td>
+<td style="text-align:right;">
+0.146 (0.031, 0.266)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(\alpha\)</span>
+</td>
+<td style="text-align:right;">
+-0.284
+</td>
+<td style="text-align:right;">
+-0.200 (-0.478, 0.017)
+</td>
+<td style="text-align:right;">
+-0.250 (-0.349, -0.153)
+</td>
+<td style="text-align:right;">
+-0.081 (-0.364, 0.315)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span class="math inline">\(c_1\)</span>
+</td>
+<td style="text-align:right;">
+0.707
+</td>
+<td style="text-align:right;">
+0.695 (0.639, 0.756)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
