@@ -527,7 +527,7 @@ data.cc2 <- correction(data[data$unit.grp==3, ], type = "single")
 
 if(save.results)  {setEPS(width = 10, height = 4); postscript("CD64-FUNNEL.eps")}
 
-par(oma = c(7, 2, 0.2, 0.2), mfrow = c(1, 3), mar = c(4, 2, 0.2, 0.2))
+par(oma = c(6, 2, 0.2, 0.2), mfrow = c(1, 3), mar = c(4, 2, 0.2, 0.2))
 
 ##
 ## ALL
@@ -539,10 +539,10 @@ tf.lndor <- trimfill(ml.lnDOR, fixed = FALSE)
 funnel(tf.lndor, xlab = "lnDOR", 
        # pch = c(rep(21, nr), rep(1, sum(tf.lndor[["trimfill"]]))),
        bg = colors,
-       cex = 1.5, studlab = TRUE, backtransf = FALSE,
-       ref = exp(ml.lnDOR$TE.random),
-       level = 0.95,
-       contour = c(0.9, 0.95, 0.99),
+       cex = 1.5, studlab = FALSE, backtransf = FALSE,
+       ref = exp(ml.lnDOR$TE.random)
+       # level = 0.95,
+       # contour = c(0.9, 0.95, 0.99)
 )
 
 
@@ -554,10 +554,10 @@ tf.se[["seTE"]] <- tf.se[["seTE"]]/sqrt(2)
 funnel(tf.se, xlab = "logit-sensitivity",
        #pch = c(rep(21, nr), rep(1, sum(tf.se[["trimfill"]]))),
        bg = colors,
-       cex = 1.5, studlab = TRUE, backtransf = FALSE,
-       ref = exp(ml.se$TE.random),
-       level = 0.95,
-       contour = c(0.9, 0.95, 0.99)
+       cex = 1.5, studlab = FALSE, backtransf = FALSE,
+       ref = exp(ml.se$TE.random)
+       # level = 0.95,
+       # contour = c(0.9, 0.95, 0.99)
 )
 
 
@@ -569,30 +569,27 @@ tf.sp[["seTE"]] <- tf.sp[["seTE"]]/sqrt(2)
 funnel(tf.sp, xlab = "logit-specificity", fixed = FALSE,
        #pch = c(rep(21, nr), rep(1, sum(tf.sp[["trimfill"]]))),
        bg = colors,
-       cex = 1.5, studlab = TRUE, backtransf = FALSE,
-       ref = exp(ml.sp$TE.random),
-       level = 0.95,
-       contour = c(0.9, 0.95, 0.99)
+       cex = 1.5, studlab = FALSE, backtransf = FALSE,
+       ref = exp(ml.sp$TE.random)
+       # level = 0.95,
+       # contour = c(0.9, 0.95, 0.99)
 )
 
 
 
-par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(1, 0, 1, 0), new = TRUE)
+par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 1, 0), new = TRUE)
 plot(0, 0, type = 'l', bty = 'n', xaxt = 'n', yaxt = 'n')
 
-legend_order <- matrix(1:8, ncol=2, byrow = TRUE)
+legend_order <- matrix(1:6, ncol=2, byrow = TRUE)
 
 legend('bottom',
        legend = c("Filled studies", 
                   "Published studies with cutoff values of 1800-10000 (mol/cell)",
                   "Published studies with cutoff values of 3.05-43.5 (MFI/cell)", 
                   "Published studies with cutoff values 1.19-4.39", 
-                  "Published studies with other cutoff value", 
-                  "p < 0.01",
-                  "0.01 < p < 0.05",
-                  "0.05 < p < 0.1")[legend_order],
-       pch = c(21,rep(21, 4), rep(22, 3))[legend_order],
-       pt.bg = c("white", "red", "tan4", "skyblue4", "gold", "#E6E6E6", "#B3B3B3", "#808080")[legend_order],
+                  "Published studies with other cutoff value")[legend_order],
+       pch = c(21,rep(21, 4), NA)[legend_order],
+       pt.bg = c("white", "red", "tan4", "skyblue4", "gold", NA)[legend_order],
        xpd = TRUE, 
        horiz = FALSE, 
        cex = 1.2,
