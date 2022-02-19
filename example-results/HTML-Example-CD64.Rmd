@@ -609,10 +609,12 @@ if(save.results)  dev.off()
 
 
 
-# PLOT: Funnel plot 2 (Subgroup)
+
+```{r, fig.width=10, fig.height=10, include=FALSE}
+
+## PLOT: Funnel plot 2 (Subgroup)
 
 
-```{r, fig.width=10, fig.height=10}
 data.cc <- correction(data, type = "single")
 # ldata   <- logit.data(correction(data, type = "single"))
 # nr <- nrow(ldata)
