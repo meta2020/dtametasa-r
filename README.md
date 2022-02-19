@@ -14,7 +14,7 @@ If they are not installed, please install from R CRAN `install.packages("package
 
 ## Example
 
-- [Example 1](example-results/HTML-Example-IVD.html)
+- [Example 1](example-results/HTML-Example-IVD.Rmd)
 
 - [Example 2](example-results/HTML-Example-CD64.html)
 
