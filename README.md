@@ -1,4 +1,4 @@
-# [Reproducible R Code] Sensitivity analysis for publication bias on the SROC in DTA meta-analysis
+# [Reproducible R Code] Sensitivity analysis for PB in DTA meta-analysis
 
 
 This folder contains reproducible R codes of simulation studies and re-analysis of the example data.
