@@ -1,4 +1,4 @@
-# [Reproducible Rmd Code] 
+# [Reproducible R Code in Rmd file] 
 
 # Sensitivity analysis for PB in DTA meta-analysis
 
