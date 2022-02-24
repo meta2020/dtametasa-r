@@ -18,7 +18,7 @@ library(kableExtra)
   
 table.pars <- function(list.n, row.n){
   
-  load(s.rdt) 
+  load(s.rdt)
   # 
   # list.n <- 1
   # row.n  <- 1
@@ -38,7 +38,8 @@ table.pars <- function(list.n, row.n){
                 sqrt(set[[list.n]][row.n, ][c(4:5)]), # t1 t2
                 set[[list.n]][row.n, ][c(12)],        # r
                 set[[list.n]][row.n, ][c(9:10)],      # b a
-                sqrt(set[[list.n]][row.n, ][c(7)]))   # c1
+                sqrt(set[[list.n]][row.n, ][c(7)])
+  )   
 
   med  <- apply(DATA, 1:2, function(x) median(x, na.rm = TRUE))[1:8,] # -true.par
   iq25 <- apply(DATA, 1:2, function(x) quantile(x, prob =0.25, na.rm = TRUE))[1:8,]
@@ -52,8 +53,19 @@ table.pars <- function(list.n, row.n){
                         med.BRE   = sprintf("%.3f (%.3f, %.3f)", med[,5], iq25[,5], iq75[,5]),
                         med.BRE.p = sprintf("%.3f (%.3f, %.3f)", med[,6], iq25[,6], iq75[,6]) )
   
+  conv1 <- DATA[9,1, ]
+  conv2 <- DATA[9,2, ]
+  conv3 <- DATA[9,3, ]
+  conv4 <- DATA[9,4, ]
+  conv5 <- DATA[9,5, ]
+  conv6 <- DATA[9,6, ]
+
+  conv.per <- c(NA, sum(conv1 %in% 0)/10, sum(conv2 %in% 0)/10, sum(conv3 %in% 0)/10,
+                sum(conv4 %in% 0)/10, sum(conv5 %in% 0)/10, sum(conv6 %in% 0)/10)
+  
   X[6:8,5:7] <- NA
   X[8,3:4] <- NA
+  X <- rbind(X, conv.per)
   X
 }
 ```
@@ -119,9 +131,9 @@ longtab <- rbind(table.pars(1, 1),
             table.pars(4, 1))
 
 PAR <- rep(c("$\\mu_1$", "$\\mu_2$", "$\\tau_1$", "$\\tau_2$", "$\\rho$", 
-         "$\\beta$", "$\\alpha$", "$c_1$"),4)
+         "$\\beta$", "$\\alpha$", "$c_1$", "CR"),4)
 
-S <- c(10, rep(NA, 7), 15, rep(NA,7), 50, rep(NA,7), 200, rep(NA,7))
+S <- c(10, rep(NA, 8), 15, rep(NA,8), 50, rep(NA,8), 200, rep(NA,8))
 colnm <- c("$S$","Par","True", 
            "Proposed $(\\hat{c}_1^2, \\hat{c}_2^2)$",
            "Proposed (correct)",
