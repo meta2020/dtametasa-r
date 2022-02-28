@@ -95,7 +95,7 @@ for(row.n in c(1:6)){
 longtab.f <- cbind.data.frame(no = c(1, rep(NA, 5),2, rep(NA, 5),3, rep(NA, 5),4, rep(NA, 5),5, rep(NA, 5),6, rep(NA, 5) ),
                               " " = rep(c("Proposed $(\\hat{c}_1, \\hat{c}_2)$",
                                           "Proposed $(c_1 = c_2)$",
-                                          "Proposed $(c_1 = 0)$",
+                                          "Proposed $(c_1 = 1)$",
                                           # "Proposed (correct)",
                                           # "Proposed (wrong)",
                                           "Heckman-type",
