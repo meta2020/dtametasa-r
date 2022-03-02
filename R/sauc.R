@@ -8,7 +8,7 @@
 ## DID for SROC
 ##
 
-.DID.sroc <- function(x, u1, u2, t1, t2, r, var.matrix){
+.DID.sroc <- function(u1, u2, t1, t2, r, var.matrix){
 	
 	Q1 <- function(x) {
 		
@@ -59,7 +59,7 @@
 ## DID for HSROC (not change yet)
 ##
 
-.DID.hsroc <- function(x, u1, u2, t1, t2, r, var.matrix){
+.DID.hsroc <- function( u1, u2, t1, t2, r, var.matrix){
 	
 	Q1 <- function(x) {
 	
@@ -123,11 +123,11 @@ SAUC.ci <- function(
 		
 		sauc.lb <-  plogis(qlogis(sauc) + qnorm((1-ci.level)/2, lower.tail = TRUE) *
 																							suppressWarnings(
-																								sqrt(.DID.sroc(x, u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
+																								sqrt(.DID.sroc(u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
 		
 		sauc.ub <-  plogis(qlogis(sauc) + qnorm((1-ci.level)/2, lower.tail = FALSE)*
 																							suppressWarnings(
-																								sqrt(.DID.sroc(x, u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
+																								sqrt(.DID.sroc(u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
 		
 	}  else {
 	
@@ -155,11 +155,11 @@ SAUC.ci <- function(
 	
 	sauc.lb <-  plogis(qlogis(sauc) + qnorm((1-ci.level)/2, lower.tail = TRUE) *
 																					suppressWarnings(
-																						sqrt(.DID.hsroc(x, u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
+																						sqrt(.DID.hsroc(u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
 	
 	sauc.ub <-  plogis(qlogis(sauc) + qnorm((1-ci.level)/2, lower.tail = FALSE)*
 																					suppressWarnings(
-																						sqrt(.DID.hsroc(x, u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
+																						sqrt(.DID.hsroc(u1, u2, t1, t2, r, var.matrix))/(sauc*(1-sauc))) )
 	
 }
 
