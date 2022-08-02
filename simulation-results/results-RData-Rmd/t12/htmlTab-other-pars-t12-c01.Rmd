@@ -108,7 +108,7 @@ kbl(x,
     linesep = c(rep('', 2), '\\addlinespace'),
     escape = FALSE,
     caption = "Scenarios")%>% 
-  kable_styling(full_width = TRUE)
+  kable_classic_2(full_width = TRUE)
 ```
 
 
@@ -157,7 +157,7 @@ kbl(longtab.f,
     linesep = c(rep('', 7), '\\addlinespace'),
     escape = FALSE,
     caption = "Estimates of the parameters")%>% 
-  kable_styling(full_width = TRUE)
+  kable_classic_2(full_width = TRUE)
 
 # sink()
 ```
@@ -189,7 +189,7 @@ kbl(longtab.f,
     linesep = c(rep('', 7), '\\addlinespace'),
     escape = FALSE,
     caption = "Estimates of the parameters")%>% 
-  kable_styling(full_width = TRUE)
+  kable_classic_2(full_width = TRUE)
 # sink()
 
 ```
@@ -220,7 +220,7 @@ kbl(longtab.f,
     linesep = c(rep('', 7), '\\addlinespace'),
     escape = FALSE,
     caption = "Estimates of the parameters")%>% 
-  kable_styling(full_width = TRUE)
+  kable_classic_2(full_width = TRUE)
 # sink()
 
 ```
@@ -253,7 +253,7 @@ kbl(longtab.f,
     linesep = c(rep('', 7), '\\addlinespace'),
     escape = FALSE,
     caption = "Estimates of the parameters")%>% 
-  kable_styling(full_width = TRUE)
+  kable_classic_2(full_width = TRUE)
 # sink()
 
 ```
@@ -286,7 +286,7 @@ kbl(longtab.f,
     linesep = c(rep('', 7), '\\addlinespace'),
     escape = FALSE,
     caption = "Estimates of the parameters")%>% 
-  kable_styling(full_width = TRUE)
+  kable_classic_2(full_width = TRUE)
 # sink()
 
 ```
@@ -319,7 +319,7 @@ kbl(longtab.f,
     linesep = c(rep('', 7), '\\addlinespace'),
     escape = FALSE,
     caption = "Estimates of the parameters")%>% 
-  kable_styling(full_width = TRUE)
+  kable_classic_2(full_width = TRUE)
 # sink()
 
 ```
