@@ -21,7 +21,8 @@ options(knitr.kable.NA = "")
 
 
 save.tex <- FALSE
-# save.tex <- TRUE; save.path <- "~/Documents/GitHub/Manu1/SIM-2/SIM-ver2-supp-1221/tab/"
+# save.tex <- TRUE;
+
 
 table.sauc <- function(list.n, row.n){
 
@@ -106,7 +107,7 @@ rownames(longtab.f) <- NULL
 colnames(longtab.f) <- c("No."," Methods", "True", rep(c("Median (Q1, Q3)"), 4))
 
 
-if (save.tex) sink(paste0(save.path, "tb-sauc-t0.7-c11.tex"))
+if (save.tex) sink("tb-sauc-t0.7-c11.tex")
 
 kbl(longtab.f, 
     format = ifelse(save.tex, "latex", "html"),
@@ -180,7 +181,7 @@ colnames(longtab.f) <- c("No."," ", "True", rep(c("Median (Q1, Q3)"), 4))
 
 
 
-if (save.tex) sink(paste0(save.path, "tb-sauc-t0.7-c10.tex"))
+if (save.tex) sink("tb-sauc-t0.7-c10.tex")
 
 kbl(longtab.f, 
     format = ifelse(save.tex, "latex", "html"),
@@ -253,7 +254,7 @@ colnames(longtab.f) <- c("No."," ", "True", rep(c("Median (Q1, Q3)"), 4))
 
 
 
-if (save.tex)  sink(paste0(save.path, "tb-sauc-t0.7-c01.tex"))
+if (save.tex)  sink("tb-sauc-t0.7-c01.tex")
 
 kbl(longtab.f, 
     format = ifelse(save.tex, "latex", "html"),
