@@ -16,12 +16,12 @@ If they are not installed, please install from R CRAN `install.packages("package
 
 ## Example
 
-- [Example 1 codes](example-results/HTML-Example-IVD.Rmd)
+- [Example 1 codes](example-results-legend/HTML-Example-IVD.Rmd)
 
 <!-- - [Example 1 results](example-results/HTML-Example-IVD.html) -->
 
 
-- [Example 2 codes](example-results/HTML-Example-CD64.Rmd)
+- [Example 2 codes](example-results-legend/HTML-Example-CD64.Rmd)
 
 <!-- - [Example 2 results](example-results/HTML-Example-CD64.html) -->
 
