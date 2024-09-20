@@ -1,4 +1,4 @@
-## [Reproducible R Codes] 
+## [Reproducible results with R Codes] 
 
 # A likelihood‐based sensitivity analysis for publication bias on the summary receiver operating characteristic in meta‐analysis of diagnostic test accuracy
 
