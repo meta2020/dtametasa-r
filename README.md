@@ -2,7 +2,9 @@
 
 # A likelihood‐based sensitivity analysis for publication bias on the summary receiver operating characteristic in meta‐analysis of diagnostic test accuracy
 
-See details:  Zhou Y, Huang A, Hattori S. A likelihood‐based sensitivity analysis for publication bias on the summary receiver operating characteristic in meta‐analysis of diagnostic test accuracy. Statistics in Medicine. 2023 Mar 15;42(6):781–98. 10.1002/sim.9643
+## Citation
+
+Zhou Y, Huang A, Hattori S. A likelihood‐based sensitivity analysis for publication bias on the summary receiver operating characteristic in meta‐analysis of diagnostic test accuracy. Statistics in Medicine. 2023 Mar 15;42(6):781–98. [10.1002/sim.9643](https://doi.org/10.1002/sim.9643)
 
 This folder contains reproducible R codes of simulation studies and re-analysis of the example data.
 
